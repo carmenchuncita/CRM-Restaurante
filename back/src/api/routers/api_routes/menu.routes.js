@@ -10,7 +10,7 @@ const {
     getUpcomingEvents,
     getEventsByType,
     getEventsByDateRange
-} = require('../../controllers/sport.controller');
+} = require('../../controllers/menu.controller');
 
 
 router.get('/getAllEvents', getEvents);
