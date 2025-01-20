@@ -11,8 +11,6 @@ const userSchema = new Schema(
       match: [/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/, 'Por favor, ingrese un correo electrónico válido']
     },
     password: { type: String, required: true },
-    image: { type: String, default: '' },
-    birth: { type: Date },
     role: { type: String,
       enum: ['admin', 'client'], 
       default: 'client' },

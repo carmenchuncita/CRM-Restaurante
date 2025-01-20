@@ -3,7 +3,7 @@ const bcrypt = require('bcryptjs');
 const { createToken } = require('../middleware/jwt-auth'); 
 
 const registerUser = async (req, res) => {
-  const { email, password, name, birth, role } = req.body; 
+  const { email, password, name, role } = req.body; 
 
   try {
     //Check if the user already exists
@@ -16,7 +16,6 @@ const registerUser = async (req, res) => {
       name,
       email,
       password,  
-      birth,
       role
     });
 
