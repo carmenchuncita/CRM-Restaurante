@@ -61,6 +61,34 @@ const loginUser = async (req, res) => {
   }
 };
 
+function verifyToken(req, res) {
+  const authHeader = req.headers['authorization'];
+  const token = authHeader.split(' ')[1];
+  // no token, unauthorized
+
+  try {
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    return res.status(200).json({ verified: true, user: decoded });
+  } catch (error) {
+    if (error.name === 'TokenExpiredError') {
+      return res.status(401).json({ verified: false, message: 'Token expired' });
+    }
+    return res.status(401).json({ verified: false, message: 'Invalid token' });
+  }
+}
+
+const verifyRole = async (req, res) => {
+  const {email} = req.body
+  try {
+    const user = await Users.findOne({ email });
+      if (!user) return res.status(404).json({ message: "Usuario no encontrado" });
+      res.status(200).json({ user: { role :user.role} });
+  } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: "Error al recuperar la información del usuario", error });
+  }
+};
+
 const profileUser = async (req, res) => {
   try {
       const user = await Users.findById(req.user.user_id);
@@ -107,4 +135,4 @@ const updateOrRegisterUser = async (req, res) => {
 
 
 
-module.exports = { registerUser,loginUser, profileUser,updateOrRegisterUser };
+module.exports = { registerUser,loginUser, profileUser,updateOrRegisterUser, verifyToken, verifyRole};
