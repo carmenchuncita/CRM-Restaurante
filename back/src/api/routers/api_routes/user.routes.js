@@ -7,7 +7,8 @@ const {
   registerUser,
   loginUser,
   profileUser,
-  updateOrRegisterUser
+  updateOrRegisterUser,
+  postReview
 } = require('../../controllers/user.controller'); 
 // We use encryptPassword to secure the password before saving
 router.post('/register', encryptPassword, registerUser);
@@ -17,5 +18,7 @@ router.post('/login', loginUser);
 router.get('/profile', authenticateToken, profileUser);
 // Route to upload profile´s image
 router.post('/uploadFile', upload.single('image'), updateOrRegisterUser);
+// Route to upload a review, we use authenticateToken to ensure it is a logged in user
+router.post('/postReview', authenticateToken, postReview);
 
 module.exports = router;

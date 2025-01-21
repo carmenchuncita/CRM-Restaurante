@@ -3,9 +3,9 @@ const Schema = mongoose.Schema;
 
 const reviewSchema = new Schema(
   {
-    reviwer: { type: Number, required: true },
+    reviwer: { type: String, required: true },
     rating: { type: Number, required: true },
-    description: { type: Text, required: true },
+    description: { type: String, required: true },
   },
   {
     collection: 'reviews',
@@ -13,5 +13,5 @@ const reviewSchema = new Schema(
   }
 );
 
-const Reviews = mongoose.model('reviews', reviewSchema);
-module.exports = Reviews;
+const Review = mongoose.model('reviews', reviewSchema);
+module.exports = Review;

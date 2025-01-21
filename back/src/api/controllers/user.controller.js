@@ -1,4 +1,5 @@
 const Users = require('../models/user.model');
+const Review = require('../models/review.model');
 const bcrypt = require('bcryptjs');
 const { createToken } = require('../middleware/jwt-auth'); 
 
@@ -105,6 +106,33 @@ const updateOrRegisterUser = async (req, res) => {
   }
 };
 
+const postReview = async (req, res) => {
+  const { rating, description } = req.body; 
+  const reviwerObject = await Users.findById(req.user.user_id);
+  const reviwer = req.user.user_id;
+  try {
+    //Check if the user already exists
+    const existingReview = await Review.findOne({ reviwerObject });
+    if (existingReview) {
+      return res.status(409).json({ message: 'Ya ha hecho una reseña' });
+    }
 
+    const newReview = new Review({
+      reviwer,
+      rating,
+      description
+    });
 
-module.exports = { registerUser,loginUser, profileUser,updateOrRegisterUser };
+    const createdReview = await newReview.save();
+    return res.status(201).json({ message: 'Reseña creado con éxito', data: createdReview });
+  } catch (error) {
+    console.log(error);
+    
+    if (error.code === 11000) {
+      return res.status(409).json({ message: 'El usuario ya tiene una reseña' });
+    }
+    return res.status(500).json({ message: 'Error al crear la reseña', error: error });
+  }
+};
+
+module.exports = { registerUser,loginUser, profileUser,updateOrRegisterUser,postReview };
