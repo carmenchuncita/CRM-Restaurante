@@ -1,5 +1,6 @@
 const express = require('express');
 require('dotenv').config();  
+const cors = require('cors');
 
 const connectDB = require('./src/utils/db_mongo');
 connectDB();  
@@ -7,7 +8,11 @@ connectDB();
 const routes = require('./src/api/routers/routes'); 
 
 const server = express();
-server.use(express.json());  
+server.use(express.json()); 
+server.use(cors({
+  origin: '*'
+})) 
+
 
 server.use((req, res, next) => {
   console.log(`Incoming request: ${req.method} ${req.path}`);
