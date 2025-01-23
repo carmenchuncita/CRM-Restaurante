@@ -4,9 +4,9 @@ const createToken = (user) => {
   const data = {
     user_id: user._id,
     user_email: user.email,
-    role: user.role
+    user_role: user.role
   };
-  return jwt.sign(data, process.env.JWT_SECRET);
+  return jwt.sign(data, process.env.JWT_SECRET, {expiresIn:"1h"});
 };
 
 function authenticateToken(req, res, next) {
