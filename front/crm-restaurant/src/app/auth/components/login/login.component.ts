@@ -23,12 +23,14 @@ password: new FormControl('', Validators.required),
 
 })
 
-
+//event binding. Método del evento del summit del fomulario formulario
 handleLoginForm(){
 
 console.log(this.form.value)
 console.log(this.form.valid)
 
+
+// si el formjulario cumple con la validaciones me suscribo al servicio y guardo en el logcalStorage el tokem, el email y role.
 if(this.form.valid) {
 
 this.authService.loginUser(this.form.value).subscribe({
@@ -47,11 +49,9 @@ this.authService.loginUser(this.form.value).subscribe({
     error: (error: any) => {
       console.log(error)
     }
-    
+
   })
     
   }
-
 }
-
-}
+};

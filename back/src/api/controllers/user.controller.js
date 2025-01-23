@@ -65,27 +65,29 @@ const loginUser = async (req, res) => {
 
 function verifyToken(req, res) {
   const authHeader = req.headers['authorization'];
-  const token = authHeader.split(' ')[1];
-  // no token, unauthorized
 
+  if (!authHeader) {
+    return res.status(401).json({ verified: false, message: "No hay token"})
+  }
+
+  const token = authHeader.split(' ')[1];
+  // no token, unauthorizedif (!token || !refreshToken) {
+   
  
   try {
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
     return res.status(200).json({ verified: true, user: decoded });
   } catch (error) {
+
     console.error('Error de JWT:', error);
+
     
     if (error.name === 'TokenExpiredError') {
       return res.status(401).json({ verified: false, message: 'Token expired' });
     }
     
     return res.status(401).json({ verified: false, message: 'Invalid token', error: error.message });
-  }/*catch (error) {
-    if (error.name === 'TokenExpiredError') {
-      return res.status(401).json({ verified: false, message: 'Token expired' });
-    }
-    return res.status(401).json({ verified: false, message: 'Invalid token' });
-  }*/
+  }
 }
 
 const verifyRole = async (req, res) => {
