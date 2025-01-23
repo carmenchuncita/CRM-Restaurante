@@ -8,6 +8,8 @@ const {
   loginUser,
   profileUser,
   updateOrRegisterUser,
+  postReview,
+  updateReview,
   verifyToken,
   verifyRole
 } = require('../../controllers/user.controller'); 
@@ -21,5 +23,9 @@ router.post('/verify-role', verifyRole);
 router.get('/profile', authenticateToken, profileUser);
 // Route to upload profile´s image
 router.post('/uploadFile', upload.single('image'), updateOrRegisterUser);
+// Route to upload a review, we use authenticateToken to ensure it is a logged in user
+router.post('/postReview', authenticateToken, postReview);
+// Route to update a review, we use authenticateToken to ensure it is a logged in user
+router.put('/updateReview', authenticateToken, updateReview);
 
 module.exports = router;
