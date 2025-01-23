@@ -1,6 +1,8 @@
 const Users = require('../models/user.model');
 const Review = require('../models/review.model');
 const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
+
 const { createToken } = require('../middleware/jwt-auth'); 
 
 const registerUser = async (req, res) => {
@@ -53,12 +55,50 @@ const loginUser = async (req, res) => {
           user: {
               id: user._id,
               email: user.email,
-              name: user.name
+              name: user.name,
+              role: user.role
           }
       });
   } catch (error) {
       console.error(error);  
       res.status(500).json({ message: "Error al procesar la solicitud", error: error.message });
+  }
+};
+
+function verifyToken(req, res) {
+  const authHeader = req.headers['authorization'];
+  const token = authHeader.split(' ')[1];
+  // no token, unauthorized
+
+ 
+  try {
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    return res.status(200).json({ verified: true, user: decoded });
+  } catch (error) {
+    console.error('Error de JWT:', error);
+    
+    if (error.name === 'TokenExpiredError') {
+      return res.status(401).json({ verified: false, message: 'Token expired' });
+    }
+    
+    return res.status(401).json({ verified: false, message: 'Invalid token', error: error.message });
+  }/*catch (error) {
+    if (error.name === 'TokenExpiredError') {
+      return res.status(401).json({ verified: false, message: 'Token expired' });
+    }
+    return res.status(401).json({ verified: false, message: 'Invalid token' });
+  }*/
+}
+
+const verifyRole = async (req, res) => {
+  const {email} = req.body
+  try {
+    const user = await Users.findOne({ email });
+      if (!user) return res.status(404).json({ message: "Usuario no encontrado" });
+      res.status(200).json({ user: { role :user.role} });
+  } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: "Error al recuperar la información del usuario", error });
   }
 };
 
@@ -172,4 +212,4 @@ const updateReview = async (req, res) => {
   }
 };
 
-module.exports = { registerUser,loginUser, profileUser,updateOrRegisterUser,postReview, updateReview };
+module.exports = { registerUser,loginUser, profileUser,updateOrRegisterUser,postReview, updateReview,verifyRole,verifyToken };
