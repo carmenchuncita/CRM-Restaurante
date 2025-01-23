@@ -1,30 +1,25 @@
 const express = require('express');
 const router = express.Router();
-const { authenticateToken,roleCheck } = require('../../middleware/jwt-auth');
+const { authenticateToken, roleCheck } = require('../../middleware/jwt-auth');
 const {
-    getEvents,
-    getEventById,
-    createEvent,
-    updateEvent,
-    deleteEvent,
-    getUpcomingEvents,
-    getEventsByType,
-    getEventsByDateRange
-} = require('../../controllers/menu.controller');
+    getMenus,
+    getMenusByDay,
+    createMenu,
+    updateMenu,
+    deleteMenu,
+    getMenusByCategory,
+    getAvailableMenus
+} = require('../controllers/menu.controller');
 
+// Rutas públicas
+router.get('/', authenticateToken, getMenus); // Solo usuarios autenticados pueden ver menús
+router.get('/day', authenticateToken, getMenusByDay);
+router.get('/category', authenticateToken, getMenusByCategory);
+router.get('/available', authenticateToken, getAvailableMenus);
 
-router.get('/getAllEvents', getEvents);
-router.get('/getById/:eventId', getEventById);
-//protected by authentication and only accessible to admin
-router.post('/createEvent', authenticateToken, roleCheck('admin'), createEvent)
-//protected by authentication and only accessible to admin
-router.put('/updateEvent/:eventId', authenticateToken, roleCheck('admin'), updateEvent);
-//protected by authentication and only accessible to admin
-router.delete('/deleteEvent/:eventId', authenticateToken, roleCheck('admin'), deleteEvent);
-
-//Advanced routes
-router.get('/events/upcoming', getUpcomingEvents)
-router.get('/events', getEventsByType);
-router.get('/events/date', getEventsByDateRange);
+// Rutas restringidas a administradores
+router.post('/', authenticateToken, roleCheck('admin'), createMenu);
+router.put('/:menuId', authenticateToken, roleCheck('admin'), updateMenu);
+router.delete('/:menuId', authenticateToken, roleCheck('admin'), deleteMenu);
 
 module.exports = router;
