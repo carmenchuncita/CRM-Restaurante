@@ -4,14 +4,23 @@
     <div class="form-group">
         <label>Nombre</label>
         <input type="text" formControlName="name">
+        @if (form.get('name')?.value === '' && isSubmitted) {
+            <p class="form-field--text-danger">Debes rellenar este campo</p>
+        }
     </div>
     <div class="form-group">
         <label>Email</label>
         <input type="email" formControlName="email">
+        @if (form.get('email')?.value === '' && isSubmitted) {
+            <p class="form-field--text-danger">Debes rellenar este campo</p>
+        }
     </div>
     <div class="form-group">
         <label>Password</label>
-        <input type="text" formControlName="password">
+        <input type="password" formControlName="password">
+        @if (form.get('email')?.value === '' && isSubmitted) {
+            <p class="form-field--text-danger">Debes rellenar este campo</p>
+        }
     </div>
  
     <input type="submit" value="Enviar">

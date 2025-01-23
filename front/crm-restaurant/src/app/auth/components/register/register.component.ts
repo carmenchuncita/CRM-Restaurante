@@ -23,8 +23,11 @@ export class RegisterComponent {
 
   })
 
+  isSubmitted: boolean = false;
 
   handleRegisterForm(){
+
+    this.isSubmitted = true;
 
     console.log(this.form.value)
     console.log(this.form.valid)
