@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 
 
-const { authenticateToken, roleCheck } = require('../middleware/authMiddleware');
+const { authenticateToken, roleCheck } = require('../../middleware/jwt-auth');
 const { getMesas, getMesaById, createMesa, updateMesa, deleteMesa, getMesasDisponibles, updateDisponibilidadMesa } = require('../../controllers/mesa.controller');
 
 // Ruta para obtener todas las mesas
