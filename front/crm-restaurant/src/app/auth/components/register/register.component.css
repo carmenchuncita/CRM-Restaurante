@@ -1,3 +1,7 @@
-input.ng-invalid.ng-touched {
-	border: 1px solid red;
+
+.form-field--text-danger{
+	color: #ef8686;
+	font-weight: bold;
+	font-size: 0.875rem;
+	margin-top: 0.25rem;
 }

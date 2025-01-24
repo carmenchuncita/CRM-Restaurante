@@ -73,7 +73,6 @@ function verifyToken(req, res) {
   }
 
   const token = authHeader.split(' ')[1];
-  // no token, unauthorizedif (!token || !refreshToken) {
    
  
   try {

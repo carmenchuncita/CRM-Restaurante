@@ -17,9 +17,19 @@ export class RegisterComponent {
 
     private message: string = ''
     public form: FormGroup = new FormGroup  ({
-    name: new FormControl('', Validators.required),
-    email: new FormControl('', Validators.required),
-    password: new FormControl('', Validators.required),
+    name: new FormControl('', [
+      Validators.required,
+      Validators.minLength(3) 
+    ]),
+    email: new FormControl('', [
+      Validators.required,
+      Validators.pattern(/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/)
+    ]),
+    password: new FormControl('', [
+      Validators.required,
+      Validators.minLength(8), 
+      Validators.pattern(/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d).{8,}$/) // Al menos 1 mayúscula, 1 minúscula y 1 número
+    ])
 
   })
 
