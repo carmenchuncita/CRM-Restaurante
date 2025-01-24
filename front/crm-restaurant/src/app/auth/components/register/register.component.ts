@@ -13,27 +13,29 @@ export class RegisterComponent {
 
     private authservice: AuthService = inject(AuthService)
     private router: Router = inject(Router)
-
-
     private message: string = ''
+    public isSubmitted: boolean = false;
+    public errorMessage: boolean = false;
+
+
     public form: FormGroup = new FormGroup  ({
     name: new FormControl('', [
       Validators.required,
-      Validators.minLength(3) 
+      Validators.minLength(3) //al menos debe tener 3 caracteres
     ]),
     email: new FormControl('', [
       Validators.required,
       Validators.pattern(/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/)
-    ]),
+    ]),// pattern según validación del back, formato email
     password: new FormControl('', [
       Validators.required,
-      Validators.minLength(8), 
+      Validators.minLength(8), //al menos 8 caracteres
       Validators.pattern(/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d).{8,}$/) // Al menos 1 mayúscula, 1 minúscula y 1 número
     ])
 
   })
 
-  isSubmitted: boolean = false;
+
 
   handleRegisterForm(){
 
@@ -50,10 +52,20 @@ export class RegisterComponent {
         console.log(data)
         this.message = data.message
         alert(this.message)
+        alert('su reserva ha sido confirmada')
+        /*this.router.navigate(['/home'])*/
       },
 
       error: (error: any) => {
-        console.log(error)
+        console.error('Error en la ejecución del registro', error);
+
+          // Validaciones específicas del backend
+          if (error.error.message === 'El correo electrónico ya está registrado') {
+            alert('Ya exite una cuenta con esta dirección de e-mail, por favor inicie sesión para confirmar su reserva')
+            this.router.navigate(['/auth/login'])
+          }
+        
+          this.errorMessage = error.error.message;
        
       }
     })
