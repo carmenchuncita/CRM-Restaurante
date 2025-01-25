@@ -59,7 +59,7 @@ this.authService.loginUser(this.form.value).subscribe({
           this.router.navigate([redirectUrl])
         }
 
-        if(redirectUrl === '/reservas'){
+        if(redirectUrl === '/reservas'){ // confirmar si este es el path
           this.router.navigate([redirectUrl])
         }
       }

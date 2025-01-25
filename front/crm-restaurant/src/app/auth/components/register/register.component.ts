@@ -2,6 +2,7 @@ import { Component, inject } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
+import { HeaderComponent } from '../../../header/header.component';
 
 @Component({
   selector: 'app-register',
@@ -52,8 +53,9 @@ export class RegisterComponent {
         console.log(data)
         this.message = data.message
         alert(this.message)
+           /*this.router.navigate(['/home'])*/
         alert('su reserva ha sido confirmada')
-        /*this.router.navigate(['/home'])*/
+     
       },
 
       error: (error: any) => {

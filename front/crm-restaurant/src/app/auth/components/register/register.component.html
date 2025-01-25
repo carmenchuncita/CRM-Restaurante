@@ -1,10 +1,13 @@
-<p>register works!</p>
+
 
 <!--formulario reactivo con validadciones de campo requerido, número de de caracteres y pattern que debe cumplir-->
-<form [formGroup]="form" (ngSubmit)="handleRegisterForm()">
+<section class="registerForm">
+
+<div class= "contenedor .div-bracket">
+<form [formGroup]="form" (ngSubmit)="handleRegisterForm()" class= "form">
     <div class="form-group">
-        <label>Nombre</label>
-        <input type="text" formControlName="name">
+        <label >Nombre</label>
+        <input class = "form-input" type="text" formControlName="name">
 
         @if (form.get('name')?.hasError('required') && isSubmitted) {
             <p class="form-field--text-danger">Debe rellenar este campo</p>   
@@ -16,7 +19,7 @@
 
     <div class="form-group">
         <label>Email</label>
-        <input type="email" formControlName="email">
+        <input class = "form-input" type="email" formControlName="email">
 
         @if (form.get('email')?.hasError('required') && isSubmitted) {
             <p class="form-field--text-danger">Debe rellenar este campo</p>   
@@ -29,7 +32,7 @@
 
     <div class="form-group">
         <label>Password</label>
-        <input type="password" formControlName="password">
+        <input class = "form-input" type="password" formControlName="password">
 
         @if (form.get('password')?.hasError('required') && isSubmitted) {
             <p class="form-field--text-danger">Debe rellenar este campo</p>   
@@ -40,5 +43,8 @@
 
     </div>
  
-    <input type="submit" value="Enviar">
+    <input class = "form-button" type="submit" value="Enviar" >
 </form>
+</div>
+
+</section>

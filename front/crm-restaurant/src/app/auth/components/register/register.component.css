@@ -1,7 +1,153 @@
+:host {
+	display: flex;
+	background-color: #f7f7f7; 
+	height: 100vh;
+	box-sizing: border-box;
+	
+  }
 
-.form-field--text-danger{
-	color: #ef8686;
-	font-weight: bold;
-	font-size: 0.875rem;
-	margin-top: 0.25rem;
+  * {
+	box-sizing: border-box;
+  }
+
+  .registerForm {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: #f7f7f7;	
+	width: 100%;
+	height: 100%;
+
+  }
+
+  .contenedor {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: #f7f7f7;
+	position: relative;
+	border-left: 1px solid black; /* Borde izquierdo */
+	border-right: 1px solid black; /* Borde derecho */
+
+	margin: 0;
+	width: 700px;
+	height: 550px;
+  }
+  
+  /* Líneas discontinuas (superiores) */
+  .contenedor::before,
+  .contenedor::after {
+	content: '';
+	position: absolute;
+	height: 1px;
+	width: 100px; /* Longitud del borde discontinuo */
+	background: repeating-linear-gradient(
+	  to right,
+	  black 0,
+	  black 10px,
+	  transparent 0px,
+	  transparent 0px
+	);
+  }
+  
+  /* Superior izquierda */
+  .contenedor::before {
+	top: 0;
+	left: 0;
+	
+  }
+  
+  /* Superior derecha */
+  .contenedor::after {
+	top: 0;
+	right: 0;
+  }
+    
+  /* Inferior izquierda */
+  .contenedor::before {
+	bottom: 0;
+	left: 0;
+  }
+  
+  /* Inferior derecha */
+  .contenedor::after{
+	bottom: 0;
+	right: 0;
+  }
+  
+
+
+.form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+	position: absolute;
+    gap: 1rem;
+    width: 600px;
+	height: 600px;
+	top: 4rem;
+	background-color: #e3f982;	
+
+	
 }
+ 
+ 
+  .form-group {
+    /*margin-bottom: 1.5rem;*/
+	width: 500px;
+	align-content: center;
+
+	
+	
+  }
+ 
+  label {
+    font-size: 1rem;
+    color: #282826;
+    display: block;
+  }
+ 
+  .form-input {
+    width: 100%;
+    padding: 0.5rem 0 0.5rem 0;
+	margin: 0.2rem 0 0 0 ;
+	background-color: #e3f982;
+	border: none;
+	border-bottom: 1px solid #282826;
+    font-size: 1rem;
+	
+  }
+ 
+  .form-input:focus {
+    outline: none;
+	border-bottom: 1px solid #282826;
+  }
+
+  .form-field--text-danger{
+	color: #ef8686;
+	font-size: 0.875rem;
+	margin-top: 0.5rem;
+	margin-bottom: 1.8rem;
+	font-weight: 550;
+
+}
+ 
+  .form-button {
+	background-color: #e3f982;
+    color: #282826;
+	font-family: "Raleway";
+    border: 1px solid #282826;
+    padding: 1rem;
+    font-size: 1.1rem;
+    cursor: pointer;
+    width: 500px;
+	align-items: center;
+	margin-top: 5rem;
+  }
+ 
+  .form-button:hover {
+    background-color: #282826;
+	color: #e3f982;
+  }
+
