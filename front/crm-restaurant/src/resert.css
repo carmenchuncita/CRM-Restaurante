@@ -1,5 +1,6 @@
 :root {
    font-family: "Raleway";
+   box-sizing: border-box;
 }
 
 html {
@@ -55,5 +56,6 @@ table {
 	border-collapse: collapse;
 	border-spacing: 0;
 }
+
 
 
