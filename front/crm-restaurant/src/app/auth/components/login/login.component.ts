@@ -50,6 +50,7 @@ this.authService.loginUser(this.form.value).subscribe({
       localStorage.setItem('token', data.token)
       localStorage.setItem('email', data.user.email)
       localStorage.setItem('role', data.user.role)
+      localStorage.setItem('id', data.user.id)
       /*this.router.navigate([localStorage.getItem('redirectUrl')])
       si no funciona la lógica de abajo ver este camino*/
       if(data.user.role === 'client'){
