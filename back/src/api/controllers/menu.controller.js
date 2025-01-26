@@ -1,125 +1,121 @@
-const Menus = require('../models/menu.model');
+const Menu = require('../models/menu.model');
 
-const getEvents = async (req, res) => {
+
+// Obtener menús de todos los días
+const getMenus = async (req, res) => {
     try {
-        const events = await Menus.find(); 
-        res.json(events);
+        const menus = await Menu.find();
+        res.json(menus);
     } catch (error) {
-        res.status(500).send({ message: "Error al obtener los eventos", error: error.message });
+        res.status(500).send({ message: "Error al obtener los menús", error: error.message });
     }
 };
 
-const getEventById = async (req, res) => {
+// Obtener menús por día específico
+const getMenusByDay = async (req, res) => {
     try {
-        const event = await Menus.findById(req.params.eventId);
-        if (!event) {
-            return res.status(404).send({ message: "Evento no encontrado" });
+        const { day } = req.query;
+
+        if (!day) {
+            return res.status(400).send({ message: "El parámetro 'day' es requerido" });
         }
-        res.json(event);
+
+        const menus = await Menu.find({ day });
+        if (menus.length === 0) {
+            return res.status(404).send({ message: `No se encontraron menús para el día ${day}` });
+        }
+
+        res.json(menus);
     } catch (error) {
-        res.status(500).send({ message: "Error al obtener el evento", error: error.message });
+        res.status(500).send({ message: "Error al obtener menús por día", error: error.message });
     }
 };
 
-const createEvent = async (req, res) => {
-    const { name, description, date, location, type } = req.body;
+// Crear un nuevo menú
+const createMenu = async (req, res) => {
+    const { name, description, price, principal, second, desserts, day, isAvailable } = req.body;
+    
     try {
-        const newEvent = new Menus({ name, description, date, location, type }); 
-        await newEvent.save();
-        res.status(201).send({ message: "Evento creado con éxito", event: newEvent });
+        const newMenu = new Menu({ 
+            name, 
+            description, 
+            price, 
+            principal, 
+            second, 
+            desserts, 
+            day, 
+            isAvailable 
+        });
+        
+        await newMenu.save();
+        res.status(201).send({ message: "Menú creado con éxito", menu: newMenu });
     } catch (error) {
-        res.status(400).send({ message: "Error al crear el evento", error: error.message });
+        res.status(400).send({ message: "Error al crear el menú", error: error.message });
     }
 };
 
-const updateEvent = async (req, res) => {
-    const { name, description, date, location, type } = req.body;
+const getMenuById = async (req, res) => {
     try {
-        const event = await Menus.findByIdAndUpdate(
-            req.params.eventId,
-            { name, description, date, location, type }, 
+        const menu = await Menu.findById(req.params.menuId);
+        if (!menu) {
+            return res.status(404).send({ message: "Menú no encontrado" });
+        }
+        res.status(200).json(menu);
+    } catch (error) {
+        res.status(500).send({ message: "Error al obtener el menú", error: error.message });
+    }
+};
+
+
+// Actualizar un menú existente
+const updateMenu = async (req, res) => {
+    const { name, description, price, category, day, isAvailable, ingredients } = req.body;
+    try {
+        const menu = await Menu.findByIdAndUpdate(
+            req.params.menuId,
+            { name, description, price, category, day, isAvailable, ingredients },
             { new: true }
         );
-        if (!event) {
-            return res.status(404).send({ message: "Evento no encontrado" });
+        if (!menu) {
+            return res.status(404).send({ message: "Menú no encontrado" });
         }
-        res.status(200).send({ message: "Evento actualizado con éxito", event });
+        res.status(200).send({ message: "Menú actualizado con éxito", menu });
     } catch (error) {
-        res.status(400).send({ message: "Error al actualizar el evento", error: error.message });
+        res.status(400).send({ message: "Error al actualizar el menú", error: error.message });
     }
 };
 
-const deleteEvent = async (req, res) => {
+// Eliminar un menú
+const deleteMenu = async (req, res) => {
     try {
-        const event = await Menus.findByIdAndDelete(req.params.eventId);
-        if (!event) {
-            return res.status(404).send({ message: "Evento no encontrado" });
+        const menu = await Menu.findByIdAndDelete(req.params.menuId);
+        if (!menu) {
+            return res.status(404).send({ message: "Menú no encontrado" });
         }
-        res.status(200).send({ message: "Evento eliminado con éxito" });
+        res.status(200).send({ message: "Menú eliminado con éxito" });
     } catch (error) {
-        res.status(500).send({ message: "Error al eliminar el evento", error: error.message });
+        res.status(500).send({ message: "Error al eliminar el menú", error: error.message });
     }
 };
 
-// Advanced
-const getUpcomingEvents = async (req, res) => {
+
+
+const getAvailableMenus = async (req, res) => {
     try {
-        const today = new Date();
-        today.setHours(0, 0, 0, 0); 
-
-        const nextWeek = new Date();
-        nextWeek.setDate(today.getDate() + 7); 
-
-        const events = await Menus.find({
-            date: { $gte: today, $lte: nextWeek }
-        }).sort({ date: 1 });
-
-        res.status(200).json(events);
+        const menus = await Menu.find({ isAvailable: true });
+        res.status(200).json(menus);
     } catch (error) {
-        res.status(500).send({ message: "Error al obtener eventos de la próxima semana", error: error.message });
+        res.status(500).send({ message: "Error al obtener menús disponibles", error: error.message });
     }
 };
 
-const getEventsByType = async (req, res) => {
-    try {
-        const { type } = req.query;
-
-        if (!type) {
-            return res.status(400).send({ message: "El parámetro 'type' es requerido" });
-        }
-
-        const events = await Menus.find({ type });
-        res.status(200).json(events);
-    } catch (error) {
-        res.status(500).send({ message: "Error al filtrar eventos por tipo", error: error.message });
-    }
-};
-
-const getEventsByDateRange = async (req, res) => {
-    try {
-        const { from, to } = req.query;
-
-        if (!from || !to) {
-            return res.status(400).send({ message: "Los parámetros 'from' y 'to' son requeridos" });
-        }
-
-        const events = await Menus.find({
-            date: { $gte: new Date(from), $lte: new Date(to) }
-        }).sort({ date: 1 });
-
-        res.status(200).json(events);
-    } catch (error) {
-        res.status(500).send({ message: "Error al filtrar eventos por rango de fechas", error: error.message });
-    }
-};
-    
 module.exports = {
-    getEvents,
-    getEventById,
-    createEvent,
-    updateEvent,
-    deleteEvent,
-    getUpcomingEvents,
-    getEventsByType,
-    getEventsByDateRange
+    getMenus,
+    getMenusByDay,
+    getMenuById,
+    createMenu,
+    updateMenu,
+    deleteMenu,
+    getAvailableMenus
 };
+
