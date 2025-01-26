@@ -1,15 +1,49 @@
-<p>login works? </p>
 
-<form [formGroup]="form" (ngSubmit)="handleLoginForm()">
+<!-- formulario para realizar el login  -->
+
+<section class="registerFormSection">
+
+<div class= "contenedor">
+
+    <span class="line top-left"></span>
+    <span class="line top-right"></span>
+    <span class="line bottom-left"></span>
+    <span class="line bottom-right"></span>
+
+
+<form [formGroup]="form" (ngSubmit)="handleLoginForm()" class ="form">
   
     <div class="form-group">
-        <label>email</label>
-        <input type="email" formControlName="email">
+        <label>Email</label>
+        <input class = "form-input" type="email" formControlName="email">
+
+        @if (form.get('email')?.hasError('required') && isSubmitted) {
+            <p class="form-field--text-danger">Debe rellenar este campo</p>   
+        }
+        @if (form.get('email')?.hasError('pattern') && isSubmitted) {
+            <p class="form-field--text-danger">El formato de e-mail no es correcto</p>
+        }
+
+        @if (form.get('email')?.hasError('notExists') && isSubmitted) {
+            <p class="form-field--text-danger">No éxite una cuenta con esta dirección de e-mail</p>
+        }
+
     </div>
     <div class="form-group">
-        <label>password</label>
-        <input type="text" formControlName="password">
+        <label>Password</label>
+        <input class = "form-input" type="password" formControlName="password">
+
+        @if (form.get('password')?.hasError('required') && isSubmitted) {
+            <p class="form-field--text-danger">Debe rellenar este campo</p>   
+        }
+
+        @if (form.get('password')?.hasError('incorrectPassword') && isSubmitted) {
+            <p class="form-field--text-danger"> La contraseña ingresada es incorrecta</p>   
+        }
+
     </div>
 
-    <input type="submit" value="Enviar">
+    <input class="form-button" type="submit" value="Iniciar Sesión">
 </form>
+</div>
+</section>

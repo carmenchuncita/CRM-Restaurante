@@ -1,1 +1,63 @@
-<p>register works!</p>
+
+
+<!--formulario reactivo con validadciones de campo requerido, número de de caracteres y pattern que debe cumplir-->
+<section class="registerFormSection">
+
+    <hr class="timeLine">
+
+<div class= "contenedor">
+
+    <span class="line top-left"></span>
+    <span class="line top-right"></span>
+    <span class="line bottom-left"></span>
+    <span class="line bottom-right"></span>
+
+
+<form [formGroup]="form" (ngSubmit)="handleRegisterForm()" class= "form">
+   
+        
+    <div class="form-group">
+        <label >Nombre</label>
+        <input class = "form-input" type="text" formControlName="name">
+
+        @if (form.get('name')?.hasError('required') && isSubmitted) {
+            <p class="form-field--text-danger">Debe rellenar este campo</p>   
+        }
+        @if (form.get('name')?.hasError('minlength') && isSubmitted) {
+            <p class="form-field--text-danger">El nombre debe tener al menos 3 caracteres</p>
+        }
+    </div>
+
+    <div class="form-group">
+        <label>Email</label>
+        <input class = "form-input" type="email" formControlName="email">
+
+        @if (form.get('email')?.hasError('required') && isSubmitted) {
+            <p class="form-field--text-danger">Debe rellenar este campo</p>   
+        }
+        @if (form.get('email')?.hasError('pattern') && isSubmitted) {
+            <p class="form-field--text-danger">El formato de e-mail no es correcto</p>
+        }
+
+    </div>
+
+    <div class="form-group">
+        <label>Password</label>
+        <input class = "form-input" type="password" formControlName="password">
+
+        @if (form.get('password')?.hasError('required') && isSubmitted) {
+            <p class="form-field--text-danger">Debe rellenar este campo</p>   
+        }
+        @if (form.get('password')?.hasError('pattern') && isSubmitted) {
+            <p class="form-field--text-danger">La contraseña debe tener al menos 8 caracteres y debe incluir al menos una mayúscula, una minúscula y un número</p>
+        }
+
+    </div>
+ 
+    <input class = "form-button" type="submit" value="Confirmar Reserva" >
+
+</form>
+</div>
+
+
+</section>

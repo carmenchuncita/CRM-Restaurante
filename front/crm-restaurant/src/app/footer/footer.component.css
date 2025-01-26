@@ -1,0 +1,12 @@
+.footerSection{
+    width: 100%;
+    height: 150px;
+    background-color: #282826;
+}
+
+.footerTitle{
+
+    color:aliceblue;
+    text-align: center;
+    line-height: 150px;
+}
