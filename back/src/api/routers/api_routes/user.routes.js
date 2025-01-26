@@ -11,7 +11,8 @@ const {
   postReview,
   updateReview,
   verifyToken,
-  verifyRole
+  verifyRole,
+  sendEmail
 } = require('../../controllers/user.controller'); 
 // We use encryptPassword to secure the password before saving
 router.post('/register', encryptPassword, registerUser);
@@ -27,5 +28,7 @@ router.post('/uploadFile', upload.single('image'), updateOrRegisterUser);
 router.post('/postReview', authenticateToken, postReview);
 // Route to update a review, we use authenticateToken to ensure it is a logged in user
 router.put('/updateReview', authenticateToken, updateReview);
+//Ruta enviar correo
+router.post('/sendemail', sendEmail);
 
 module.exports = router;
