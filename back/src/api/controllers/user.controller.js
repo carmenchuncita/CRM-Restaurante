@@ -2,6 +2,7 @@ const Users = require('../models/user.model');
 const Review = require('../models/review.model');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+const nodemailer = require('nodemailer');
 
 const { createToken } = require('../middleware/jwt-auth'); 
 
@@ -212,4 +213,40 @@ const updateReview = async (req, res) => {
   }
 };
 
-module.exports = { registerUser,loginUser, profileUser,updateOrRegisterUser,postReview, updateReview,verifyRole,verifyToken };
+const sendEmail = async (req, res) => {
+  
+  console.log("hola");
+
+try {
+
+  //Config del tipo de correo host y port
+  const transporter = nodemailer.createTransport({
+    host: 'smtp.gmail.com', // Cambia según el proveedor (por ejemplo, Outlook, Yahoo, etc.)
+    port: 587, // Puerto para STARTTLS
+    secure: false, // true para puerto 465, false para otros puertos
+    auth: {
+      user: 'joshuaalejandro1999@gmail.com', // Tu correo electrónico
+      pass: 'rqat imod pnqt jvim', // Tu contraseña o token de aplicación (en caso de usar Gmail, activa la verificación en dos pasos y usa un token de aplicación)
+    },
+  });
+
+  //Creacion del correo y envio
+  const info = await transporter.sendMail({
+    from: 'josh@gmail.com', // Dirección del remitente
+    to: 'joshua.gutierrez@bootcamp-upgrade.com', // Lista de destinatarios
+    subject: 'Hola desde Node.js', // Asunto del correo
+    text: 'Este es un correo enviado con Nodemailer en Node.js.', // Texto plano
+    html: '<b>Este es un correo enviado con Nodemailer en Node.js.</b>', // HTML
+  });
+  console.log('Correo enviado: %s', info.messageId);
+} catch (error) {
+  console.error('Error enviando el correo:', error);
+}
+
+  return res.status(200).json({ message: 'correo enviado' });
+
+}
+
+
+
+module.exports = { registerUser,loginUser, profileUser,updateOrRegisterUser,postReview, updateReview,verifyRole,verifyToken, sendEmail};
