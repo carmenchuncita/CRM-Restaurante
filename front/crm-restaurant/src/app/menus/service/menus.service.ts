@@ -12,21 +12,4 @@ export class MenusService {
   getAllMenus() {
     return this.http.get('http://localhost:5500/api/menus/getAllMenus');
   }
-
-  getMenu(id: string) {
-    return this.http.get('http://localhost:5500/api/menus/getMenuById/' + id)
-
-  }
-
-  postMenu(menu: any) {
-    return this.http.post('http://localhost:5500/api/menus', menu);
-  }
-
-  putMenu(id: string, menu: any) {
-    return this.http.put(`http://localhost:5500/api/menus/${id}`, menu);
-  }
-
-  deleteMenu(id: string) {
-    return this.http.delete(`http://localhost:5500/api/menus/${id}`);
-  }
 }
