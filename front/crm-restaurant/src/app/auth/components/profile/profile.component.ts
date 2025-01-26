@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { HeaderComponent } from '../../../header/header.component';
 
 @Component({
   selector: 'app-profile',
@@ -8,5 +7,8 @@ import { HeaderComponent } from '../../../header/header.component';
   styleUrl: './profile.component.css'
 })
 export class ProfileComponent {
+
+
+  
 
 }

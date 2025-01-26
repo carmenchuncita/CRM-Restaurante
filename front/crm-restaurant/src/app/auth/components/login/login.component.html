@@ -1,10 +1,21 @@
-<p>login works? </p>
+
 <!-- formulario para realizar el login  -->
-<form [formGroup]="form" (ngSubmit)="handleLoginForm()">
+
+<section class="registerFormSection">
+
+<div class= "contenedor">
+
+    <span class="line top-left"></span>
+    <span class="line top-right"></span>
+    <span class="line bottom-left"></span>
+    <span class="line bottom-right"></span>
+
+
+<form [formGroup]="form" (ngSubmit)="handleLoginForm()" class ="form">
   
     <div class="form-group">
-        <label>email</label>
-        <input type="email" formControlName="email">
+        <label>Email</label>
+        <input class = "form-input" type="email" formControlName="email">
 
         @if (form.get('email')?.hasError('required') && isSubmitted) {
             <p class="form-field--text-danger">Debe rellenar este campo</p>   
@@ -19,8 +30,8 @@
 
     </div>
     <div class="form-group">
-        <label>password</label>
-        <input type="password" formControlName="password">
+        <label>Password</label>
+        <input class = "form-input" type="password" formControlName="password">
 
         @if (form.get('password')?.hasError('required') && isSubmitted) {
             <p class="form-field--text-danger">Debe rellenar este campo</p>   
@@ -32,5 +43,7 @@
 
     </div>
 
-    <input type="submit" value="Enviar">
+    <input class="form-button" type="submit" value="Iniciar Sesión">
 </form>
+</div>
+</section>

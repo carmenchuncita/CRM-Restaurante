@@ -31,8 +31,12 @@ export class AuthService {
     const email = localStorage.getItem('email')
     console.log(email)
     return this.http.post('http://localhost:5500/api/users/verify-role', {email})
-    //no es buena práctica enviarlo por header se hace por post
+  }
 
+  profileUser(): Observable<any>  {
+    const id = localStorage.getItem('id')
+    console.log(id)
+    return this.http.post('http://localhost:5500/api/users/profile', {id})
   }
 
 }
