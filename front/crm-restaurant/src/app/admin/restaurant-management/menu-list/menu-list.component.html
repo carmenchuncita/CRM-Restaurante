@@ -2,13 +2,13 @@
   <div *ngFor="let menu of menuList; let i = index" class="menu-item">
     <h2>{{ menu.name }}</h2>
     <p>{{ menu.description }}</p>
-    <p><strong>Precio:</strong> {{ menu.price | currency }}</p>
-    <p><strong>Plato principal:</strong> {{ menu.principal }}</p>
-    <p><strong>Segundo plato:</strong> {{ menu.second }}</p>
-    <p><strong>Postre:</strong> {{ menu.desserts }}</p>
-    <p><strong>Día disponible:</strong> {{ menu.day }}</p>
+    <p>Precio:{{ menu.price | currency }}</p>
+    <p>Plato principal:{{ menu.principal }}</p>
+    <p>Segundo plato:{{ menu.second }}</p>
+    <p>Postre:{{ menu.desserts }}</p>
+    <p>Día disponible:{{ menu.day }}</p>
     <p>
-      <strong>Estado:</strong>
+      Estado:
       <span [ngClass]="menu.isAvailable ? 'available' : 'not-available'">
         {{ menu.isAvailable ? 'Disponible' : 'No disponible' }}
       </span>
