@@ -1,0 +1,64 @@
+:host {
+	background-color: #f7f7f7;
+}
+
+.profileSection {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	background-color: #f7f7f7;
+}
+
+.logOutFigure {
+
+    width: 100px;
+    
+}
+
+.logOutIcon {
+
+    width: 100%;
+}
+
+.logOutButton {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	background-color: #f7f7f7;
+}
+
+/*ICONOS*/
+
+
+
+.profileFigure {
+
+    width: 350px;
+}
+
+.profileIcon {
+
+    width: 100%;
+}
+
+.reservationsFigure {
+
+    width: 250px;
+}
+
+.reservationsIcon{
+
+    width: 100%;
+}
+
+.reviewsFigure {
+
+    width: 250px;
+}
+
+.reviewsIcon{
+
+    width: 100%;
+}

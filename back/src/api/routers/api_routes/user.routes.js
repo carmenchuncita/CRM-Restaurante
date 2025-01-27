@@ -7,7 +7,7 @@ const {
   registerUser,
   loginUser,
   profileUser,
-  updateOrRegisterUser,
+  updateUser,
   postReview,
   updateReview,
   verifyToken,
@@ -22,8 +22,8 @@ router.get('/verify-token', verifyToken);
 router.post('/verify-role', verifyRole);
 // We use authenticateToken to ensure it is a logged in user
 router.get('/profile', authenticateToken, profileUser);
-// Route to upload profile´s image
-router.post('/uploadFile', upload.single('image'), updateOrRegisterUser);
+// Route to update user
+router.put('/updateUser/:id', encryptPassword, updateUser);
 // Route to upload a review, we use authenticateToken to ensure it is a logged in user
 router.post('/postReview', authenticateToken, postReview);
 // Route to update a review, we use authenticateToken to ensure it is a logged in user

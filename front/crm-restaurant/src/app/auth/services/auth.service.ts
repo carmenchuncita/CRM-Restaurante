@@ -41,8 +41,23 @@ export class AuthService {
       return of (null); // O manejar el caso según la lógica de tu aplicación
     }
     // Envía el id como un parámetro de consulta
-    return this.http.get('http://localhost:5500/api/users/profile', {
-      params: { id }
-    });
+   return this.http.get('http://localhost:5500/api/users/profile', {
+    params: { id }
+  })
+
+}
+
+  postReview(reviewForm: any) : Observable<any>  {
+    return this.http.post('http://localhost:5500/api/users/postReview/', reviewForm )
+    
   }
+
+  updateReview(reviewData: any) : Observable<any>  {
+    return this.http.put('http://localhost:5500/api/users/updateReview/', reviewData )
+    
+  }
+
+  
+
+
 }
