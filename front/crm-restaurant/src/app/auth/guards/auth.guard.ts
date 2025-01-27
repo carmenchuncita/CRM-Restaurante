@@ -5,28 +5,35 @@ import { catchError, map, of } from 'rxjs';
 
 export const authGuard: CanActivateFn = (route, state) => {
 
-localStorage.setItem('redirectUrl', state.url)
+  /*guardamos en logcalStorage la url donde nos encontramos para poderlo usar y  que se rediriga de nuevo a ella una vez echo el login*/
+  localStorage.setItem('redirectUrl', state.url)
 
   const authService: AuthService = inject(AuthService)
   const $authService = authService.verifyToken()
-  const router: Router =inject(Router)
+  const router: Router = inject(Router)
 
-  
- return $authService.pipe(
-  
-  map((data) => {
-  console.log(data)
-  return data.verified
-}),
-catchError((err)=>{
-  if(err.error.message === 'Token expired'){
-    alert('Su sesión a expirado, por favor vuelva a inicar sesión')
-  }
+ /*Utilizamos RXJS y el operador pipe que nos permite que las respuestas se manipulen de manera eficiente antes de ser devueltas como un Observable.*/ 
+  return $authService.pipe(
+/*map para modificar los datos antes de que lleguen a los suscriptores.*/ 
+    map((data) => {
+      console.log(data)
+      return data.verified
+    }),
 
-  router.navigate(['auth/login'])
-  return of (false) // siempre dentro de un of el false
-})
+    catchError((err) => {
 
- )
+      if (err.error.message === 'No hay token') {
+        alert('Es nesario que inicie sesion para acceder a esta ruta')
+      }
+      console.log(err.error.message)
+
+      if (err.error.message === 'Token expired') {
+        alert('Su sesión a expirado, por favor vuelva a inicar sesión')
+      }
+      router.navigate(['auth/login'])
+      return of(false)
+    })
+
+  )
 
 };
