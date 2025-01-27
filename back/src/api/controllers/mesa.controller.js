@@ -87,6 +87,7 @@ const getMesasDisponibles = async (req, res) => {
         res.status(200).json(mesasDisponibles);
         
     } catch (error) {
+        console.log(error)
         res.status(500).send({ message: "Error al obtener las mesas disponibles", error: error.message })
         ;
     }
