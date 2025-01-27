@@ -249,6 +249,14 @@ try {
 
 }
 
+// Metodo para coger todas las reviews de la base de datos
+const getReviews = async (req, res) => {
+  try {
+      const reviews = await Review.find();
+      res.status(200).json(reviews);
+  } catch (error) {
+      res.status(500).send({ message: "Error al obtener las reseñas", error: error.message });
+  }
+};
 
-
-module.exports = { registerUser,loginUser, profileUser,updateOrRegisterUser,postReview, updateReview,verifyRole,verifyToken, sendEmail};
+module.exports = { registerUser,loginUser, profileUser,updateOrRegisterUser,postReview, updateReview,verifyRole,verifyToken, sendEmail, getReviews};
