@@ -1,24 +1,48 @@
 const mongoose = require('mongoose');
 
-const eventSchema = new mongoose.Schema({
-    name: { type: String, required: true },
-    description: { type: String, required: true },
-    date: { type: Date, required: true },
-    location: { 
+const menuSchema = new mongoose.Schema({
+    name: { 
         type: String, 
         required: true, 
-        enum: ['room-1', 'room-2', 'room-3']
     },
-    type: { 
+    description: { 
+        type: String, 
+        required: true, 
+    },
+    price: { 
+        type: Number, 
+        required: true, 
+        min: 0 // Asegura que el precio no sea negativo
+    },
+    principal: { 
         type: String, 
         required: true,
-        enum: ['cardio', 'flexibility', 'force']
+        enum: ['pollo', 'pescado', 'vegetariano'] // Categorías de menú válidas
+    },
+    second: { 
+        type: String, 
+        required: true,
+        enum: ['arroz', 'papas', 'ensalada'] // Categorías de menú válidas
+    },
+    desserts: { 
+        type: String, 
+        required: true,
+        enum: ['flan', 'tarta', 'helado', 'fruta'] // Categorías de menú válidas
+    },
+    isAvailable: { 
+        type: Boolean, 
+        default: true // Indica si el plato está disponible
+    },
+    day: { 
+        type: String, 
+        required: true,
+        enum: ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'], // Días de la semana válidos
     }
 }, {
-    collection: 'menu'
+    collection: 'menu' // Nombre de la colección en la base de datos
 });
 
-const Menus = mongoose.model('Menus', eventSchema);
+// Crear el modelo con el esquema definido
+const Menu = mongoose.model('Menu', menuSchema);
 
-module.exports = Menus;
-
+module.exports = Menu;
