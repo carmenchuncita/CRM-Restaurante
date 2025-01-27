@@ -7,13 +7,11 @@
     <p>Segundo plato:{{ menu.second }}</p>
     <p>Postre:{{ menu.desserts }}</p>
     <p>Día disponible:{{ menu.day }}</p>
-    <p>
-      Estado:
-      <span [ngClass]="menu.isAvailable ? 'available' : 'not-available'">
-        {{ menu.isAvailable ? 'Disponible' : 'No disponible' }}
-      </span>
-    </p>
   </div>
+  <button>Editar</button>
+  <button>Eliminar</button>
+  <button>Publicar</button>
+
 </div>
 
 <ng-template #noData>

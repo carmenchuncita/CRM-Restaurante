@@ -1,0 +1,136 @@
+
+:host {
+  background-color: #f7f7f7;
+}
+
+.homeSection {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-color: var(--black-primary);
+  height: 100%;
+}
+
+.contenedor {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  width: 85%;
+  height: 50%;
+  background-color: var(--black-primary);
+  border-right: 1px solid var(--green-primary);
+  border-left: 1px solid var(--green-primary);
+  margin: 0px;
+}
+img {
+  max-width: 80%;
+}
+
+.line {
+  content: "";
+  position: absolute;
+  z-index: 20;
+  height: 1px;
+  width: 18%;
+  background: repeating-linear-gradient(
+    to right,
+    var(--green-primary) 0,
+    var(--green-primary) 10px,
+    transparent 0px,
+    transparent 0px
+  );
+}
+
+.top-left {
+  top: 0;
+  left: 0;
+}
+
+.top-right {
+  top: 0;
+  right: 0;
+}
+
+.bottom-left {
+  bottom: 0;
+  left: 0;
+}
+
+.bottom-right {
+  bottom: 0;
+  right: 0;
+}
+
+.main-buttons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  margin: 66px 0px 0px 0px;
+  padding-bottom: 48px;
+
+  button {
+    align-items: center;
+    width: 125px;
+    padding: 0.7rem;
+    background-color: var(--green-primary);
+    border: 1px solid var(--black-secondary);
+    color: var(--black-secondary);
+    font-family: "Raleway";
+    font-size: 0.9rem;
+    letter-spacing: 0.9px;
+    cursor: pointer;
+
+    &:hover {
+      background-color: var(--dark-black);
+      color: var(--green-primary);;
+    }
+  }
+}
+.content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  h1 {
+    color: var(--green-primary);
+    font-size: 3.5rem;
+    font-weight: 700;
+    margin: 0px 0px 20px 0px;
+  }
+}
+
+@media (min-width: 768px) {
+  .timeLine {
+    width: 70%;
+    margin-top: 10%;
+  }
+
+  .contenedor {
+    width: 70%;
+    height: 50%;
+    margin: 5% 0 0% 0;
+}
+h1 {
+  color: var(--green-primary);
+  font-size: 4.5rem;
+  font-weight: 700;
+  margin: 0px 0px 20px 0px;
+}
+
+@media (min-width: 1024px) {
+  .contenedor {
+    width: 45%;
+    height: 50%;
+    margin: 5% 0 0% 0;
+  }
+  h1 {
+    color: var(--green-primary);
+    font-size: 4.5rem;
+    font-weight: 700;
+    margin: 0px 0px 20px 0px;
+  }
+}
+}
