@@ -54,9 +54,6 @@ export class RegisterComponent {
         localStorage.setItem('id', data.data._id)
         this.message = data.message
         alert(this.message)
-        
-           /*this.router.navigate(['/home'])*/
-        alert('su reserva ha sido confirmada')
      
       },
 

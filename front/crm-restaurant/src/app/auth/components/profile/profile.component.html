@@ -1,18 +1,41 @@
 <p>profile works</p>
+<section class = "profileSection">
 
-<div>
+<figure class = "logOutFigure">
+    <img class = "logOutIcon" src="imagenes/icono15.png" alt="icono reservas">
+</figure>
+
+
+<div class = "logOutButton">
     <div>
         <button (click) = "handleLogOut()" >Cerrar Sesión</button>
     </div>
 </div>
+
+
+
+<figure class = "profileFigure">
+    <img class = "profileIcon" src="imagenes/icono7.png" alt="icono reservas">
+</figure>
+
 
 <p>{{userData?.user.id}}</p>
 <p>{{userData?.user.name}}</p>
 <p>{{userData?.user.email}}</p>
 <p>{{userData?.user.role}}</p>
 
+<figure class = "reservationsFigure">
+    <img class = "reservationsIcon" src="imagenes/icono9.png" alt="icono reservas">
+</figure>
 
-<section class="reviewFormSection">
+<figure class = "reviewsFigure">
+    <img class = "reviewsIcon" src="imagenes/icono11.png" alt="icono reservas">
+</figure>
+
+
+
+
+<section  class="reviewFormSection">
     <div class="reviewContenedor">
         <span class="line top-left"></span>
         <span class="line top-right"></span>
@@ -63,4 +86,5 @@
 
         </form>
     </div>
+</section>
 </section>
