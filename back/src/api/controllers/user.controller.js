@@ -128,7 +128,7 @@ const updateOrRegisterUser = async (req, res) => {
 
     if (user) {
     
-      user.image = req.file?.path || user.image;
+      /*user.image = req.file?.path || user.image;*/
       const updatedUser = await user.save();
       res.status(200).json({ message: 'Usuario actualizado correctamente.', user: updatedUser });
     } else {
@@ -136,8 +136,8 @@ const updateOrRegisterUser = async (req, res) => {
       const newUser = new Users({
         name,
         email,
-        password, 
-        image: req.file?.path || ''
+        password
+        /*image: req.file?.path || ''*/
       });
 
       const createdUser = await newUser.save();
@@ -157,12 +157,12 @@ const postReview = async (req, res) => {
   const reviwer = req.user.user_id;
   try {
     //Check if its a user
-    if (user.role != 'client') {
+    if (user.role !== 'client') {
       return res.status(409).json({ message: 'El admin no puede hacer reseñas' });
     }
 
     //Check if the review already exists
-    const existingReview = await Review.findOne({ user });
+    const existingReview = await Review.findOne({ reviwer });
     if (existingReview) {
       return res.status(409).json({ message: 'Ya ha hecho una reseña' });
     }
@@ -191,13 +191,14 @@ const postReview = async (req, res) => {
 const updateReview = async (req, res) => {
   const { rating, description } = req.body; 
   const reviwer = req.user.user_id;
+  const user = await Users.findById(reviwer); 
 
   if (!rating || !description) {
     return res.status(400).json({ message: 'Rating y descripcion son obligatorios.' });
   }
 
   //Check if its a user
-  if (user.role != 'client') {
+  if (!user || user.role !== 'client') {
     return res.status(409).json({ message: 'El admin no puede hacer reseñas' });
   }
 
