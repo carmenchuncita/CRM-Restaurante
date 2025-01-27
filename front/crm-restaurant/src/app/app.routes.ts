@@ -11,21 +11,15 @@ export const routes: Routes = [
 
   {
     path: '',
-    canActivate: [authGuard],
     loadChildren: () =>
       import('./menus/menus.routes').then((module) => module.MENUS_ROUTES),
   },
 
   {
     path: 'admin',
-    canActivate: [authGuard, adminGuard],
+    canActivate: [authGuard],
     loadChildren: () =>
       import('./admin/admin.routes').then((module) => module.ADMIN_ROUTES),
-  },
-
-  {
-    path: '**',
-    redirectTo: '/menus',
   },
 
   {
