@@ -53,14 +53,14 @@ this.authService.loginUser(this.form.value).subscribe({
       localStorage.setItem('id', data.user.id)
       /*this.router.navigate([localStorage.getItem('redirectUrl')])
       si no funciona la lógica de abajo ver este camino*/
-      if(data.user.role === 'client'){
-        const redirectUrl = localStorage.getItem('redirectUrl');
+      if(data.user.role === 'client' || data.user.role === 'admin'){
+        const redirectUrl = localStorage.getItem('redirectUrl') || '/auth/profile' ;
         localStorage.removeItem('redirectUrl'); // Limpiar el redirectUrl después de usarlo
         if(redirectUrl === '/auth/profile'){
           this.router.navigate([redirectUrl])
         }
 
-        if(redirectUrl === '/reservas'){ // confirmar si este es el path
+        if(data.user.role === 'client' &&  redirectUrl === '/reservas'){ // confirmar si este es el path
           this.router.navigate([redirectUrl])
         }
       }

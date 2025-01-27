@@ -1,4 +1,90 @@
+<p>profile works</p>
+<section class = "profileSection">
+
+<figure class = "logOutFigure">
+    <img class = "logOutIcon" src="imagenes/icono15.png" alt="icono reservas">
+</figure>
+
+
+<div class = "logOutButton">
+    <div>
+        <button (click) = "handleLogOut()" >Cerrar Sesión</button>
+    </div>
+</div>
+
+
+
+<figure class = "profileFigure">
+    <img class = "profileIcon" src="imagenes/icono7.png" alt="icono reservas">
+</figure>
+
+
 <p>{{userData?.user.id}}</p>
 <p>{{userData?.user.name}}</p>
 <p>{{userData?.user.email}}</p>
 <p>{{userData?.user.role}}</p>
+
+<figure class = "reservationsFigure">
+    <img class = "reservationsIcon" src="imagenes/icono9.png" alt="icono reservas">
+</figure>
+
+<figure class = "reviewsFigure">
+    <img class = "reviewsIcon" src="imagenes/icono11.png" alt="icono reservas">
+</figure>
+
+
+
+
+<section  class="reviewFormSection">
+    <div class="reviewContenedor">
+        <span class="line top-left"></span>
+        <span class="line top-right"></span>
+        <span class="line bottom-left"></span>
+        <span class="line bottom-right"></span>
+
+        <form [formGroup]="form" (ngSubmit)="handlReviewForm()" class="form">
+
+            <div class="form-group">
+                <label>Nombre</label>
+                <input class="form-input" type="text" formControlName="reviwer">
+                
+                 @if (form.get('reviwer')?.hasError('required') && isSubmitted) {
+                    <p class="form-field--text-danger">Debe rellenar este campo</p>   
+                }
+                @if (form.get('reviwer')?.hasError('minlength') && isSubmitted) {
+                    <p class="form-field--text-danger">El nombre debe tener al menos 3 caracteres</p>
+                }
+            </div>
+
+            <div class="form-group">
+                <label>Valoración</label>
+                <select class="form-input" formControlName="rating">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select>
+                @if (form.get('rating')?.hasError('required') && isSubmitted) {
+                    <p class="form-field--text-danger">Debe seleccionar una valoración</p>   
+                }
+            </div>
+
+            <div class="form-group">
+                <label>Descripción</label>
+                <textarea class="form-input" placeholder="Nos encantaría conocer su experiencia en CODE"
+                    formControlName="description"></textarea>
+
+                    @if (form.get('description')?.hasError('required') && isSubmitted) {
+                        <p class="form-field--text-danger">Su opinión es muy importante para nosotros, por favor, déjenos un comentario</p>   
+                    }
+            </div>
+
+            <div class="form-group">
+                <input class="form-button" type="submit" value="Enviar Reseña">
+            </div>
+
+        </form>
+    </div>
+</section>
+</section>
