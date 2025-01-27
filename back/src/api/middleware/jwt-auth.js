@@ -24,19 +24,20 @@ function authenticateToken(req, res, next) {
 
 function roleCheck(requiredRole) {
   return function(req, res, next) {
-    console.log("User Role:", req.user.role);
-    console.log("Required Role:", requiredRole)
+    console.log("User Role:", req.user.user_role);
+    console.log("Required Role:", requiredRole);
     if (!req.user) {
       return res.status(401).json({ message: "No user found in request" });
     }
-    
-    if (req.user.role !== requiredRole) {
-      console.log(req.user.role)
+
+    if (req.user.user_role !== requiredRole) {
+      console.log(req.user.user_role);
       return res.status(403).json({ message: "No tiene permisos para realizar esta acción" });
     }
     next();
   };
 }
+
 
 
 module.exports = { createToken, authenticateToken,roleCheck};
