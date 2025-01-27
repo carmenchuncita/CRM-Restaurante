@@ -115,33 +115,16 @@ const profileUser = async (req, res) => {
       res.status(500).json({ message: "Error al recuperar la información del usuario", error });
   }
 };
-
-const updateOrRegisterUser = async (req, res) => {
-  const { email, name, password } = req.body;
-
-  if (!email || !name || !password) {
-    return res.status(400).json({ message: 'Email, nombre y contraseña son obligatorios.' });
-  }
-
+//Metodo para hacer actualizar usuario mediante queryparams
+const updateUser = async (req, res) => {
   try {
-    let user = await Users.findOne({ email });
+    const user = await Users.findByIdAndUpdate(req.params.id, req.body, {new:true});
 
     if (user) {
-    
-      /*user.image = req.file?.path || user.image;*/
       const updatedUser = await user.save();
       res.status(200).json({ message: 'Usuario actualizado correctamente.', user: updatedUser });
     } else {
-  
-      const newUser = new Users({
-        name,
-        email,
-        password
-        /*image: req.file?.path || ''*/
-      });
-
-      const createdUser = await newUser.save();
-      res.status(201).json({ message: 'Usuario creado correctamente.', user: createdUser });
+      return res.status(404).json({ mensaje: 'Usuario no encontrado' });
     }
   } catch (error) {
     res.status(500).json({ message: 'Error al procesar la solicitud', error: error.message });
@@ -251,4 +234,4 @@ try {
 
 
 
-module.exports = { registerUser,loginUser, profileUser,updateOrRegisterUser,postReview, updateReview,verifyRole,verifyToken, sendEmail};
+module.exports = { registerUser,loginUser, profileUser,updateUser,postReview, updateReview,verifyRole,verifyToken, sendEmail};
