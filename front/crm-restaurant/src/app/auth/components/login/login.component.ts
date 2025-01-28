@@ -2,6 +2,8 @@ import { Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import Swal from 'sweetalert2';
+
 
 @Component({
   selector: 'app-login',
@@ -47,6 +49,17 @@ this.authService.loginUser(this.form.value).subscribe({
       console.log(data)
       this.message = data.message
       alert(this.message)
+      Swal.fire({
+        title: this.message, //Editar
+        text: 'Por favor introduzca una contraseña', //"ditar
+        background: '#282826',
+        color: '#d4e157',
+        confirmButtonColor: '#d4e157',
+        confirmButtonText: 'Close',
+        customClass: {
+          popup: 'custom-swal-popup',
+        }
+      });
       localStorage.setItem('token', data.token)
       localStorage.setItem('email', data.user.email)
       localStorage.setItem('role', data.user.role)
