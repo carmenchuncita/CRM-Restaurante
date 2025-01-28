@@ -8,7 +8,7 @@ import { FooterComponent } from './footer/footer.component';
   selector: 'app-root',
   imports: [RouterOutlet, HeaderComponent, FooterComponent],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  styleUrl: './app.component.css',
 })
 export class AppComponent {
   title = 'crm-restaurant';
@@ -17,7 +17,7 @@ export class AppComponent {
   //configuración de la visivilidad del componente header y footer. En el componente home no deberán mostrarse pero en el resto de rutas sí.
   private router: Router = inject(Router);
   public showHeader: boolean = true;
-  public showFooter: boolean = true; 
+  public showFooter: boolean = true;
 
   ngOnInit(){
     this.router.events.subscribe(( event ) => {
