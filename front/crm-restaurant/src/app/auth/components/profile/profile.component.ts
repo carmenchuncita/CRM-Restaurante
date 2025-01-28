@@ -53,6 +53,54 @@ export class ProfileComponent {
     });
   }
 
+
+
+  public profileForm: FormGroup = new FormGroup  ({
+  name: new FormControl('',  Validators.minLength(3)), //al menos tiene que tener 3 caracteres
+  email: new FormControl({value:'', disabled: false},[Validators.pattern(/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/)]),
+  password: new FormControl('', [Validators.minLength(8),Validators.pattern(/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d).{8,}$/) ])// Al menos 8 caracteres, Al menos 1 mayúscula, 1 minúscula y 1 número
+  
+})
+
+
+
+handleUpdateProfileForm(){
+
+  this.isSubmitted = true;
+
+  console.log(this.profileForm.value)
+  console.log(this.profileForm.valid)
+
+  if(this.profileForm.valid) {
+
+  this.authService.updateUser(this.profileForm.value).subscribe({
+
+    next: (data: any) => {
+      console.log(data)
+      this.message = data.message
+      alert(this.message)
+   
+    },
+    error: (error: any) => {
+      console.error('Error en la ejecución del registro', error);
+
+        // Validaciones específicas del backend
+        if (error.error.message === 'El correo electrónico ya está registrado') {
+          alert('Ya exite una cuenta con esta dirección de e-mail, por favor inicie sesión para confirmar su reserva')
+          this.router.navigate(['/auth/login'])
+        }
+      
+        this.errorMessage = error.error.message;
+     
+    }
+  })
+    
+  }
+   
+  }
+
+
+
   // me permite crear una nueva reseña, si el id del usuario es igual al id de alguna de las reseñas existentes en la BBDD entonces devuelve el error Ya ha hecho una reseña y  no permite crear la reseña lo que hace es ejecutar el método updateReview para actualizarla. 
 
   handlReviewForm() {

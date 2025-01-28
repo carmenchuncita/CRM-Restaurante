@@ -1,6 +1,7 @@
 :host {
 	background-color: #f7f7f7;
-  width: 100%;
+	width: 100%;
+
 }
 
 .registerFormSection {
@@ -9,6 +10,7 @@
 	align-items: center;
 	flex-direction: column;
 	background-color: #f7f7f7;
+	flex-grow: 1; 
 }
 
 .contenedor {
@@ -22,6 +24,7 @@
 	border-right: 1px solid #282826;
 	border-left: 1px solid #282826;
 	margin: 15% 0 30% 0;
+	flex-grow: 1; 
 }
 
 .line {

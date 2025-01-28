@@ -1,35 +1,61 @@
 :host {
+
 	background-color: #f7f7f7;
+	width: 100%;
 }
 
 .profileSection {
-	/*display: flex;
-	justify-content: center;
-	align-items: center;
-	flex-direction: column;*/
+	width: 100%;
 	background-color: #f7f7f7;
 }
 
 
 .logOutSection {
 	display: flex;
+	width: 100%;
 	justify-content: center;
 	align-items: end;
+	margin: 3% 0;
 	flex-direction: column;
 	background-color: #f7f7f7;
 }
 
+.logOutBox{
+	width: 150px;
+	height: auto;
+	margin-right: 3%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+
+  }
+
 
 .logOutFigure {
-
-    width: 100px;
-    
+    width: 100px;  
 }
 
 .logOutIcon {
-
     width: 100%;
+	
 }
+
+.logOutButton {
+	font-family: "Raleway";
+	font-size: 0.9rem;
+	letter-spacing: 0.05rem ;
+	line-height: 1.2rem;	
+	width: 120px; 
+	cursor: pointer;
+
+}
+
+.logOutButton * {
+	border: none; 
+	background-color: transparent;
+
+  }
 
 
 
