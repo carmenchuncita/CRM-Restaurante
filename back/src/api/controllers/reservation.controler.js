@@ -76,15 +76,16 @@ const getReservations = async (req, res) => {
     try {
         const user = await Users.findById(req.user.user_id);
         const role = user.role;
-
+        
         if(role == 'admin'){
             const reservations = await Reservations.find({ });
+            res.status(200).json(reservations);
         }else{
             const id = user.user_id;
             const reservations = await Reservations.find({ id });
+            res.status(200).json(reservations);
         }
 
-        res.status(200).json(reservations);
     } catch (error) {
         res.status(500).send({ message: "Error al obtener las reseñas", error: error.message });
     }
