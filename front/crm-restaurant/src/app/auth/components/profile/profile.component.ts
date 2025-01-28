@@ -56,8 +56,8 @@ export class ProfileComponent {
 
 
   public profileForm: FormGroup = new FormGroup  ({
-  name: new FormControl('',  Validators.minLength(3)), //al menos tiene que tener 3 caracteres
-  email: new FormControl({value:'', disabled: false}, (Validators.pattern(/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/))),
+  name: new FormControl(this.userData.user.name,  Validators.minLength(3)), //al menos tiene que tener 3 caracteres
+  email: new FormControl({value:'', disabled: true}, (Validators.pattern(/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/))),
   password: new FormControl('', [Validators.minLength(8),Validators.pattern(/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d).{8,}$/) ])// Al menos 8 caracteres, Al menos 1 mayúscula, 1 minúscula y 1 número
   
 })
@@ -78,6 +78,7 @@ handleUpdateProfileForm(){
     next: (data: any) => {
       console.log(data)
       this.message = data.message
+      this.userData.user.name = this.profileForm.value.name;
       alert(this.message)
    
     },
@@ -158,6 +159,9 @@ handleUpdateProfileForm(){
 
   console.log('sesión cerrada')
   localStorage.removeItem('token')
+  localStorage.removeItem('email')
+  localStorage.removeItem('id')
+  localStorage.removeItem('role')
   this.router.navigate(['auth/login']) //cambiar a /home cuando esté la ruta disponible
 
 }
