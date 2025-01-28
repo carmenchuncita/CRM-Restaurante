@@ -3,16 +3,16 @@ import { AuthService } from '../services/auth.service';
 import { inject } from '@angular/core';
 import { catchError, map, of } from 'rxjs';
 
-/*export const adminGuard: CanActivateFn = (route, state) => {
+export const adminGuard: CanActivateFn = (route, state) => {
 
 
-  /*const authService: AuthService = inject(AuthService)
+  const authService: AuthService = inject(AuthService)
   const $authService = authService.verifyRole()
   const router: Router =inject(Router)
 
-  
+
  return $authService.pipe(
-  
+
   map((data: any) => {
     console.log(data)
   if(data.user.role === 'admin'){
@@ -21,7 +21,7 @@ import { catchError, map, of } from 'rxjs';
 
   router.navigate([''])
   return false
-  
+
 }),
 catchError((err)=>{
   router.navigate([''])
@@ -30,4 +30,4 @@ catchError((err)=>{
 })
  )
 
-};*/
+};
