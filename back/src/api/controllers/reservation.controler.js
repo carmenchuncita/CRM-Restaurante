@@ -99,11 +99,7 @@ const updateReservation = async (req, res) => {
     }
   
     try {
-      let reserv = await Reservations.findOne({ reservation });
-      console.log(reserv);
-      reserv.table = table;
-      reserv.date = date;
-      reserv.time = time;
+      let reserv = await Reservations.findByIdAndUpdate( reservation, {table, date, time} );
   
       const updatedReservation = await reserv.save();
       res.status(200).json({ message: 'Reserva actualizada correctamente.', reserv: updatedReservation });
