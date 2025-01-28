@@ -11,6 +11,30 @@
   flex-direction: column;
   background-color: var(--black-primary);
   height: 100%;
+  padding: 0px 24px;
+}
+
+.rrss {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  a{
+    text-decoration: none;
+    i {
+      color: var(--green-primary);
+      font-size: 16px;
+    }
+  }
+}
+
+.main-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  height: 100%;
+  gap: 24px;
+  margin-top: 48px;
 }
 
 .contenedor {
@@ -19,7 +43,7 @@
   align-items: center;
   position: relative;
   width: 85%;
-  height: 38%;
+  height: 72%;
   background-color: var(--black-primary);
   border-right: 1px solid var(--green-primary);
   border-left: 1px solid var(--green-primary);
@@ -97,12 +121,15 @@ img {
   flex-direction: column;
   h1 {
     color: var(--green-primary);
-    font-size: 3.5rem;
+    font-size: 3rem;
     font-weight: 700;
     margin: 0px 0px 20px 0px;
   }
 }
-
+.hamburguer {
+ color: var(--green-primary);
+ font-size: 30px;
+}
 @media (min-width: 768px) {
   .timeLine {
     width: 70%;
@@ -111,27 +138,41 @@ img {
 
   .contenedor {
     width: 70%;
-    height: 41%;
+    height: 56%;
     margin: 5% 0 0% 0;
 }
 h1 {
   color: var(--green-primary);
-  font-size: 4.5rem;
+  font-size: 3.5rem;
   font-weight: 700;
   margin: 0px 0px 20px 0px;
 }
 
 @media (min-width: 1024px) {
   .contenedor {
-    width: 26%;
-    height: 50%;
-    margin: 5% 0 0% 0;
+    width: 50%;
+    height: 88%;
+    margin: 0px;
   }
   h1 {
     color: var(--green-primary);
     font-size: 4.5rem;
     font-weight: 700;
     margin: 0px 0px 20px 0px;
+  }
+  .main-content {
+    gap: 42px;
+
+    .rrss{
+      a {
+        i{
+          font-size: 24px;
+        }
+      }
+    }
+    .hamburguer{
+      font-size: 40px;
+    }
   }
 }
 }
