@@ -66,7 +66,7 @@ const loginUser = async (req, res) => {
   }
 };
 
-function verifyToken(req, res) {
+const verifyToken = async (req, res) => {
   const authHeader = req.headers['authorization'];
 
   if (!authHeader) {
@@ -96,11 +96,11 @@ const verifyRole = async (req, res) => {
   const {email} = req.body
   try {
     const user = await Users.findOne({ email });
-      if (!user) return res.status(404).json({ message: "Usuario no encontrado" });
+      if (!user) return res.status(404).json({ message: "Usuario no encontrado", error });
       res.status(200).json({ user: { role :user.role} });
   } catch (error) {
       console.error(error);
-      res.status(500).json({ message: "Error al recuperar la información del usuario", error });
+      res.status(500).json({ message: "Error al recuperar la información del usuario", error: error.message });
   }
 };
 

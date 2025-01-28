@@ -15,18 +15,21 @@ export const adminGuard: CanActivateFn = (route, state) => {
 
   map((data: any) => {
     console.log(data)
-  if(data.user.role === 'admin'){
+  if(data?.user?.role === 'admin'){
     return true
   }
 
-  router.navigate([''])
+  router.navigate(['auth/login'])
+  alert('lo sentimos, esta ruta está protegida y no permite el acceso a la información que contiene')
   return false
 
 }),
 catchError((err)=>{
-  router.navigate([''])
+  console.error('Error en la protección de rutas:', err);
+  router.navigate(['auth/login'])
   alert('lo sentimos, esta ruta está protegida y no permite el acceso a la información que contiene')
-  return of(false) // siempre dentro de un of el false
+  return of(false) 
+ 
 })
  )
 

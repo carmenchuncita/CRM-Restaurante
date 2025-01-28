@@ -3,12 +3,22 @@
 }
 
 .profileSection {
-	display: flex;
+	/*display: flex;
 	justify-content: center;
 	align-items: center;
+	flex-direction: column;*/
+	background-color: #f7f7f7;
+}
+
+
+.logOutSection {
+	display: flex;
+	justify-content: center;
+	align-items: end;
 	flex-direction: column;
 	background-color: #f7f7f7;
 }
+
 
 .logOutFigure {
 
@@ -21,13 +31,7 @@
     width: 100%;
 }
 
-.logOutButton {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	flex-direction: column;
-	background-color: #f7f7f7;
-}
+
 
 /*ICONOS*/
 
