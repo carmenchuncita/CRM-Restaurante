@@ -11,6 +11,19 @@ const createReservationClient = async (req, res) => {
     const email = user.email;
 
     try {
+        const reservationList = await Reservations.find({ });
+
+        reservationList.forEach(element => {
+            const dateFormat = new Date(date);
+            
+            if(element.email == email && 
+                element.table == table 
+                && element.date.getTime() == dateFormat.getTime() 
+                && element.time == time){
+                res.status(401).send({ message: "Ya hay una reserva en ese momento", error: error.message });
+            }
+        });
+
         const newReservation = new Reservations({ 
             client,
             table,
@@ -20,7 +33,7 @@ const createReservationClient = async (req, res) => {
         });
         
         await newReservation.save();
-        res.status(201).send({ message: "Reserva creado con éxito", menu: newReservation });
+        res.status(201).send({ message: "Reserva creado con éxito", reservation: newReservation });
     } catch (error) {
         res.status(400).send({ message: "Error al crear la reserva", error: error.message });
     }
@@ -31,6 +44,19 @@ const createReservation = async (req, res) => {
     const { email, table, date, time } = req.body;
 
     try {
+        const reservationList = await Reservations.find({ });
+
+        reservationList.forEach(element => {
+            const dateFormat = new Date(date);
+            
+            if(element.email == email && 
+                element.table == table 
+                && element.date.getTime() == dateFormat.getTime() 
+                && element.time == time){
+                res.status(401).send({ message: "Ya hay una reserva en ese momento", error: error.message });
+            }
+        });
+
         const newReservation = new Reservations({ 
             table,
             email,
@@ -39,7 +65,7 @@ const createReservation = async (req, res) => {
         });
         
         await newReservation.save();
-        res.status(201).send({ message: "Reserva creado con éxito", menu: newReservation });
+        res.status(201).send({ message: "Reserva creado con éxito", reservation: newReservation });
     } catch (error) {
         res.status(400).send({ message: "Error al crear la reserva", error: error.message });
     }
@@ -64,5 +90,39 @@ const getReservations = async (req, res) => {
     }
 };
 
+const updateReservation = async (req, res) => {
+    const { reservation, table, date, time } = req.body; 
+  
+    if (!date || !time || !table || !reservation) {
+      return res.status(400).json({ message: 'La mesa, fecha y hora son obligatorios.' });
+    }
+  
+    try {
+      let reserv = await Reservations.findOne({ reservation });
+      console.log(reserv);
+      reserv.table = table;
+      reserv.date = date;
+      reserv.time = time;
+  
+      const updatedReservation = await reserv.save();
+      res.status(200).json({ message: 'Reserva actualizada correctamente.', reserv: updatedReservation });
+  
+    } catch (error) {
+      res.status(500).json({ message: 'Error al procesar la solicitud', error: error.message });
+    }
+};
 
-module.exports = { createReservationClient, createReservation, getReservations};
+const deleteReservation = async (req, res) => {
+    const { reservation } = req.body; 
+  
+    try {
+      const resultado = await Reservations.deleteOne({ reservation});
+
+      res.status(200).json({ message: 'Reserva eliminada correctamente.', resultado: 'elemento eliminado' });
+  
+    } catch (error) {
+      res.status(500).json({ message: 'Error al procesar la solicitud', error: error.message });
+    }
+  };
+
+module.exports = { createReservationClient, createReservation, getReservations, updateReservation, deleteReservation};

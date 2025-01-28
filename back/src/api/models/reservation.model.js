@@ -7,8 +7,7 @@ const reservationSchema = new Schema(
         table: { type: String, required: true },
         email: { 
             type: String, 
-            required: true, 
-            unique: true,
+            required: true,
             match: [/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/, 'Por favor, ingrese un correo electrónico válido']
         },
         date: { type: Date, required: true },
