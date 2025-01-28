@@ -1,5 +1,5 @@
-<div *ngIf="menuList.length; else noData">
-  <div *ngFor="let menu of menuList; let i = index" class="menu-item">
+<div class="menu-list" *ngIf="menuList.length; else noData">
+  <div *ngFor="let menu of menuList; let i = index" class="menu-card">
     <h2>{{ menu.name }}</h2>
     <p>{{ menu.description }}</p>
     <p>Precio:{{ menu.price | currency }}</p>
@@ -7,10 +7,12 @@
     <p>Segundo plato:{{ menu.second }}</p>
     <p>Postre:{{ menu.desserts }}</p>
     <p>Día disponible:{{ menu.day }}</p>
+    <div class="button-card">
+      <button>Editar</button>
+      <button>Eliminar</button>
+      <button>Publicar</button>
+    </div>
   </div>
-  <button>Editar</button>
-  <button>Eliminar</button>
-  <button>Publicar</button>
 
 </div>
 
