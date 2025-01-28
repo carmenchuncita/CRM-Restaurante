@@ -57,7 +57,7 @@ export class ProfileComponent {
 
   public profileForm: FormGroup = new FormGroup  ({
   name: new FormControl('',  Validators.minLength(3)), //al menos tiene que tener 3 caracteres
-  email: new FormControl({value:'', disabled: false},[Validators.pattern(/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/)]),
+  email: new FormControl({value:'', disabled: false}, (Validators.pattern(/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/))),
   password: new FormControl('', [Validators.minLength(8),Validators.pattern(/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d).{8,}$/) ])// Al menos 8 caracteres, Al menos 1 mayúscula, 1 minúscula y 1 número
   
 })
