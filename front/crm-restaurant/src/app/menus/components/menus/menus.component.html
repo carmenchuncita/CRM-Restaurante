@@ -1,1 +1,30 @@
-<p>menus works!</p>
+<section class="dayMenuSection">
+  <div class="main-content">
+    <div class="contenedor">
+      <span class="line top-left"></span>
+      <span class="line top-right"></span>
+      <span class="line bottom-left"></span>
+      <span class="line bottom-right"></span>
+
+      <div class="menu-card" *ngIf="currentMenu">
+        <h2>{{ currentMenu.name }}</h2>
+        <p>{{ currentMenu.description }}</p>
+        <p>Precio: {{ currentMenu.price | currency }}</p>
+        <p>Primeros</p>
+        <p>{{ currentMenu.principalOptionA }}</p>
+        <p>{{ currentMenu.principalOptionB }}</p>
+        <p>{{ currentMenu.principalOptionC }}</p>
+        <p>Segundos</p>
+        <p>{{ currentMenu.secondOptionA }}</p>
+        <p>{{ currentMenu.secondOptionB }}</p>
+        <p>{{ currentMenu.secondOptionC }}</p>
+        <p>Postres</p>
+        <p>{{ currentMenu.dessertsOptionA }}</p>
+        <p>{{ currentMenu.dessertsOptionB }}</p>
+        <p>{{ currentMenu.dessertsOptionC }}</p>
+        <p>Día disponible: {{ currentMenu.day }}</p>
+      </div>
+    </div>
+    </div>
+
+</section>

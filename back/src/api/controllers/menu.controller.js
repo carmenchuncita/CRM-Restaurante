@@ -14,22 +14,27 @@ const getMenus = async (req, res) => {
 // Obtener menús por día específico
 const getMenusByDay = async (req, res) => {
     try {
-        const { day } = req.query;
-
-        if (!day) {
-            return res.status(400).send({ message: "El parámetro 'day' es requerido" });
-        }
-
-        const menus = await Menu.find({ day });
-        if (menus.length === 0) {
-            return res.status(404).send({ message: `No se encontraron menús para el día ${day}` });
-        }
-
-        res.json(menus);
+      const { day, isAvailable } = req.query;
+  
+      if (!day) {
+        return res.status(400).send({ message: "El parámetro 'day' es requerido" });
+      }
+  
+      const query = { day };
+      if (isAvailable === 'true') {
+        query.isAvailable = true;
+      }
+  
+      const menus = await Menu.find(query);
+      if (menus.length === 0) {
+        return res.status(404).send({ message: `No se encontraron menús para el día ${day}` });
+      }
+  
+      res.json(menus);
     } catch (error) {
-        res.status(500).send({ message: "Error al obtener menús por día", error: error.message });
+      res.status(500).send({ message: "Error al obtener menús por día", error: error.message });
     }
-};
+};  
 
 // Crear un nuevo menú
 const createMenu = async (req, res) => {

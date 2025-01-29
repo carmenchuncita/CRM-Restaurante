@@ -1,0 +1,120 @@
+:host {
+  width: 100%;
+  height: 100%;
+}
+
+.dayMenuSection {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-color: var(--white);
+  height: 100%;
+}
+
+.main-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  height: 100%;
+  gap: 24px;
+  margin-top: 48px;
+  width: 100%;
+}
+
+.contenedor {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  width: 100%;
+  height: 100%;
+
+  border-right: 1px solid var(--black-primary);
+  border-left: 1px solid var(--black-primary);
+  margin: 0px;
+}
+
+.menu-card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-color: #e3f982;
+  padding-top: 25px;
+
+}
+
+
+
+.line {
+  content: "";
+  position: absolute;
+  z-index: 20;
+  height: 1px;
+  width: 18%;
+  background: repeating-linear-gradient(
+    to right,
+    var(--black-secondary) 0,
+    var(--black-secondary) 10px,
+    transparent 0px,
+    transparent 0px
+  );
+}
+
+.top-left {
+  top: 0;
+  left: 0;
+}
+
+.top-right {
+  top: 0;
+  right: 0;
+}
+
+.bottom-left {
+  bottom: 0;
+  left: 0;
+}
+
+.bottom-right {
+  bottom: 0;
+  right: 0;
+}
+
+
+
+@media (min-width: 768px) {
+  .timeLine {
+    width: 70%;
+    margin-top: 10%;
+  }
+
+  .contenedor {
+    width: 40%;
+    height: 450px;
+    margin: 9% 0 20% 0;
+  }
+
+  .menu-card {
+    width: 85%;
+    height: 460px;
+    padding-top: 30px;
+    top: 7%;
+  }
+}
+
+@media (min-width: 1024px) {
+  .contenedor {
+    width: 45%;
+
+    margin: 7% 0 15% 0;
+  }
+
+  .menu-card {
+    width: 86.7%;
+
+    top: 11%;
+  }
+}
