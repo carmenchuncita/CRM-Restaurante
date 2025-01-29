@@ -1,16 +1,14 @@
 import { HttpClient } from '@angular/common/http';
-import { inject, Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class MenusService {
-  private http: HttpClient = inject(HttpClient);
+  constructor(private http: HttpClient) {}
 
-  constructor() { }
-//todo//
-//cambiar esto a getMenuByActivate//
-  getAllMenus() {
-    return this.http.get('http://localhost:5500/api/menu/getMenus');
+  getAvailableMenuForToday() {
+    const today = new Date().toLocaleString('en-us', { weekday: 'long' }).toLowerCase();
+    return this.http.get(`http://localhost:5500/api/menu/day?day=${today}&isAvailable=true`);
   }
 }

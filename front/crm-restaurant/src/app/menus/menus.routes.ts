@@ -4,7 +4,7 @@ import { MenusComponent } from './components/menus/menus.component';
 
 export const MENUS_ROUTES: Routes = [
   {
-    path: 'menu-del-dia',
+    path: 'menudeldia',
     component: MenusComponent,
   },
 ];
