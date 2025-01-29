@@ -1,7 +1,7 @@
 <div class="menu-slider">
   <button class="slider-btn prev" (click)="prevSlide()">&#8249;</button>
 
-  <div class="menu-card" *ngIf="currentMenu; else noData">
+  <div class="menu-card" *ngIf="currentMenu">
     <h2>{{ currentMenu.name }}</h2>
     <p>{{ currentMenu.description }}</p>
     <p>Precio: {{ currentMenu.price | currency }}</p>
