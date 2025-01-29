@@ -33,16 +33,36 @@ const getMenusByDay = async (req, res) => {
 
 // Crear un nuevo menú
 const createMenu = async (req, res) => {
-    const { name, description, price, principal, second, desserts, day, isAvailable } = req.body;
+         
+            const { name, 
+                description, 
+                price, 
+                principalOptionA,
+                principalOptionB,
+                principalOptionC, 
+                secondOptionA,
+                secondOptionB,
+                secondOptionC, 
+                dessertsOptionA, 
+                dessertsOptionB,
+                dessertsOptionC,
+                day, 
+                isAvailable } = req.body;
     
     try {
         const newMenu = new Menu({ 
             name, 
             description, 
             price, 
-            principal, 
-            second, 
-            desserts, 
+            principalOptionA, 
+            principalOptionB, 
+            principalOptionC, 
+            secondOptionA, 
+            secondOptionB, 
+            secondOptionC, 
+            dessertsOptionA, 
+            dessertsOptionB, 
+            dessertsOptionC, 
             day, 
             isAvailable 
         });
@@ -69,16 +89,49 @@ const getMenuById = async (req, res) => {
 
 // Actualizar un menú existente
 const updateMenu = async (req, res) => {
-    const { name, description, price, category, day, isAvailable, ingredients } = req.body;
+    const {
+        name,
+        description,
+        price,
+        principalOptionA,
+        principalOptionB,
+        principalOptionC,
+        secondOptionA,
+        secondOptionB,
+        secondOptionC,
+        dessertsOptionA,
+        dessertsOptionB,
+        dessertsOptionC,
+        day,
+        isAvailable,
+    } = req.body;
+
     try {
         const menu = await Menu.findByIdAndUpdate(
             req.params.menuId,
-            { name, description, price, category, day, isAvailable, ingredients },
-            { new: true }
+            {
+                name,
+                description,
+                price,
+                principalOptionA,
+                principalOptionB,
+                principalOptionC,
+                secondOptionA,
+                secondOptionB,
+                secondOptionC,
+                dessertsOptionA,
+                dessertsOptionB,
+                dessertsOptionC,
+                day,
+                isAvailable,
+            },
+            { new: true } // Esto asegura que se devuelve el menú actualizado
         );
+
         if (!menu) {
             return res.status(404).send({ message: "Menú no encontrado" });
         }
+
         res.status(200).send({ message: "Menú actualizado con éxito", menu });
     } catch (error) {
         res.status(400).send({ message: "Error al actualizar el menú", error: error.message });

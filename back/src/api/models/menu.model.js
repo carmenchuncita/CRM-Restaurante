@@ -14,21 +14,42 @@ const menuSchema = new mongoose.Schema({
         required: true, 
         min: 0 // Asegura que el precio no sea negativo
     },
-    principal: { 
+    principalOptionA: { 
         type: String, 
         required: true,
-        enum: ['pollo', 'pescado', 'vegetariano'] // Categorías de menú válidas
     },
-    second: { 
+    principalOptionB: { 
         type: String, 
         required: true,
-        enum: ['arroz', 'papas', 'ensalada'] // Categorías de menú válidas
     },
-    desserts: { 
+    principalOptionC: { 
         type: String, 
         required: true,
-        enum: ['flan', 'tarta', 'helado', 'fruta'] // Categorías de menú válidas
     },
+    secondOptionA: { 
+        type: String, 
+        required: true,
+    },
+    secondOptionB: { 
+        type: String, 
+        required: true,
+    },
+    secondOptionC: { 
+        type: String, 
+        required: true,
+    },
+    dessertsOptionA: { 
+        type: String, 
+        required: true,
+    },
+    dessertsOptionB: { 
+        type: String, 
+        required: true,
+    },
+    dessertsOptionC: { 
+        type: String, 
+        required: true,
+    },    
     isAvailable: { 
         type: Boolean, 
         default: true // Indica si el plato está disponible

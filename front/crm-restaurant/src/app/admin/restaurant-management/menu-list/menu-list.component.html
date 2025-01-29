@@ -5,16 +5,25 @@
     <h2>{{ currentMenu.name }}</h2>
     <p>{{ currentMenu.description }}</p>
     <p>Precio: {{ currentMenu.price | currency }}</p>
-    <p>Plato principal: {{ currentMenu.principal }}</p>
-    <p>Segundo plato: {{ currentMenu.second }}</p>
-    <p>Postre: {{ currentMenu.desserts }}</p>
+    <p>Primeros</p>
+    <p>{{ currentMenu.principalOptionA }}</p>
+    <p>{{ currentMenu.principalOptionB }}</p>
+    <p>{{ currentMenu.principalOptionC }}</p>
+    <p>Segundos</p>
+    <p>{{ currentMenu.secondOptionA }}</p>
+    <p>{{ currentMenu.secondOptionB }}</p>
+    <p>{{ currentMenu.secondOptionC }}</p>
+    <p>Postres</p>
+    <p>{{ currentMenu.dessertsOptionA }}</p>
+    <p>{{ currentMenu.dessertsOptionB }}</p>
+    <p>{{ currentMenu.dessertsOptionC }}</p>
     <p>Día disponible: {{ currentMenu.day }}</p>
     <div class="button-card">
-      <button (click)="openModalCreate()">
-        <i class="fa-solid fa-plus"></i>
-      </button>
-      <button (click)="openModalEdit(currentMenu)">
+      <button (click)="openEditPanel(currentMenu)">
         <i class="fas fa-edit"></i>
+      </button>
+      <button (click)="openCreatePanel()">
+        <i class="fa-solid fa-plus"></i>
       </button>
       <button><i class="fas fa-trash-alt"></i></button>
       <button><i class="fa-solid fa-toggle-off"></i></button>
@@ -23,3 +32,13 @@
 
   <button class="slider-btn next" (click)="nextSlide()">&#8250;</button>
 </div>
+
+<!-- Panel lateral -->
+<app-sidenav-panel
+  [isOpen]="isPanelOpen"
+  [title]="panelTitle"
+  [currentComponent]="panelComponent"
+  [data]="panelData"
+  (close)="closePanel()"
+>
+</app-sidenav-panel>

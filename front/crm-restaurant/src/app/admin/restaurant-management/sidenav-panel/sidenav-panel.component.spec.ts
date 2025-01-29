@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ModalComponent } from './modal.component';
+import { SidenavPanelComponent } from './sidenav-panel.component';
 
-describe('ModalComponent', () => {
-  let component: ModalComponent;
-  let fixture: ComponentFixture<ModalComponent>;
+describe('SidenavPanelComponent', () => {
+  let component: SidenavPanelComponent;
+  let fixture: ComponentFixture<SidenavPanelComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ModalComponent]
+      imports: [SidenavPanelComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(ModalComponent);
+    fixture = TestBed.createComponent(SidenavPanelComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
