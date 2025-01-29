@@ -71,7 +71,7 @@
 }
 
 .profileFigure {
-    width: 280px;
+    width: 260px;
 }
 
 .profileIcon {
@@ -99,10 +99,12 @@
 }
 
 .dataProfileName{
+	font-size: 1.1rem;
 	margin-bottom: 8px;
 }
 
 .dataProfileEmail{
+	font-size: 1.1rem;
 	margin-bottom: 15px;
 }
 
@@ -115,12 +117,17 @@
 
 .reservationsFigure {
 
-    width: 250px;
+    width: 260px;
 }
 
 .reservationsIcon{
 
     width: 100%;
+}
+
+.reservationTitle{
+	font-size: 1.1rem;
+	letter-spacing: 0.03rem;
 }
 
 .reviewsIconSection{
@@ -132,10 +139,15 @@
 
 .reviewsFigure {
 
-    width: 250px;
+    width: 260px;
 }
 
 .reviewsIcon{
 
     width: 100%;
+}
+
+.reviewTitle{
+	font-size: 1.1rem;
+	letter-spacing: 0.03rem;
 }

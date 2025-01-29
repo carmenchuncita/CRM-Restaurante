@@ -220,7 +220,7 @@ handleUpdateProfileForm() {
   localStorage.removeItem('email')
   localStorage.removeItem('id')
   localStorage.removeItem('role')
-  this.router.navigate(['auth/login']) //cambiar a /home cuando esté la ruta disponible
+  this.router.navigate(['/home']) //cambiar a /home cuando esté la ruta disponible
 
 }
 
