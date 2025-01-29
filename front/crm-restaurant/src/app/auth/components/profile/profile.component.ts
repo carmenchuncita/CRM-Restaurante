@@ -74,8 +74,53 @@ export class ProfileComponent {
 })
 
 
+handleUpdateProfileForm() {
+  this.isSubmitted = true;
 
-handleUpdateProfileForm(){
+  console.log(this.profileForm.value);
+  console.log(this.profileForm.valid);
+
+  if (this.profileForm.valid) {
+    // Filtramos solo los valores que tienen datos
+    const formData: any = {};
+    if (this.profileForm.value.name.trim() !== ''){
+      formData.name = this.profileForm.value.name;
+    } 
+    if (this.profileForm.value.password.trim() !== ''){
+      formData.password = this.profileForm.value.password;
+    } 
+
+    // Si no hay nada que actualizar, no enviamos la solicitud
+    if (Object.keys(formData).length === 0) {
+      alert('No ha indicado ningún cambio');
+      this.updateProfileIsActive = !this.updateProfileIsActive;
+
+      return;
+    }
+
+    this.authService.updateUser(formData).subscribe({
+      next: (data: any) => {
+        console.log(data);
+        this.message = data.message;
+        if (formData.name) this.userData.user.name = formData.name;
+        alert(this.message);
+        this.updateProfileIsActive = !this.updateProfileIsActive;
+      },
+      error: (error: any) => {
+        console.error('Error en la ejecución del registro', error);
+        if (error.error.message === 'El correo electrónico ya está registrado') {
+          alert('Ya existe una cuenta con esta dirección de e-mail.');
+          this.router.navigate(['/auth/login']);
+        }
+        this.errorMessage = error.error.message;
+      },
+    });
+  }
+}
+
+
+
+/*handleUpdateProfileForm(){
 
   this.isSubmitted = true;
 
@@ -83,6 +128,7 @@ handleUpdateProfileForm(){
   console.log(this.profileForm.valid)
 
   if(this.profileForm.valid) {
+   
 
   this.authService.updateUser(this.profileForm.value).subscribe({
 
@@ -110,7 +156,7 @@ handleUpdateProfileForm(){
     
   }
    
-  }
+  }*/
 
 
 

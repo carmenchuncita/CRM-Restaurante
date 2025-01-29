@@ -16,7 +16,7 @@ body {
   height: 100vh;
 }
 main {
-  height: calc(100% - 300px);
+   
     display: flex;
     flex-direction: column;
     align-items: center;

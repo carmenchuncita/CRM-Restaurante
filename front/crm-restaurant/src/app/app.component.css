@@ -1,9 +1,9 @@
-:host {
+/*:host {
     background-color: #f7f7f7;
     width: 100%;
     min-height: 100vh;
     /*display: flex;
-    flex-direction: column;  */
+    flex-direction: column;  
     display: block;
   }
 
@@ -16,13 +16,13 @@
     display: block;
     position: relative;
     z-index: 10;
-    /* Puedes añadir padding, fondo, etc., según el diseño */
+ 
   }
 
   .app-footer {
     display: block;
     position: relative;
     z-index: 10;
-    /* Puedes añadir padding, fondo, etc., según el diseño */
-  }
+   
+  }*/
   

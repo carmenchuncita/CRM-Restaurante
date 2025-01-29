@@ -118,7 +118,13 @@ const profileUser = async (req, res) => {
 //Metodo para hacer actualizar usuario mediante queryparams
 const updateUser = async (req, res) => {
   try {
-    const user = await Users.findByIdAndUpdate(req.params.id, req.body, {new:true});
+
+    const updateData = {};
+
+    if (req.body.name) updateData.name = req.body.name;
+    if (req.body.password) updateData.password = req.body.password;
+
+    const user = await Users.findByIdAndUpdate(req.params.id, updateData, {new:true, runValidators: true});
 
     if (user) {
       const updatedUser = await user.save();

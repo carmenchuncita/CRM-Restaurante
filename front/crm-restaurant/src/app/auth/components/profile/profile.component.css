@@ -2,6 +2,7 @@
 
 	background-color: #f7f7f7;
 	width: 100%;
+	height: 100%;
 }
 
 .profileSection {
@@ -9,6 +10,7 @@
 	background-color: #f7f7f7;
 }
 
+/*SECCIÓN LOGOUT*/
 
 .logOutSection {
 	display: flex;
@@ -28,17 +30,13 @@
 	align-items: center;
 	justify-content: center;
 	flex-direction: column;
-
   }
-
 
 .logOutFigure {
     width: 100px;  
 }
-
 .logOutIcon {
     width: 100%;
-	
 }
 
 .logOutButton {
@@ -55,15 +53,28 @@
 	background-color: transparent;
   }
 
+/*SECCIÓN PROFILE OPTIONS*/
 
+.profileOptionsSection{
+	display: flex;
+	justify-content: center;
+	align-items: start;
+	gap: 8%;
+	margin: 5% 0 8% 0;
+}
+
+.profileDataSection{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+}
 
 .profileFigure {
-
-    width: 350px;
+    width: 280px;
 }
 
 .profileIcon {
-
     width: 100%;
 }
 
@@ -75,9 +86,9 @@
 	background-color: var(--green-primary);
 	border: none;
 	border-radius: 100%;
+	margin-bottom: 20px;
 	cursor: pointer;
 }
-
 
 .contenedor-disabled {
 	display: none;
@@ -87,8 +98,20 @@
 	display: block;
 }
 
+.dataProfileName{
+	margin-bottom: 8px;
+}
 
+.dataProfileEmail{
+	margin-bottom: 15px;
+}
 
+.reservasIconSection{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+}
 
 .reservationsFigure {
 
@@ -98,6 +121,13 @@
 .reservationsIcon{
 
     width: 100%;
+}
+
+.reviewsIconSection{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
 }
 
 .reviewsFigure {
