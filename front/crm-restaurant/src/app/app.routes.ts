@@ -1,6 +1,8 @@
 import { Routes } from '@angular/router';
 import { authGuard } from './auth/guards/auth.guard';
 import { HomeComponent } from './home/home.component';
+import { AddBookingComponent } from './auth/components/reservations/components/add-booking/add-booking.component';
+import { EventsCalendarComponent } from './auth/components/reservations/components/events-calendar/events-calendar.component';
 
 export const routes: Routes = [
   {
@@ -24,6 +26,12 @@ export const routes: Routes = [
     path: '',
     loadChildren: () =>
       import('./menus/menus.routes').then((module) => module.MENUS_ROUTES),
+  },
+  {
+    path: 'addbooking', component: AddBookingComponent
+  },
+  {
+    path: 'events-calendar', component: EventsCalendarComponent
   },
 
   {

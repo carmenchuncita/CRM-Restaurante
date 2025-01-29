@@ -1,0 +1,60 @@
+<div class ="row">
+    <div class=" col-12">
+
+        <form [formGroup]="form" (ngSubmit)="addBooking()">
+            <div class="row">
+                <div class="col-md-6 col-12">
+                    <label for="name" class="form-label">Nombre</label>
+                    <input type="text" class="form-control" id="name" formControlName="name" 
+                    [ngClass]="{'is-valid': controlName && controlName.dirty && !controlName.invalid,
+                'is-invalid': controlName && controlName.dirty && controlName.invalid}">
+                <div class="invalid-feedback">
+                    @if(controlName && controlName.errors){
+                        @if(controlName.errors['required']){
+                            <span>{{'required'}}</span>
+                        }
+                    }
+                </div>
+                </div>
+                <div class="col-md-6 col-12">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="email" class="form-control" id="email" formControlName="email">
+                </div>
+                <div class="col-md-6 col-12">
+                    <label for="phone" class="form-label">Teléfono</label>
+                    <input type="number" class="form-control" id="phone" formControlName="phone">
+                </div>
+                <div class="col-md-6 col-12">
+                    <label for="date" class="form-label">Fecha</label>
+                    <input type="date" class="form-control" id="date" formControlName="date">
+
+                </div>
+                <div class="col-md-6 col-12">
+                    <label for="hour" class="form-label">Hora</label>
+                    <select id="hour" class="form-control" formControlName="hour">
+                        
+                        <option>hour</option>
+                       
+                    </select>
+                </div>
+                <div class="col-md-6 col-12">
+                    <label for="guests" class="form-label">Comensales</label>
+                    <select id="guests" class="form-control" formControlName="guests">
+                        
+                        <option>Mesa</option>
+                        
+                    </select>
+                </div>
+            </div>
+            <div class="row mt-4">
+                <div class="col-12 text-end">
+                    <button class="btn btn-primary">añadir reserva</button>
+
+                </div>
+
+            </div>
+
+        </form>
+
+    </div>
+</div>

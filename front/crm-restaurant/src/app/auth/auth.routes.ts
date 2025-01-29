@@ -26,6 +26,5 @@ export const AUTH_ROUTES: Routes = [
     component: ProfileComponent
  
 }
-
     
 ];
