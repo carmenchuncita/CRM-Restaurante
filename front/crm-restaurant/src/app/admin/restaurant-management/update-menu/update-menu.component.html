@@ -1,36 +1,59 @@
-<p>update-menu works!</p>
+<div class="form-container">
+  <h2>Editar Menú</h2>
+  <form [formGroup]="form" (ngSubmit)="handleEditMenuForm()">
+    <!-- Nombre -->
+    <div class="form-group">
+      <label for="name">Nombre del Menú</label>
+      <input type="text" id="name" formControlName="name" />
+    </div>
 
+    <!-- Descripción -->
+    <div class="form-group">
+      <label for="description">Descripción</label>
+      <input type="text" id="description" formControlName="description" />
+    </div>
 
-<!-- <form [formGroup]="form" (ngSubmit)="handleEditMenuForm()">
+    <!-- Primer Plato -->
     <div class="form-group">
-        <label>Nombre del Menu</label>
-        <input type="text" formControlName="name">
+      <label for="principal">Primer Plato</label>
+      <select id="principal" formControlName="principal">
+        <option *ngFor="let option of principalOptions" [value]="option">{{ option }}</option>
+      </select>
     </div>
+
+    <!-- Segundo Plato -->
     <div class="form-group">
-        <label>Primer plato</label>
-        <input type="text" formControlName="description">
+      <label for="second">Segundo Plato</label>
+      <select id="second" formControlName="second">
+        <option *ngFor="let option of secondOptions" [value]="option">{{ option }}</option>
+      </select>
     </div>
+
+    <!-- Postre -->
     <div class="form-group">
-      <label>Segunfo plato</label>
-      <input type="text" formControlName="description">
-  </div>
-  <div class="form-group">
-    <label>Postre</label>
-    <input type="text" formControlName="description">
-</div>
-    <div class="form-group">
-        <label>Fecha</label>
-        <input type="date" formControlName="date">
+      <label for="desserts">Postre</label>
+      <select id="desserts" formControlName="desserts">
+        <option *ngFor="let option of dessertOptions" [value]="option">{{ option }}</option>
+      </select>
     </div>
+
+    <!-- Día Disponible -->
     <div class="form-group">
-      <label for="publicar">
-        <input type="checkbox" id="publish" formControlName="publish">
-        Publicar
+      <label for="day">Día Disponible</label>
+      <select id="day" formControlName="day">
+        <option *ngFor="let option of dayOptions" [value]="option">{{ option }}</option>
+      </select>
+    </div>
+
+    <!-- Disponibilidad -->
+    <div class="form-group">
+      <label for="isAvailable">
+        <input type="checkbox" id="isAvailable" formControlName="isAvailable" />
+        Disponible
       </label>
     </div>
 
-    <input type="submit" value="Enviar">
-</form> -->
-
-
-
+    <!-- Botón Guardar -->
+    <button type="submit">Guardar Cambios</button>
+  </form>
+</div>

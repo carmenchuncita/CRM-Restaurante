@@ -1,21 +1,25 @@
-<div class="menu-list" *ngIf="menuList.length; else noData">
-  <div *ngFor="let menu of menuList; let i = index" class="menu-card">
-    <h2>{{ menu.name }}</h2>
-    <p>{{ menu.description }}</p>
-    <p>Precio:{{ menu.price | currency }}</p>
-    <p>Plato principal:{{ menu.principal }}</p>
-    <p>Segundo plato:{{ menu.second }}</p>
-    <p>Postre:{{ menu.desserts }}</p>
-    <p>Día disponible:{{ menu.day }}</p>
+<div class="menu-slider">
+  <button class="slider-btn prev" (click)="prevSlide()">&#8249;</button>
+
+  <div class="menu-card" *ngIf="currentMenu; else noData">
+    <h2>{{ currentMenu.name }}</h2>
+    <p>{{ currentMenu.description }}</p>
+    <p>Precio: {{ currentMenu.price | currency }}</p>
+    <p>Plato principal: {{ currentMenu.principal }}</p>
+    <p>Segundo plato: {{ currentMenu.second }}</p>
+    <p>Postre: {{ currentMenu.desserts }}</p>
+    <p>Día disponible: {{ currentMenu.day }}</p>
     <div class="button-card">
-      <button>Editar</button>
-      <button>Eliminar</button>
-      <button>Publicar</button>
+      <button (click)="openModalCreate()">
+        <i class="fa-solid fa-plus"></i>
+      </button>
+      <button (click)="openModalEdit(currentMenu)">
+        <i class="fas fa-edit"></i>
+      </button>
+      <button><i class="fas fa-trash-alt"></i></button>
+      <button><i class="fa-solid fa-toggle-off"></i></button>
     </div>
   </div>
 
+  <button class="slider-btn next" (click)="nextSlide()">&#8250;</button>
 </div>
-
-<ng-template #noData>
-  <p>No hay menús disponibles.</p>
-</ng-template>
