@@ -19,14 +19,21 @@
     <p>{{ currentMenu.dessertsOptionC }}</p>
     <p>Día disponible: {{ currentMenu.day }}</p>
     <div class="button-card">
-      <button (click)="openEditPanel(currentMenu)">
-        <i class="fas fa-edit"></i>
-      </button>
       <button (click)="openCreatePanel()">
         <i class="fa-solid fa-plus"></i>
       </button>
-      <button><i class="fas fa-trash-alt"></i></button>
-      <button><i class="fa-solid fa-toggle-off"></i></button>
+      <button (click)="openEditPanel(currentMenu)">
+        <i class="fas fa-edit"></i>
+      </button>
+      <button (click)="deleteMenu(currentMenu)">
+        <i class="fas fa-trash-alt"></i>
+      </button>
+      <button (click)="toggleAvailability(currentMenu)">
+        <i
+          class="fa-solid"
+          [ngClass]="currentMenu.isAvailable ? 'fa-toggle-on' : 'fa-toggle-off'"
+        ></i>
+      </button>
     </div>
   </div>
 
@@ -40,5 +47,4 @@
   [currentComponent]="panelComponent"
   [data]="panelData"
   (close)="closePanel()"
->
-</app-sidenav-panel>
+></app-sidenav-panel>

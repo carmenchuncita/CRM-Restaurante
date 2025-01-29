@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
 import { SidenavPanelComponent } from '../sidenav-panel/sidenav-panel.component';
 import { UpdateMenuComponent } from '../update-menu/update-menu.component';
 import { CreateMenuComponent } from '../create-menu/create-menu.component';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-menu-list',
@@ -52,7 +53,6 @@ export class MenuListComponent implements OnInit {
     this.panelTitle = 'Editar Menú';
     this.panelComponent = UpdateMenuComponent;
     this.panelData = { menuData: menu };
-    console.log('Datos del menú:', menu);
   }
 
   openCreatePanel(): void {
@@ -75,6 +75,84 @@ export class MenuListComponent implements OnInit {
       this.menuList = menu;
       if (this.menuList.length > 0) {
         this.currentMenu = this.menuList[this.currentIndex];
+      }
+    });
+  }
+
+  deleteMenu(menu: any): void {
+    Swal.fire({
+      title: `¿Estás seguro de eliminar el menú "${menu.name}"?`,
+      text: 'Esta acción no se puede deshacer.',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#d33',
+      cancelButtonColor: '#3085d6',
+      confirmButtonText: 'Sí, eliminar',
+      cancelButtonText: 'Cancelar',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.adminService.deleteMenu(menu._id).subscribe({
+          next: (res) => {
+            Swal.fire(
+              'Eliminado',
+              'El menú ha sido eliminado con éxito.',
+              'success'
+            );
+            this.refreshMenuList();
+          },
+          error: (err) => {
+            Swal.fire(
+              'Error',
+              'Ocurrió un error al eliminar el menú.',
+              'error'
+            );
+            console.error('Error al eliminar el menú:', err);
+          },
+        });
+      }
+    });
+  }
+
+  toggleAvailability(menu: any) {
+    const newState = !menu.isAvailable;
+
+    Swal.fire({
+      title: '¿Estás seguro?',
+      text: `El menú será marcado como ${
+        newState ? 'disponible' : 'no disponible'
+      }.`,
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: `Sí, marcar como ${
+        newState ? 'disponible' : 'no disponible'
+      }`,
+      cancelButtonText: 'Cancelar',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.adminService
+          .updateMenu(menu._id, { isAvailable: newState })
+          .subscribe({
+            next: (res) => {
+              Swal.fire(
+                '¡Actualizado!',
+                `El menú ahora está ${
+                  newState ? 'disponible' : 'no disponible'
+                }.`,
+                'success'
+              );
+              menu.isAvailable = newState;
+            },
+            error: (err) => {
+              Swal.fire(
+                'Error',
+                'No se pudo actualizar el estado del menú.',
+                'error'
+              );
+              console.error(err);
+            },
+          });
       }
     });
   }

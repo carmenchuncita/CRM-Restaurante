@@ -26,8 +26,11 @@ export class UpdateMenuComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    const menu = this.data?.menuData || {};
+    this.initializeForm();
+  }
 
+  private initializeForm() {
+    const menu = this.data?.menuData || {};
     this.form = this.fb.group({
       name: [menu.name || '', Validators.required],
       description: [menu.description || '', Validators.required],
@@ -62,7 +65,8 @@ export class UpdateMenuComponent implements OnInit {
     }
   }
 
-  cancelar() {
-    this.panelData.close(false);
+  cancel() {
+    this.initializeForm();
+    console.log('Edición cancelada, formulario restablecido');
   }
 }
