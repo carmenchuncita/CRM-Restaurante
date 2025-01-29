@@ -1,11 +1,29 @@
-import { Component } from '@angular/core';
+import { Component, OnInit ,inject} from '@angular/core';
+import { Inject } from '@angular/core';
+import { MenusService } from '../../service/menus.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-menus',
-  imports: [],
+  standalone: true,
+  imports:[CommonModule],
   templateUrl: './menus.component.html',
-  styleUrl: './menus.component.css'
+  styleUrls: ['./menus.component.css'],
 })
-export class MenusComponent {
+export class MenusComponent implements OnInit {
+  public todaysMenu: any | null = null;
+private menusService: MenusService = inject(MenusService)!;
 
+public menuList: any = [];
+public currentMenu: any = null;
+private currentIndex: number = 0;
+
+  ngOnInit(): void {
+    this.menusService.getAvailableMenuForToday().subscribe((menu) => {
+      this.menuList = menu;
+      if (this.menuList.length > 0) {
+        this.currentMenu = this.menuList[this.currentIndex];
+      }
+    });
+  }
 }

@@ -1,0 +1,10 @@
+<div class="sidenav" [class.open]="isOpen">
+  <div class="sidenav-header">
+    <h2>{{ title }}</h2>
+    <button class="close-btn" (click)="closePanel()">&#10005;</button>
+  </div>
+  <div class="sidenav-content">
+    <ng-container *ngComponentOutlet="currentComponent; injector: customInjector"></ng-container>
+  </div>
+</div>
+

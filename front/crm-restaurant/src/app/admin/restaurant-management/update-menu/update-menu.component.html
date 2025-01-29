@@ -1,36 +1,52 @@
-<p>update-menu works!</p>
-
-
-<!-- <form [formGroup]="form" (ngSubmit)="handleEditMenuForm()">
-    <div class="form-group">
-        <label>Nombre del Menu</label>
-        <input type="text" formControlName="name">
-    </div>
-    <div class="form-group">
-        <label>Primer plato</label>
-        <input type="text" formControlName="description">
-    </div>
-    <div class="form-group">
-      <label>Segunfo plato</label>
-      <input type="text" formControlName="description">
+<form [formGroup]="form" (ngSubmit)="handleEditMenuForm()">
+  <div class="form-group">
+    <label>Nombre del Menú</label>
+    <input type="text" formControlName="name" />
   </div>
   <div class="form-group">
-    <label>Postre</label>
-    <input type="text" formControlName="description">
-</div>
-    <div class="form-group">
-        <label>Fecha</label>
-        <input type="date" formControlName="date">
-    </div>
-    <div class="form-group">
-      <label for="publicar">
-        <input type="checkbox" id="publish" formControlName="publish">
-        Publicar
-      </label>
-    </div>
-
-    <input type="submit" value="Enviar">
-</form> -->
-
-
-
+    <label>Descripción</label>
+    <input type="text" formControlName="description" />
+  </div>
+  <div class="form-group">
+    <label>Precio</label>
+    <input type="number" formControlName="price" />
+  </div>
+  <div class="form-group">
+    <label>Primeros</label>
+    <input type="text" formControlName="principalOptionA" />
+    <input type="text" formControlName="principalOptionB" />
+    <input type="text" formControlName="principalOptionC" />
+  </div>
+  <div class="form-group">
+    <label>Segundos</label>
+    <input type="text" formControlName="secondOptionA" />
+    <input type="text" formControlName="secondOptionB" />
+    <input type="text" formControlName="secondOptionC" />
+  </div>
+  <div class="form-group">
+    <label>Postres</label>
+    <input type="text" formControlName="dessertsOptionA" />
+    <input type="text" formControlName="dessertsOptionB" />
+    <input type="text" formControlName="dessertsOptionC" />
+  </div>
+  <div class="form-group">
+    <label>Día</label>
+    <select formControlName="day">
+      <option value="monday">Lunes</option>
+      <option value="tuesday">Martes</option>
+      <option value="wednesday">Miércoles</option>
+      <option value="thursday">Jueves</option>
+      <option value="friday">Viernes</option>
+      <option value="saturday">Sábado</option>
+      <option value="sunday">Domingo</option>
+    </select>
+  </div>
+  <div class="form-group">
+    <label for="publish">
+      <input type="checkbox" id="publish" formControlName="isAvailable" />
+      Disponible
+    </label>
+  </div>
+  <button type="submit">Actualizar Menú</button>
+  <button type="button" (click)="cancel()">Cancelar</button>
+</form>
