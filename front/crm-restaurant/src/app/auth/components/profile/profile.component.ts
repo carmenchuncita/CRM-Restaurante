@@ -17,6 +17,7 @@ export class ProfileComponent {
   private router: Router = inject(Router)
 
   public id!: string;
+  public updateProfileIsActive: boolean = false;
   public userData: any = { user: {} };
 
   public isSubmitted: boolean = false;
@@ -54,11 +55,21 @@ export class ProfileComponent {
   }
 
 
+  clickUpdateProfile(){
+
+    this.updateProfileIsActive = !this.updateProfileIsActive
+    console.log(this.updateProfileIsActive)
+
+  }
+
+
+
+
 
   public profileForm: FormGroup = new FormGroup  ({
-  name: new FormControl(this.userData.user.name,  Validators.minLength(3)), //al menos tiene que tener 3 caracteres
+  name: new FormControl(this.userData?.user?.name || '',   Validators.minLength(3)), //al menos tiene que tener 3 caracteres
   email: new FormControl({value:'', disabled: true}, (Validators.pattern(/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/))),
-  password: new FormControl('', [Validators.minLength(8),Validators.pattern(/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d).{8,}$/) ])// Al menos 8 caracteres, Al menos 1 mayúscula, 1 minúscula y 1 número
+  password: new FormControl('', [Validators.minLength(8), Validators.pattern(/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d).{8,}$/) ])// Al menos 8 caracteres, Al menos 1 mayúscula, 1 minúscula y 1 número
   
 })
 
@@ -80,6 +91,7 @@ handleUpdateProfileForm(){
       this.message = data.message
       this.userData.user.name = this.profileForm.value.name;
       alert(this.message)
+      this.updateProfileIsActive = !this.updateProfileIsActive
    
     },
     error: (error: any) => {
