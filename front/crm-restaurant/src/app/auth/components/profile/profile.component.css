@@ -63,6 +63,9 @@
 	margin: 5% 0 8% 0;
 }
 
+
+/*SECCIÓN PROFILE DATA*/
+
 .profileDataSection{
 	display: flex;
 	justify-content: center;
@@ -90,13 +93,6 @@
 	cursor: pointer;
 }
 
-.contenedor-disabled {
-	display: none;
-}
-
-.contenedor {
-	display: block;
-}
 
 .dataProfileName{
 	font-size: 1.1rem;
@@ -107,6 +103,143 @@
 	font-size: 1.1rem;
 	margin-bottom: 15px;
 }
+
+
+.contenedor-disabled {
+	display: none;
+}
+
+.contenedor {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: relative;
+	width: 100%;
+	height: 250px;
+	background-color: #f7f7f7;
+	border-right: 1px solid #282826;
+	border-left: 1px solid #282826;
+	margin: 5% 0 35% 0;
+}
+
+.line {
+	content: '';
+	position: absolute;
+	z-index: 20;
+	height: 1px;
+	width: 18%;
+	background: repeating-linear-gradient(to right,
+			#282826 0,
+			#282826 10px,
+			transparent 0px,
+			transparent 0px);
+}
+
+.top-left {
+	top: 0;
+	left: 0;
+}
+
+.top-right {
+	top: 0;
+	right: 0;
+}
+
+.bottom-left {
+	bottom: 0;
+	left: 0;
+}
+
+.bottom-right {
+	bottom: 0;
+	right: 0;
+}
+
+.profileForm {
+	display: flex;
+	justify-content: start;
+	align-items: center;
+	flex-direction: column;
+	position: absolute;
+	width: 90%;
+	height: 300px;
+	background-color: #e3f982;
+	padding-top: 5px;
+	top: 10%
+}
+
+.form-group-profile {
+	width: 90%;
+	
+}
+
+label {
+	display: block;
+	color: #282826;
+	letter-spacing: 0.9px;
+	font-size: 0.9rem;
+	font-weight: 430;
+	margin-top: 1rem;
+}
+
+.form-input {
+	width: 100%;
+	padding: 0.5rem 0 0 0;
+	margin: 0.2rem 0 0 0;
+	background-color: #e3f982;
+	border: none;
+	border-bottom: 1px solid #282826;
+	font-size: 0.8rem;
+	font-family: "Raleway";
+	font-weight: 200;
+}
+
+.form-input-email {
+	width: 100%;
+	padding: 0.5rem 0 0 0;
+	margin: 0.2rem 0 0 0;
+	background-color: #c2c2c2;
+	border: none;
+	font-size: 0.8rem;
+	font-family: "Raleway";
+	font-weight: 200;
+}
+
+.form-input:focus {
+	outline: none;
+	border-bottom: 1px solid #282826;
+}
+
+.form-field--text-danger {
+	color: #ef8686;
+	font-size: 0.7rem;
+	font-weight: 450;
+	letter-spacing: 1px;
+	line-height: 1.5;
+	margin-top: 0.5rem;
+}
+
+.form-button {
+	align-items: center;
+	width: 85%;
+	margin-top: 4rem;
+	padding: 0.7rem;
+	background-color: #e3f982;
+	border: 1px solid #282826;
+	color: #282826;
+	font-family: "Raleway";
+	font-size: 0.9rem;
+	letter-spacing: 0.9px;
+	cursor: pointer;
+}
+
+.form-button:hover {
+	background-color: #282826;
+	color: #e3f982;
+}
+
+
+/*SECCIÓN PROFILE RESERVAS*/
 
 .reservasIconSection{
 	display: flex;
@@ -130,6 +263,8 @@
 	letter-spacing: 0.03rem;
 }
 
+/*SECCIÓN PROFILE RESERVAS*/
+
 .reviewsIconSection{
 	display: flex;
 	justify-content: center;
@@ -151,3 +286,152 @@
 	font-size: 1.1rem;
 	letter-spacing: 0.03rem;
 }
+
+.reviewFormSection{
+	display: flex;
+	justify-content: start;
+	align-items: center;
+	width: 100%;
+	height: auto;
+	margin-bottom: 300px;
+	flex-direction: column;
+	background-color: #f7f7f7;
+}
+
+.reviewContenedor {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: relative;
+	width: 65%;
+	height: 320px;
+	background-color: #f7f7f7;
+	border-right: 1px solid #282826;
+	border-left: 1px solid #282826;
+	margin: 5% 0 5% 0;
+}
+
+.line {
+	content: '';
+	position: absolute;
+	z-index: 20;
+	height: 1px;
+	width: 10%;
+	background: repeating-linear-gradient(to right,
+			#282826 0,
+			#282826 10px,
+			transparent 0px,
+			transparent 0px);
+}
+
+.top-left {
+	top: 0;
+	left: 0;
+}
+
+.top-right {
+	top: 0;
+	right: 0;
+}
+
+.bottom-left {
+	bottom: 0;
+	left: 0;
+}
+
+.bottom-right {
+	bottom: 0;
+	right: 0;
+}
+
+.form-Reviwer {
+	display: flex;
+	justify-content: start;
+	align-items: center;
+	flex-direction: column;
+	position: absolute;
+	width: 90%;
+	height: auto;
+	
+	background-color: #e3f982;
+	padding: 5px 0 50px 0;
+	top: 15%
+}
+
+.form-groupReviwer {
+	width: 70%;
+}
+
+label {
+	display: block;
+	color: #282826;
+	letter-spacing: 0.9px;
+	font-size: 1rem;
+	font-weight: 430;
+	margin-top: 1.5rem;
+}
+
+.form-inputReviwer {
+	width: 100%;
+	padding: 0.5rem 0 0 0;
+	margin: 0.4rem 0 0 0;
+	background-color: #e3f982;
+	border: none;
+	border-bottom: 1px solid #282826;
+	font-size: 1rem;
+	font-family: "Raleway";
+	font-weight: 200;
+}
+
+.form-inputReviwer:focus {
+	outline: none;
+	border-bottom: 1px solid #282826;
+}
+
+.form-field--text-danger {
+	color: #ef8686;
+	font-size: 0.7rem;
+	font-weight: 450;
+	letter-spacing: 1px;
+	line-height: 1.5;
+	margin-top: 0.5rem;
+}
+
+.form-buttonReviwer {
+	align-items: center;
+	width: 100%;
+	height: auto;
+	margin-top: 4rem;
+	padding: 0.7rem;
+	background-color: #e3f982;
+	border: 1px solid #282826;
+	color: #282826;
+	font-family: "Raleway";
+	font-size: 1rem;
+	letter-spacing: 0.9px;
+	cursor: pointer;
+}
+
+.form-buttonReviwer:hover {
+	background-color: #282826;
+	color: #e3f982;
+}
+
+
+input:-webkit-autofill {
+	background-color: #e3f982; /* Color de fondo */
+	color: #282826; /* Color del texto */
+	-webkit-text-fill-color: #282826; /* Color del texto en navegadores WebKit */
+	transition: background-color 5000s ease-in-out 0s; /* Evita el cambio brusco de color */
+  }
+  
+  input:-webkit-autofill:hover,
+  input:-webkit-autofill:focus,
+  input:-webkit-autofill:active {
+	background-color: #d4ffcc; /* Color diferente cuando se enfoca */
+	-webkit-text-fill-color: #282826;
+  }
+
+
+ 
+  

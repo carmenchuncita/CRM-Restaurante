@@ -24,13 +24,12 @@ export class ProfileComponent {
   private message: string = ''
   public errorMessage: string = ''
 
+  
 
   public form: FormGroup = new FormGroup({
-
     reviwer: new FormControl( '', [Validators.required, Validators.minLength(3)] ),
     rating: new FormControl('', Validators.required),
     description: new FormControl('', Validators.required)
-
   })
 
  //me permite obtener los datos del usuario logado y comparar que su id es igual al id que se ha envido por los params antes de que se pinte el componente.
@@ -54,17 +53,14 @@ export class ProfileComponent {
     });
   }
 
+  //evento click del botton editar del profile data para mostrarlo solo cuanto se produce el eventoclik 
 
   clickUpdateProfile(){
-
     this.updateProfileIsActive = !this.updateProfileIsActive
     console.log(this.updateProfileIsActive)
-
   }
 
-
-
-
+  //formulario y método para actualizar los datos del usurio (nombre y password) el mail está desactivado para que no se cambie
 
   public profileForm: FormGroup = new FormGroup  ({
   name: new FormControl(this.userData?.user?.name || '',   Validators.minLength(3)), //al menos tiene que tener 3 caracteres
@@ -72,7 +68,6 @@ export class ProfileComponent {
   password: new FormControl('', [Validators.minLength(8), Validators.pattern(/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d).{8,}$/) ])// Al menos 8 caracteres, Al menos 1 mayúscula, 1 minúscula y 1 número
   
 })
-
 
 handleUpdateProfileForm() {
   this.isSubmitted = true;
@@ -118,48 +113,6 @@ handleUpdateProfileForm() {
   }
 }
 
-
-
-/*handleUpdateProfileForm(){
-
-  this.isSubmitted = true;
-
-  console.log(this.profileForm.value)
-  console.log(this.profileForm.valid)
-
-  if(this.profileForm.valid) {
-   
-
-  this.authService.updateUser(this.profileForm.value).subscribe({
-
-    next: (data: any) => {
-      console.log(data)
-      this.message = data.message
-      this.userData.user.name = this.profileForm.value.name;
-      alert(this.message)
-      this.updateProfileIsActive = !this.updateProfileIsActive
-   
-    },
-    error: (error: any) => {
-      console.error('Error en la ejecución del registro', error);
-
-        // Validaciones específicas del backend
-        if (error.error.message === 'El correo electrónico ya está registrado') {
-          alert('Ya exite una cuenta con esta dirección de e-mail, por favor inicie sesión para confirmar su reserva')
-          this.router.navigate(['/auth/login'])
-        }
-      
-        this.errorMessage = error.error.message;
-     
-    }
-  })
-    
-  }
-   
-  }*/
-
-
-
   // me permite crear una nueva reseña, si el id del usuario es igual al id de alguna de las reseñas existentes en la BBDD entonces devuelve el error Ya ha hecho una reseña y  no permite crear la reseña lo que hace es ejecutar el método updateReview para actualizarla. 
 
   handlReviewForm() {
@@ -187,18 +140,15 @@ handleUpdateProfileForm() {
           if (error.error.message === 'Ya ha hecho una reseña') {
         
             this.updateReview();
-    
-          }
-          
+          }    
         }
-
       })
-
     }
   }
 
 
-  private updateReview() {
+  // metodo para actualizar el reseña, cuando el usuario ya tiene una reseña no puede realizar una nueva, si no que actualiza la que ya tenía
+updateReview() {
     this.authService.updateReview(this.form.value).subscribe({
       next: (data: any) => {
         console.log(data);
@@ -212,6 +162,7 @@ handleUpdateProfileForm() {
     });
   }
 
+  // método para el LogOut del usuario que redirege a la home
 
   handleLogOut(){
 
@@ -220,10 +171,9 @@ handleUpdateProfileForm() {
   localStorage.removeItem('email')
   localStorage.removeItem('id')
   localStorage.removeItem('role')
-  this.router.navigate(['/home']) //cambiar a /home cuando esté la ruta disponible
+  this.router.navigate(['/home']) 
 
 }
-
 
 }
 

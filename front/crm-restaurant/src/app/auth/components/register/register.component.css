@@ -140,6 +140,21 @@ label {
 }
 
 
+input:-webkit-autofill {
+	background-color: #e3f982; /* Color de fondo */
+	color: #282826; /* Color del texto */
+	-webkit-text-fill-color: #282826; /* Color del texto en navegadores WebKit */
+	transition: background-color 5000s ease-in-out 0s; /* Evita el cambio brusco de color */
+  }
+  
+  input:-webkit-autofill:hover,
+  input:-webkit-autofill:focus,
+  input:-webkit-autofill:active {
+	background-color: #d4ffcc; /* Color diferente cuando se enfoca */
+	-webkit-text-fill-color: #282826;
+  }
+
+
 
 @media(min-width: 768px) {
 

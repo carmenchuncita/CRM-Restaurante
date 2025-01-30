@@ -24,7 +24,7 @@
 
     <section class="profileOptionsSection">
 
-        <!--SECCIÓN PROFILE DATA-->
+    <!--SECCIÓN PROFILE DATA-->
 
         <section class="profileDataSection">
             <figure class="profileFigure">
@@ -45,9 +45,9 @@
                 <span class="line bottom-left"></span>
                 <span class="line bottom-right"></span>
 
-                <form [formGroup]="profileForm" (ngSubmit)="handleUpdateProfileForm()" class="form">
+                <form [formGroup]="profileForm" (ngSubmit)="handleUpdateProfileForm()" class="profileForm">
 
-                    <div class="form-group">
+                    <div class="form-group-profile">
                         <label>Nombre</label>
                         <input class="form-input" type="text" formControlName="name">
 
@@ -56,12 +56,12 @@
                         }
                     </div>
 
-                    <div class="form-group">
+                    <div class="form-group-profile">
                         <label>Email</label>
-                        <input class="form-input" type="email" formControlName="email">
+                        <input class="form-input-email" type="email" formControlName="email">
                     </div>
 
-                    <div class="form-group">
+                    <div class="form-group-profile">
                         <label>Password</label>
                         <input class="form-input" type="password" formControlName="password">
 
@@ -78,6 +78,8 @@
             </div>
         </section>
   
+    <!--SECCIÓN PROFILE RESERVAS-->
+
     <section class = reservasIconSection>
     <figure class="reservationsFigure">
         <img class="reservationsIcon" src="imagenes/icono8.png" alt="icono reservas">
@@ -87,6 +89,8 @@
     </button>
     <h2 class ="reservationTitle">Gestiona tus reservas</h2>
 </section>
+
+  <!--SECCIÓN PROFILE RESEÑAS-->
 
 <section class = reviewsIconSection>
     <figure class="reviewsFigure">
@@ -100,8 +104,6 @@
 
 </section>
 
- <!--SECCIÓN VER RESERVAS Y RESEÑAS-->
-
     <section class="reviewFormSection">
         <div class="reviewContenedor">
             <span class="line top-left"></span>
@@ -109,11 +111,11 @@
             <span class="line bottom-left"></span>
             <span class="line bottom-right"></span>
 
-            <form [formGroup]="form" (ngSubmit)="handlReviewForm()" class="form">
+            <form [formGroup]="form" (ngSubmit)="handlReviewForm()" class="form-Reviwer">
 
-                <div class="form-group">
+                <div class="form-groupReviwer">
                     <label>Nombre</label>
-                    <input class="form-input" type="text" formControlName="reviwer">
+                    <input class="form-inputReviwer" type="text" formControlName="reviwer">
 
                     @if (form.get('reviwer')?.hasError('required') && isSubmitted) {
                     <p class="form-field--text-danger">Debe rellenar este campo</p>
@@ -123,23 +125,23 @@
                     }
                 </div>
 
-                <div class="form-group">
+                <div class="form-groupReviwer">
                     <label>Valoración</label>
-                    <select class="form-input" formControlName="rating">
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
+                    <select class="form-inputReviwer" formControlName="rating">
+                        <option value="1">★☆☆☆☆</option>
+                        <option value="2">★★☆☆☆</option>
+                        <option value="3">★★★☆☆</option>
+                        <option value="4">★★★★☆</option>
+                        <option value="5">★★★★★</option>
                     </select>
                     @if (form.get('rating')?.hasError('required') && isSubmitted) {
                     <p class="form-field--text-danger">Debe seleccionar una valoración</p>
                     }
                 </div>
 
-                <div class="form-group">
-                    <label>Descripción</label>
-                    <textarea class="form-input" placeholder="Nos encantaría conocer su experiencia en CODE"
+                <div class="form-groupReviwer">
+                    <label>Comentario</label>
+                    <textarea class="form-inputReviwer" placeholder="Nos encantaría conocer su experiencia en CODE"
                         formControlName="description"></textarea>
 
                     @if (form.get('description')?.hasError('required') && isSubmitted) {
@@ -148,8 +150,8 @@
                     }
                 </div>
 
-                <div class="form-group">
-                    <input class="form-button" type="submit" value="Enviar Reseña">
+                <div class="form-groupReviwer">
+                    <input class="form-buttonReviwer" type="submit" value="Enviar Reseña">
                 </div>
 
             </form>
