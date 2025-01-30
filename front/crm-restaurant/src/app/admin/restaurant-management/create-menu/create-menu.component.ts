@@ -1,48 +1,58 @@
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { FormGroup, FormBuilder, Validators, ReactiveFormsModule } from '@angular/forms';
 import { AdminService } from './../../services/admin.service';
-import { Component, inject } from '@angular/core';
-import {
-  FormControl,
-  FormGroup,
-  FormsModule,
-  ReactiveFormsModule,
-  Validators,
-} from '@angular/forms';
-import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-create-menu',
-  imports: [FormsModule, RouterModule, ReactiveFormsModule],
+  standalone: true,
+  imports: [ReactiveFormsModule],
   templateUrl: './create-menu.component.html',
-  styleUrl: './create-menu.component.css',
+  styleUrls: ['./create-menu.component.css'],
 })
-export class CreateMenuComponent {
-  private adminService: AdminService = inject(AdminService);
-  private message: string = '';
+export class CreateMenuComponent implements OnInit {
+  @Output() closePanel: EventEmitter<boolean> = new EventEmitter<boolean>(); // Emite eventos para cerrar el panel
+  form!: FormGroup;
 
-  form: FormGroup = new FormGroup({
-    name: new FormControl('', [Validators.required]),
-    description: new FormControl('', [Validators.required]),
-    price: new FormControl('', [Validators.required]),
-    image: new FormControl('', [Validators.required]),
-    category: new FormControl('', [Validators.required]),
-  });
+  constructor(private fb: FormBuilder, private adminService: AdminService) {}
+
+  ngOnInit() {
+    this.form = this.fb.group({
+      name: ['', Validators.required],
+      description: ['', Validators.required],
+      price: [0, [Validators.required, Validators.min(0)]],
+      principalOptionA: ['', Validators.required],
+      principalOptionB: ['', Validators.required],
+      principalOptionC: ['', Validators.required],
+      secondOptionA: ['', Validators.required],
+      secondOptionB: ['', Validators.required],
+      secondOptionC: ['', Validators.required],
+      dessertsOptionA: ['', Validators.required],
+      dessertsOptionB: ['', Validators.required],
+      dessertsOptionC: ['', Validators.required],
+      day: ['', Validators.required],
+      isAvailable: [true],
+    });
+  }
 
   handleCreateMenuForm() {
-    console.log(this.form.value);
-    console.log(this.form.valid);
-
     if (this.form.valid) {
-      this.adminService.postMenu(this.form.value).subscribe({
-        next: (data: any) => {
-          console.log(data);
-          this.message = data.message;
-          alert(this.message);
+      const newMenu = this.form.value;
+      console.log('Datos enviados al backend:', newMenu);
+      this.adminService.postMenu(newMenu).subscribe({
+        next: (res) => {
+          console.log('Menú creado con éxito:', res);
         },
-
-        error: (error: any) => {
-          console.log(error);
+        error: (err) => {
+          console.error('Error al crear el menú:', err.error);
         },
       });
+    } else {
+      console.error('Formulario inválido');
     }
+  }
+
+
+  cancelar() {
+    this.closePanel.emit(false); 
   }
 }

@@ -5,13 +5,12 @@ import { inject, Injectable } from '@angular/core';
   providedIn: 'root'
 })
 
-//TO DO//
-//Revisar si menu o menus!!
 export class AdminService {
   private http: HttpClient = inject(HttpClient);
 
   postMenu(menu: any) {
-    return this.http.post('http://localhost:5500/api/menu/', menu)
+    return this.http.post('http://localhost:5500/api/menu/create', menu);
+
   }
 
   deleteMenu(id: string) {
