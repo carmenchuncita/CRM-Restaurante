@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
@@ -19,23 +19,20 @@ export class AppComponent {
   public showHeader: boolean = true;
   public showFooter: boolean = true;
 
-  ngOnInit(){
-    this.router.events.subscribe(( event ) => {
-
-      if(event instanceof NavigationEnd){
-
+  ngOnInit() {
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
         const currentRouter = event.urlAfterRedirects;
-        if(currentRouter === '/auth/profile'){ //pendiente cambiar por '/home ' cuando el componente esté creado.
+        console.log('Ruta después del redireccionamiento:', currentRouter); // Verifica la URL después de redirigir
+  
+        if (currentRouter.startsWith('/home')) {
           this.showHeader = false;
           this.showFooter = false;
-        }else {
+        } else {
           this.showHeader = true;
           this.showFooter = true;
         }
-
       }
-
-    })
-
+    });
   }
 }

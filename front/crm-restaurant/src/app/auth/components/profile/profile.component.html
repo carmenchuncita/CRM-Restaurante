@@ -1,94 +1,159 @@
-<p>profile works</p>
-<section class = "profileSection">
+<section class="profileSection">
 
-    <section class = "logOutSection">
+    <!--SECCIÓN LOGOUT-->
 
-<figure class = "logOutFigure">
-    <img class = "logOutIcon" src="imagenes/icono15.png" alt="icono logOut">
-</figure>
+    <section class="logOutSection">
+        <div class=logOutBox>
 
+            <div class="logOutButton">
+                    <button class="logOutButton" (click)="handleLogOut()">
+                        <figure class="logOutFigure">
+                            <img class="logOutIcon" src="imagenes/icono14.png" alt="icono logOut">
+                        </figure>
+                        Cerrar Sesión
+                    </button>
+            </div>
+
+
+        </div>
     </section>
 
+    <!--SECCIÓN PROFILE OPTIONS-->
 
-<div class = "logOutButton">
-    <div>
-        <button class= "logOutButton" (click) = "handleLogOut()" >Cerrar Sesión</button>
-    </div>
-</div>
+    <section class="profileOptionsSection">
 
+    <!--SECCIÓN PROFILE DATA-->
 
+        <section class="profileDataSection">
+            <figure class="profileFigure">
+                <img class="profileIcon" src="imagenes/icono7.png" alt="icono profile">
+            </figure>
 
-<figure class = "profileFigure">
-    <img class = "profileIcon" src="imagenes/icono7.png" alt="icono profile">
-</figure>
+            <button (click)="clickUpdateProfile()" class="updateProfileButton">
+                <i class="fa-regular fa-pen-to-square"></i>
+            </button>
 
+            <p class = "dataProfileName">{{userData?.user?.name}}</p>
+            <p class = "dataProfileEmail">{{userData.user.email}}</p>
 
-<p>{{userData?.user.id}}</p>
-<p>{{userData?.user.name}}</p>
-<p>{{userData?.user.email}}</p>
-<p>{{userData?.user.role}}</p>
+            <div [class.contenedor]="updateProfileIsActive" class="contenedor-disabled">
 
-<figure class = "reservationsFigure">
-    <img class = "reservationsIcon" src="imagenes/icono9.png" alt="icono reservas">
-</figure>
+                <span class="line top-left"></span>
+                <span class="line top-right"></span>
+                <span class="line bottom-left"></span>
+                <span class="line bottom-right"></span>
 
-<figure class = "reviewsFigure">
-    <img class = "reviewsIcon" src="imagenes/icono11.png" alt="icono reseñas">
-</figure>
+                <form [formGroup]="profileForm" (ngSubmit)="handleUpdateProfileForm()" class="profileForm">
 
+                    <div class="form-group-profile">
+                        <label>Nombre</label>
+                        <input class="form-input" type="text" formControlName="name">
 
+                        @if (profileForm.get('name')?.hasError('minlength') && isSubmitted) {
+                        <p class="form-field--text-danger">El nombre debe tener al menos 3 caracteres</p>
+                        }
+                    </div>
 
+                    <div class="form-group-profile">
+                        <label>Email</label>
+                        <input class="form-input-email" type="email" formControlName="email">
+                    </div>
 
-<section  class="reviewFormSection">
-    <div class="reviewContenedor">
-        <span class="line top-left"></span>
-        <span class="line top-right"></span>
-        <span class="line bottom-left"></span>
-        <span class="line bottom-right"></span>
+                    <div class="form-group-profile">
+                        <label>Password</label>
+                        <input class="form-input" type="password" formControlName="password">
 
-        <form [formGroup]="form" (ngSubmit)="handlReviewForm()" class="form">
+                        @if (profileForm.get('password')?.hasError('pattern') && isSubmitted) {
+                        <p class="form-field--text-danger">La contraseña debe tener al menos 8 caracteres y debe incluir
+                            al
+                            menos una mayúscula, una minúscula y un número</p>
+                        }
+                    </div>
 
-            <div class="form-group">
-                <label>Nombre</label>
-                <input class="form-input" type="text" formControlName="reviwer">
-                
-                 @if (form.get('reviwer')?.hasError('required') && isSubmitted) {
-                    <p class="form-field--text-danger">Debe rellenar este campo</p>   
-                }
-                @if (form.get('reviwer')?.hasError('minlength') && isSubmitted) {
+                    <input class="form-button" type="submit" value="Guardar">
+
+                </form>
+            </div>
+        </section>
+  
+    <!--SECCIÓN PROFILE RESERVAS-->
+
+    <section class = reservasIconSection>
+    <figure class="reservationsFigure">
+        <img class="reservationsIcon" src="imagenes/icono8.png" alt="icono reservas">
+    </figure>
+    <button (click)="clickUpdateProfile()" class="updateProfileButton">
+        <i class="fa-regular fa-pen-to-square"></i>
+    </button>
+    <h2 class ="reservationTitle">Gestiona tus reservas</h2>
+</section>
+
+  <!--SECCIÓN PROFILE RESEÑAS-->
+
+<section class = reviewsIconSection>
+    <figure class="reviewsFigure">
+        <img class="reviewsIcon" src="imagenes/icono10.png" alt="icono reseñas">
+    </figure>
+    <button (click)="clickUpdateProfile()" class="updateProfileButton">
+        <i class="fa-regular fa-pen-to-square"></i>
+    </button>
+    <h2 class ="reviewTitle">Envía una reseña</h2>
+</section>
+
+</section>
+
+    <section class="reviewFormSection">
+        <div class="reviewContenedor">
+            <span class="line top-left"></span>
+            <span class="line top-right"></span>
+            <span class="line bottom-left"></span>
+            <span class="line bottom-right"></span>
+
+            <form [formGroup]="form" (ngSubmit)="handlReviewForm()" class="form-Reviwer">
+
+                <div class="form-groupReviwer">
+                    <label>Nombre</label>
+                    <input class="form-inputReviwer" type="text" formControlName="reviwer">
+
+                    @if (form.get('reviwer')?.hasError('required') && isSubmitted) {
+                    <p class="form-field--text-danger">Debe rellenar este campo</p>
+                    }
+                    @if (form.get('reviwer')?.hasError('minlength') && isSubmitted) {
                     <p class="form-field--text-danger">El nombre debe tener al menos 3 caracteres</p>
-                }
-            </div>
+                    }
+                </div>
 
-            <div class="form-group">
-                <label>Valoración</label>
-                <select class="form-input" formControlName="rating">
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                </select>
-                @if (form.get('rating')?.hasError('required') && isSubmitted) {
-                    <p class="form-field--text-danger">Debe seleccionar una valoración</p>   
-                }
-            </div>
+                <div class="form-groupReviwer">
+                    <label>Valoración</label>
+                    <select class="form-inputReviwer" formControlName="rating">
+                        <option value="1">★☆☆☆☆</option>
+                        <option value="2">★★☆☆☆</option>
+                        <option value="3">★★★☆☆</option>
+                        <option value="4">★★★★☆</option>
+                        <option value="5">★★★★★</option>
+                    </select>
+                    @if (form.get('rating')?.hasError('required') && isSubmitted) {
+                    <p class="form-field--text-danger">Debe seleccionar una valoración</p>
+                    }
+                </div>
 
-            <div class="form-group">
-                <label>Descripción</label>
-                <textarea class="form-input" placeholder="Nos encantaría conocer su experiencia en CODE"
-                    formControlName="description"></textarea>
+                <div class="form-groupReviwer">
+                    <label>Comentario</label>
+                    <textarea class="form-inputReviwer" placeholder="Nos encantaría conocer su experiencia en CODE"
+                        formControlName="description"></textarea>
 
                     @if (form.get('description')?.hasError('required') && isSubmitted) {
-                        <p class="form-field--text-danger">Su opinión es muy importante para nosotros, por favor, déjenos un comentario</p>   
+                    <p class="form-field--text-danger">Su opinión es muy importante para nosotros, por favor, déjenos un
+                        comentario</p>
                     }
-            </div>
+                </div>
 
-            <div class="form-group">
-                <input class="form-button" type="submit" value="Enviar Reseña">
-            </div>
+                <div class="form-groupReviwer">
+                    <input class="form-buttonReviwer" type="submit" value="Enviar Reseña">
+                </div>
 
-        </form>
-    </div>
-</section>
+            </form>
+        </div>
+    </section>
+
 </section>

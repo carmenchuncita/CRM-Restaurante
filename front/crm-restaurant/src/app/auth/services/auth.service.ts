@@ -47,6 +47,14 @@ export class AuthService {
 
 }
 
+
+updateUser(profileForm: any): Observable<any> {
+  const id = localStorage.getItem('id');
+    console.log(id);
+ return this.http.put(`http://localhost:5500/api/users/updateUser/${id}`, profileForm) 
+
+}
+
   postReview(reviewForm: any) : Observable<any>  {
     return this.http.post('http://localhost:5500/api/users/postReview/', reviewForm )
     

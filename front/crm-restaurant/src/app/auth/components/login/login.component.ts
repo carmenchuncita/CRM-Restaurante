@@ -52,8 +52,8 @@ this.authService.loginUser(this.form.value).subscribe({
       Swal.fire({
         title: this.message, //Editar
         text: 'Por favor introduzca una contraseña', //"ditar
-        background: '#282826',
-        color: '#d4e157',
+        background: '#f7f7f7',
+        color: '#282826',
         confirmButtonColor: '#d4e157',
         confirmButtonText: 'Close',
         customClass: {
@@ -70,6 +70,7 @@ this.authService.loginUser(this.form.value).subscribe({
         const redirectUrl = localStorage.getItem('redirectUrl') || '/auth/profile' ;
         localStorage.removeItem('redirectUrl'); // Limpiar el redirectUrl después de usarlo
         if(redirectUrl === '/auth/profile'){
+          localStorage.removeItem('redirectUrl')
           this.router.navigate([redirectUrl])
         }
 
