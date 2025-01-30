@@ -6,7 +6,7 @@
       <div class="menu-content">
       <h2>{{ menu.name }}</h2>
       <p>{{ menu.description }}</p>
-      <p>Precio: {{ menu.price | currency }}</p>
+      <p>Precio: {{ menu.price | currency:'EUR':'symbol':'1.2-2':'es-ES' }}</p>
       <p>Primeros</p>
       <p>{{ menu.principalOptionA }}</p>
       <p>{{ menu.principalOptionB }}</p>

@@ -11,7 +11,7 @@
       <div class="menu-card" *ngIf="currentMenu">
         <h2 class="card-title">{{ currentMenu.name }}</h2>
         <p class="card-description">{{ currentMenu.description }}</p>
-        <p class="card-price">Precio: {{ currentMenu.price | currency }}</p>
+        <p class="card-price">Precio: {{ currentMenu.price | currency:'EUR':'symbol':'1.2-2':'es-ES' }}</p>
         <p class="card-subtitle">Primeros</p>
         <p class="card-plate">{{ currentMenu.principalOptionA }}</p>
         <p class="card-plate">{{ currentMenu.principalOptionB }}</p>
