@@ -49,7 +49,7 @@
                         <label>Nombre</label>
                         <input class="form-input" type="text" formControlName="name">
 
-                        @if (profileForm.get('name')?.hasError('minlength') && isSubmitted) {
+                        @if (profileForm.get('name')?.hasError('minlength') && isSubmittedUpdate) {
                         <p class="form-field--text-danger">El nombre debe tener al menos 3 caracteres</p>
                         }
                     </div>
@@ -63,7 +63,7 @@
                         <label>Password</label>
                         <input class="form-input" type="password" formControlName="password">
 
-                        @if (profileForm.get('password')?.hasError('pattern') && isSubmitted) {
+                        @if (profileForm.get('password')?.hasError('pattern') && isSubmittedUpdate) {
                         <p class="form-field--text-danger">La contraseña debe tener al menos 8 caracteres y debe incluir
                             al
                             menos una mayúscula, una minúscula y un número</p>
@@ -115,10 +115,10 @@
                     <label>Nombre</label>
                     <input class="form-inputReviwer" type="text" formControlName="reviwer">
 
-                    @if (form.get('reviwer')?.hasError('required') && isSubmitted) {
+                    @if (form.get('reviwer')?.hasError('required') && isSubmittedReview) {
                     <p class="form-field--text-danger">Debe rellenar este campo</p>
                     }
-                    @if (form.get('reviwer')?.hasError('minlength') && isSubmitted) {
+                    @if (form.get('reviwer')?.hasError('minlength') && isSubmittedReview) {
                     <p class="form-field--text-danger">El nombre debe tener al menos 3 caracteres</p>
                     }
                 </div>
@@ -132,7 +132,7 @@
                         <option value="4">★★★★☆</option>
                         <option value="5">★★★★★</option>
                     </select>
-                    @if (form.get('rating')?.hasError('required') && isSubmitted) {
+                    @if (form.get('rating')?.hasError('required') && isSubmittedReview) {
                     <p class="form-field--text-danger">Debe seleccionar una valoración</p>
                     }
                 </div>
@@ -142,7 +142,7 @@
                     <textarea class="form-inputReviwer" placeholder="Nos encantaría conocer su experiencia en CODE"
                         formControlName="description"></textarea>
 
-                    @if (form.get('description')?.hasError('required') && isSubmitted) {
+                    @if (form.get('description')?.hasError('required') && isSubmittedReview) {
                     <p class="form-field--text-danger">Su opinión es muy importante para nosotros, por favor, déjenos un
                         comentario</p>
                     }
