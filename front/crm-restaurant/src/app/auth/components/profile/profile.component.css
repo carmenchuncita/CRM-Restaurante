@@ -5,12 +5,7 @@
 	height: 100%;
 }
 
-.profileSection {
-	width: 100%;
-	background-color: #f7f7f7;
-}
-
-/*SECCIÓN LOGOUT*/
+/*LOGOUT SECTION*/
 
 .logOutSection {
 	display: flex;
@@ -22,51 +17,55 @@
 	background-color: #f7f7f7;
 }
 
-.logOutBox{
-	width: 150px;
+.logOutBox {
+	width: 100px;
 	height: auto;
 	margin-right: 3%;
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	flex-direction: column;
-  }
+}
 
 .logOutFigure {
-    width: 100px;  
+	width: 70px;
 }
+
 .logOutIcon {
-    width: 100%;
+	width: 100%;
 }
 
 .logOutButton {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
 	font-family: "Raleway";
-	font-size: 0.9rem;
-	letter-spacing: 0.05rem ;
-	line-height: 1.2rem;	
-	width: 120px; 
+	font-size: 0.8rem;
+	letter-spacing: 0.04rem;
+	line-height: 1.2rem;
 	cursor: pointer;
 }
 
 .logOutButton * {
-	border: none; 
+	border: none;
 	background-color: transparent;
-  }
+}
 
 /*SECCIÓN PROFILE OPTIONS*/
 
-.profileOptionsSection{
+.profileOptionsSection {
 	display: flex;
 	justify-content: center;
-	align-items: start;
-	gap: 8%;
-	margin: 5% 0 8% 0;
+	align-items: center;
+	flex-direction: column;
+	gap: 50px;
+	margin-top: 10%;
 }
-
 
 /*SECCIÓN PROFILE DATA*/
 
-.profileDataSection{
+.profileDataSection {
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -74,18 +73,18 @@
 }
 
 .profileFigure {
-    width: 260px;
+	width: 200px;
 }
 
 .profileIcon {
-    width: 100%;
+	width: 100%;
 }
 
-.updateProfileButton{	
-	width: 50px; 
-	height: 50px; 
+.updateProfileButton {
+	width: 40px;
+	height: 40px;
 	color: var(--black-secondary);
-	font-size: 20px;
+	font-size: 15px;
 	background-color: var(--green-primary);
 	border: none;
 	border-radius: 100%;
@@ -93,17 +92,15 @@
 	cursor: pointer;
 }
 
-
-.dataProfileName{
-	font-size: 1.1rem;
+.dataProfileName {
+	font-size: 1rem;
 	margin-bottom: 8px;
 }
 
-.dataProfileEmail{
-	font-size: 1.1rem;
+.dataProfileEmail {
+	font-size: 1rem;
 	margin-bottom: 15px;
 }
-
 
 .contenedor-disabled {
 	display: none;
@@ -170,16 +167,16 @@
 
 .form-group-profile {
 	width: 90%;
-	
+
 }
 
 label {
 	display: block;
 	color: #282826;
 	letter-spacing: 0.9px;
-	font-size: 0.9rem;
+	font-size: 0.8rem;
 	font-weight: 430;
-	margin-top: 1rem;
+	margin-top: 0.9rem;
 }
 
 .form-input {
@@ -222,13 +219,13 @@ label {
 .form-button {
 	align-items: center;
 	width: 85%;
-	margin-top: 4rem;
-	padding: 0.7rem;
+	margin-top: 2.5rem;
+	padding: 0.6rem;
 	background-color: #e3f982;
 	border: 1px solid #282826;
 	color: #282826;
 	font-family: "Raleway";
-	font-size: 0.9rem;
+	font-size: 0.8rem;
 	letter-spacing: 0.9px;
 	cursor: pointer;
 }
@@ -238,10 +235,9 @@ label {
 	color: #e3f982;
 }
 
-
 /*SECCIÓN PROFILE RESERVAS*/
 
-.reservasIconSection{
+.reservasIconSection {
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -250,22 +246,22 @@ label {
 
 .reservationsFigure {
 
-    width: 260px;
+	width: 200px;
 }
 
-.reservationsIcon{
+.reservationsIcon {
 
-    width: 100%;
+	width: 100%;
 }
 
-.reservationTitle{
-	font-size: 1.1rem;
+.reservationTitle {
+	font-size: 1rem;
 	letter-spacing: 0.03rem;
 }
 
-/*SECCIÓN PROFILE RESERVAS*/
+/*SECCIÓN PROFILE RESEÑAS*/
 
-.reviewsIconSection{
+.reviewsIconSection {
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -274,26 +270,26 @@ label {
 
 .reviewsFigure {
 
-    width: 260px;
+	width: 200px;
 }
 
-.reviewsIcon{
+.reviewsIcon {
 
-    width: 100%;
+	width: 100%;
 }
 
-.reviewTitle{
-	font-size: 1.1rem;
+.reviewTitle {
+	font-size: 1rem;
 	letter-spacing: 0.03rem;
 }
 
-.reviewFormSection{
+.reviewFormSection {
 	display: flex;
 	justify-content: start;
 	align-items: center;
 	width: 100%;
 	height: auto;
-	margin-bottom: 300px;
+	margin-bottom: 150px;
 	flex-direction: column;
 	background-color: #f7f7f7;
 }
@@ -352,7 +348,7 @@ label {
 	position: absolute;
 	width: 90%;
 	height: auto;
-	
+
 	background-color: #e3f982;
 	padding: 5px 0 50px 0;
 	top: 15%
@@ -366,7 +362,7 @@ label {
 	display: block;
 	color: #282826;
 	letter-spacing: 0.9px;
-	font-size: 1rem;
+	font-size: 0.9rem;
 	font-weight: 430;
 	margin-top: 1.5rem;
 }
@@ -378,7 +374,7 @@ label {
 	background-color: #e3f982;
 	border: none;
 	border-bottom: 1px solid #282826;
-	font-size: 1rem;
+	font-size: 0.8rem;
 	font-family: "Raleway";
 	font-weight: 200;
 }
@@ -402,12 +398,12 @@ label {
 	width: 100%;
 	height: auto;
 	margin-top: 4rem;
-	padding: 0.7rem;
+	padding: 0.6rem;
 	background-color: #e3f982;
 	border: 1px solid #282826;
 	color: #282826;
 	font-family: "Raleway";
-	font-size: 1rem;
+	font-size: 0.8rem;
 	letter-spacing: 0.9px;
 	cursor: pointer;
 }
@@ -417,21 +413,139 @@ label {
 	color: #e3f982;
 }
 
-
+/*DAR ESTILOS AUTOCOMPLETADOS NAVEGADORES*/
 input:-webkit-autofill {
-	background-color: #e3f982; /* Color de fondo */
-	color: #282826; /* Color del texto */
-	-webkit-text-fill-color: #282826; /* Color del texto en navegadores WebKit */
-	transition: background-color 5000s ease-in-out 0s; /* Evita el cambio brusco de color */
-  }
-  
-  input:-webkit-autofill:hover,
-  input:-webkit-autofill:focus,
-  input:-webkit-autofill:active {
-	background-color: #d4ffcc; /* Color diferente cuando se enfoca */
+	background-color: #e3f982;
+	/* Color de fondo */
+	color: #282826;
+	/* Color del texto */
 	-webkit-text-fill-color: #282826;
-  }
+	/* Color del texto en navegadores WebKit */
+	transition: background-color 5000s ease-in-out 0s;
+	/* Evita el cambio brusco de color */
+}
+
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+	background-color: #d4ffcc;
+	/* Color diferente cuando se enfoca */
+	-webkit-text-fill-color: #282826;
+}
 
 
- 
-  
+
+
+@media(min-width: 768px) {
+
+	/*LOGOUT SECTION*/
+
+	.logOutBox {
+		width: 150px;
+	}
+
+	.logOutFigure {
+		width: 100px;
+	}
+
+	.logOutButton {
+		font-size: 0.9rem;
+		letter-spacing: 0.05rem;
+		width: 120px;
+	}
+
+	/*SECCIÓN PROFILE DATA*/
+
+	.profileFigure {
+		width: 260px;
+	}
+
+	.updateProfileButton {
+		width: 50px;
+		height: 50px;
+		font-size: 20px;
+	}
+
+	.dataProfileName {
+		font-size: 1.1rem;
+	}
+
+	.dataProfileEmail {
+		font-size: 1.1rem;
+	}
+	
+	label {
+		font-size: 0.9rem;
+		margin-top: 1rem;
+	}
+
+	.form-button {
+		margin-top: 4rem;
+		padding: 0.7rem;
+		font-size: 0.9rem;	
+	}
+
+	/*SECCIÓN PROFILE RESERVAS*/
+
+	.reservationsFigure {
+
+		width: 260px;
+	}
+
+	.reservationTitle {
+		font-size: 1.1rem;
+	}
+
+	/*SECCIÓN PROFILE RESEÑAS*/
+
+	.reviewsFigure {
+
+		width: 260px;
+	}
+
+	.reviewTitle {
+		font-size: 1.1rem;
+	}
+
+	.reviewFormSection {
+		margin-bottom: 300px;
+	}
+
+	.form-groupReviwer {
+		width: 70%;
+	}
+
+	label {
+		font-size: 1rem;
+	}
+
+	.form-inputReviwer {
+		font-size: 1rem;
+	}
+
+	.form-inputReviwer:focus {
+		outline: none;
+		border-bottom: 1px solid #282826;
+	}
+
+	.form-buttonReviwer {
+		padding: 0.7rem;
+		font-size: 1rem;
+	}
+
+}
+
+
+
+@media(min-width: 1024px) {
+
+	/*SECCIÓN PROFILE OPTIONS*/
+
+	.profileOptionsSection {
+		align-items: start;
+		flex-direction: row;
+		gap: 8%;
+		margin: 5% 0 8% 0;
+	}
+
+}
