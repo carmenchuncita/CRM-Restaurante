@@ -1,34 +1,37 @@
 <div class="menu-slider">
   <button class="slider-btn prev" (click)="prevSlide()">&#8249;</button>
 
-  <div class="menu-card" *ngIf="currentMenu">
-    <h2>{{ currentMenu.name }}</h2>
-    <p>{{ currentMenu.description }}</p>
-    <p>Precio: {{ currentMenu.price | currency }}</p>
-    <p>Primeros</p>
-    <p>{{ currentMenu.principalOptionA }}</p>
-    <p>{{ currentMenu.principalOptionB }}</p>
-    <p>{{ currentMenu.principalOptionC }}</p>
-    <p>Segundos</p>
-    <p>{{ currentMenu.secondOptionA }}</p>
-    <p>{{ currentMenu.secondOptionB }}</p>
-    <p>{{ currentMenu.secondOptionC }}</p>
-    <p>Postres</p>
-    <p>{{ currentMenu.dessertsOptionA }}</p>
-    <p>{{ currentMenu.dessertsOptionB }}</p>
-    <p>{{ currentMenu.dessertsOptionC }}</p>
-    <p>Día disponible: {{ currentMenu.day }}</p>
+  <div class="container">
+    <div class="menu-card" *ngFor="let menu of getVisibleMenus(); let i = index">
+      <div class="menu-content">
+      <h2>{{ menu.name }}</h2>
+      <p>{{ menu.description }}</p>
+      <p>Precio: {{ menu.price | currency }}</p>
+      <p>Primeros</p>
+      <p>{{ menu.principalOptionA }}</p>
+      <p>{{ menu.principalOptionB }}</p>
+      <p>{{ menu.principalOptionC }}</p>
+      <p>Segundos</p>
+      <p>{{ menu.secondOptionA }}</p>
+      <p>{{ menu.secondOptionB }}</p>
+      <p>{{ menu.secondOptionC }}</p>
+      <p>Postres</p>
+      <p>{{ menu.dessertsOptionA }}</p>
+      <p>{{ menu.dessertsOptionB }}</p>
+      <p>{{ menu.dessertsOptionC }}</p>
+      <p>Día disponible: {{ menu.day }}</p>
+    </div>
     <div class="button-card">
       <button (click)="openCreatePanel()">
         <i class="fa-solid fa-plus"></i>
       </button>
-      <button (click)="openEditPanel(currentMenu)">
+      <button (click)="openEditPanel(menu)">
         <i class="fas fa-edit"></i>
       </button>
-      <button (click)="deleteMenu(currentMenu)">
+      <button (click)="deleteMenu(menu)">
         <i class="fas fa-trash-alt"></i>
       </button>
-      <button (click)="toggleAvailability(currentMenu)">
+      <button (click)="toggleAvailability(menu)">
         <i
           class="fa-solid"
           [ngClass]="currentMenu.isAvailable ? 'fa-toggle-on' : 'fa-toggle-off'"
@@ -36,7 +39,7 @@
       </button>
     </div>
   </div>
-
+</div>
   <button class="slider-btn next" (click)="nextSlide()">&#8250;</button>
 </div>
 

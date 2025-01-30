@@ -1,30 +1,34 @@
 <section class="dayMenuSection">
-  <div class="main-content">
-    <div class="contenedor">
-      <span class="line top-left"></span>
-      <span class="line top-right"></span>
-      <span class="line bottom-left"></span>
-      <span class="line bottom-right"></span>
+  <h2 class="title-section">Menú del día</h2>
+  <div class="contenedor">
 
+    <span class="line top-left"></span>
+    <span class="line top-right"></span>
+    <span class="line bottom-left"></span>
+    <span class="line bottom-right"></span>
+
+    <div class="main-content">
       <div class="menu-card" *ngIf="currentMenu">
-        <h2>{{ currentMenu.name }}</h2>
-        <p>{{ currentMenu.description }}</p>
-        <p>Precio: {{ currentMenu.price | currency }}</p>
-        <p>Primeros</p>
-        <p>{{ currentMenu.principalOptionA }}</p>
-        <p>{{ currentMenu.principalOptionB }}</p>
-        <p>{{ currentMenu.principalOptionC }}</p>
-        <p>Segundos</p>
-        <p>{{ currentMenu.secondOptionA }}</p>
-        <p>{{ currentMenu.secondOptionB }}</p>
-        <p>{{ currentMenu.secondOptionC }}</p>
-        <p>Postres</p>
-        <p>{{ currentMenu.dessertsOptionA }}</p>
-        <p>{{ currentMenu.dessertsOptionB }}</p>
-        <p>{{ currentMenu.dessertsOptionC }}</p>
-        <p>Día disponible: {{ currentMenu.day }}</p>
+        <h2 class="card-title">{{ currentMenu.name }}</h2>
+        <p class="card-description">{{ currentMenu.description }}</p>
+        <p class="card-price">Precio: {{ currentMenu.price | currency }}</p>
+        <p class="card-subtitle">Primeros</p>
+        <p class="card-plate">{{ currentMenu.principalOptionA }}</p>
+        <p class="card-plate">{{ currentMenu.principalOptionB }}</p>
+        <p class="card-plate">{{ currentMenu.principalOptionC }}</p>
+        <p class="card-subtitle">Segundos</p>
+        <p class="card-plate">{{ currentMenu.secondOptionA }}</p>
+        <p class="card-plate">{{ currentMenu.secondOptionB }}</p>
+        <p class="card-plate">{{ currentMenu.secondOptionC }}</p>
+        <p class="card-subtitle">Postres</p>
+        <p class="card-plate">{{ currentMenu.dessertsOptionA }}</p>
+        <p class="card-plate">{{ currentMenu.dessertsOptionB }}</p>
+        <p class="card-plate">{{ currentMenu.dessertsOptionC }}</p>
       </div>
     </div>
-    </div>
+  </div>
+  <div class="main-buttons">
 
+    <button [routerLink]="('/reservas')" >Reserva</button>
+  </div>
 </section>

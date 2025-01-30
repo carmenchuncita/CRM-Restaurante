@@ -25,6 +25,10 @@ export class MenuListComponent implements OnInit {
   public panelComponent: any = null;
   public panelData: any = null;
 
+  public getVisibleMenus(): any[] {
+    return this.menuList.slice(this.currentIndex, this.currentIndex + 2);
+  }
+
   ngOnInit() {
     this.adminService.getMenus().subscribe((menu) => {
       this.menuList = menu;
@@ -35,16 +39,14 @@ export class MenuListComponent implements OnInit {
   }
 
   public nextSlide() {
-    if (this.currentIndex < this.menuList.length - 1) {
+    if (this.currentIndex < this.menuList.length - 2) {
       this.currentIndex++;
-      this.currentMenu = this.menuList[this.currentIndex];
     }
   }
 
   public prevSlide() {
     if (this.currentIndex > 0) {
       this.currentIndex--;
-      this.currentMenu = this.menuList[this.currentIndex];
     }
   }
 

@@ -1,18 +1,39 @@
-/* .menu-list {
-  padding: 70px;
-  width: 100%;
-  gap: 36px;
+.menu-slider {
   display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  max-width: 800px;
+  margin: auto;
+}
+.container{
+  width: 100%;
+  padding: 50px;
+  display: flex
+;
+  gap: 24px;
 }
 .menu-card {
+  flex: 1;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   display: flex;
-  justify-content: start;
+  justify-content: space-between;
   align-items: center;
   flex-direction: column;
   gap: 1rem;
   background-color: #e3f982;
   padding: 25px;
-} */
+  width: 50%;
+}
+.menu-content {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+}
+
 .button-card {
   display: flex;
   gap: 2px;
@@ -45,31 +66,6 @@
 
 }
 
-
-
-.menu-slider {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  position: relative;
-  overflow: hidden;
-  width: 100%;
-  max-width: 800px;
-  margin: auto;
-}
-
-.menu-card {
-  flex: 1;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  display: flex;
-  justify-content: start;
-  align-items: center;
-  flex-direction: column;
-  gap: 1rem;
-  background-color: #e3f982;
-  padding: 25px;
-}
-
 .slider-btn {
   background-color: transparent;
   border: none;
@@ -78,7 +74,6 @@
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  z-index: 10;
 }
 
 .slider-btn.prev {
