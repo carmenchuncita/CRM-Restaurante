@@ -70,7 +70,6 @@ this.authService.loginUser(this.form.value).subscribe({
         const redirectUrl = localStorage.getItem('redirectUrl') || '/auth/profile' ;
         localStorage.removeItem('redirectUrl'); // Limpiar el redirectUrl después de usarlo
         if(redirectUrl === '/auth/profile'){
-          localStorage.removeItem('redirectUrl')
           this.router.navigate([redirectUrl])
         }
 

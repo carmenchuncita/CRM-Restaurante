@@ -2,6 +2,8 @@ import { RESERVATIONS_ROUTES } from './reservations/reservations.routes';
 import { Routes } from '@angular/router';
 import { authGuard } from './auth/guards/auth.guard';
 import { HomeComponent } from './home/home.component';
+import { AboutUsComponent } from './about-us/about-us.component';
+import { Error404Component } from './error404/error404.component';
 
 export const routes: Routes = [
   {
@@ -42,7 +44,12 @@ export const routes: Routes = [
   },
 
   {
+    path: 'about-us',
+    component: AboutUsComponent,
+  },
+
+  {
     path: '**',
-    redirectTo: '/home',
+    component: Error404Component,
   },
 ];
