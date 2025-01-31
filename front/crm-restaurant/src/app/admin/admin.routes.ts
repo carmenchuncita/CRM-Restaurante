@@ -11,19 +11,4 @@ export const ADMIN_ROUTES: Routes = [
     component: RestaurantManagementComponent,
     canActivate: [authGuard]
   },
-  {
-    path: 'create-menu',
-    component: CreateMenuComponent,
-    canActivate: [authGuard]
-  },
-  {
-    path: 'delete-menu/:id',
-    component: DeleteMenuComponent,
-    canActivate: [authGuard]
-  },
-  {
-    path: 'update-menu/:id',
-    component: UpdateMenuComponent,
-    canActivate: [authGuard]
-  },
 ];
