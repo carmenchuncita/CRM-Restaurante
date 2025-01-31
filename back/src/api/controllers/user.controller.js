@@ -248,4 +248,4 @@ const getReviews = async (req, res) => {
   }
 };
 
-module.exports = { registerUser,loginUser, profileUser,updateOrRegisterUser,postReview, updateReview,verifyRole,verifyToken, sendEmail, getReviews};
+module.exports = { registerUser,loginUser, profileUser,updateUser,postReview, updateReview,verifyRole,verifyToken, sendEmail, getReviews};
