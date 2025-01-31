@@ -103,7 +103,9 @@ this.authService.loginUser(this.form.value).subscribe({
         localStorage.removeItem('redirectUrl'); // Limpiar el valor después de usarlo
         
         if (redirectUrl === '/auth/register' || '/reservas') {
-          this.router.navigate(['/reservas']); // Redirigir a reservas
+          this.router.navigate(['/reservas']).then(() => {
+            window.location.reload(); // Recarga la página después de la navegación
+          });
         } else {
           this.router.navigate([redirectUrl]); // Redirigir a la URL almacenada o por defecto
         }
