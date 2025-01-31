@@ -30,7 +30,9 @@ export const authGuard: CanActivateFn = (route, state) => {
       if (err.error.message === 'Token expired') {
         alert('Su sesión a expirado, por favor vuelva a inicar sesión')
       }
-      router.navigate(['auth/login'])
+      /*router.navigate(['auth/login'])*/
+      localStorage.setItem('redirectUrl', state.url); // Guarda la URL antes del login
+      router.navigate(['/auth/login']);
       return of(false)
     })
 

@@ -56,7 +56,7 @@ export class ReservationsComponent {
   }*/
 
       public form: FormGroup = new FormGroup({
-      client: new FormControl('', Validators.required),
+      client: new FormControl(''),
       table: new FormControl('', Validators.required),
       email: new FormControl('', Validators.required),
       date: new FormControl('', Validators.required),
@@ -82,7 +82,8 @@ export class ReservationsComponent {
               console.log(data)
               this.message = data.message
               alert(this.message)
-              this.router.navigate(['/home'])
+              /*this.router.navigate(['/home'])*/
+      
 
            
             },

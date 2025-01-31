@@ -64,9 +64,9 @@ this.authService.loginUser(this.form.value).subscribe({
       localStorage.setItem('email', data.user.email)
       localStorage.setItem('role', data.user.role)
       localStorage.setItem('id', data.user.id)
-      this.router.navigate([localStorage.getItem('redirectUrl')])
+      /*this.router.navigate([localStorage.getItem('redirectUrl')])
     
-      /*if(data.user.role === 'client' || data.user.role === 'admin'){
+      if(data.user.role === 'client' || data.user.role === 'admin'){
         const redirectUrl = localStorage.getItem('redirectUrl') || '/auth/profile' ;
         localStorage.removeItem('redirectUrl'); // Limpiar el redirectUrl después de usarlo
         if(redirectUrl === '/auth/profile'){
@@ -77,9 +77,9 @@ this.authService.loginUser(this.form.value).subscribe({
         if(data.user.role === 'client' &&  redirectUrl === '/auth/register'){ // confirmar si este es el path
           this.router.navigate(['/reservas'])
         }
-      }*/
+      }
 
-        if(data.user.role === 'client' || data.user.role === 'admin'){
+        /*if(data.user.role === 'client' || data.user.role === 'admin'){
         const redirectUrl = localStorage.getItem('redirectUrl') || '/auth/profile' ;
         localStorage.removeItem('redirectUrl'); // Limpiar el redirectUrl después de usarlo
         if(redirectUrl === '/auth/profile'){
@@ -96,7 +96,17 @@ this.authService.loginUser(this.form.value).subscribe({
           this.router.navigate(['/reservas']);
         }
         
-      }
+      }*/
+      
+
+        const redirectUrl = localStorage.getItem('redirectUrl') || '/dashboard'; // Ruta por defecto
+        localStorage.removeItem('redirectUrl'); // Limpiar el valor después de usarlo
+        
+        if (redirectUrl === '/auth/register' || '/reservas') {
+          this.router.navigate(['/reservas']); // Redirigir a reservas
+        } else {
+          this.router.navigate([redirectUrl]); // Redirigir a la URL almacenada o por defecto
+        }
   
     },
 

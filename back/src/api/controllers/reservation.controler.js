@@ -7,7 +7,8 @@ const createReservationClient = async (req, res) => {
     const { table, date, time } = req.body;
 
     const user = await Users.findById(req.user.user_id);
-    const client = user.user_id;
+    const client = req.user.user_id;
+    console.log(req.user.user_id)
     const email = user.email;
 
     try {
