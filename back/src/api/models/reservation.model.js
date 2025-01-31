@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 const reservationSchema = new Schema(
     {
         client: { type: String},
-        table: { type: String, required: true },
+        table: { type: Number, required: true },
         email: { 
             type: String, 
             required: true,
@@ -12,7 +12,7 @@ const reservationSchema = new Schema(
         },
         date: { type: Date, required: true },
         time: { type: String,
-            enum: ['mañana', 'tarde','noche'],
+            enum: ['comida','cena'],
             required: true
         },
     },

@@ -64,9 +64,9 @@ this.authService.loginUser(this.form.value).subscribe({
       localStorage.setItem('email', data.user.email)
       localStorage.setItem('role', data.user.role)
       localStorage.setItem('id', data.user.id)
-      /*this.router.navigate([localStorage.getItem('redirectUrl')])
-      si no funciona la lógica de abajo ver este camino*/
-      if(data.user.role === 'client' || data.user.role === 'admin'){
+      this.router.navigate([localStorage.getItem('redirectUrl')])
+    
+      /*if(data.user.role === 'client' || data.user.role === 'admin'){
         const redirectUrl = localStorage.getItem('redirectUrl') || '/auth/profile' ;
         localStorage.removeItem('redirectUrl'); // Limpiar el redirectUrl después de usarlo
         if(redirectUrl === '/auth/profile'){
@@ -74,12 +74,30 @@ this.authService.loginUser(this.form.value).subscribe({
           this.router.navigate([redirectUrl])
         }
 
-        if(data.user.role === 'client' &&  redirectUrl === '/reservas'){ // confirmar si este es el path
+        if(data.user.role === 'client' &&  redirectUrl === '/auth/register'){ // confirmar si este es el path
+          this.router.navigate(['/reservas'])
+        }
+      }*/
+
+        if(data.user.role === 'client' || data.user.role === 'admin'){
+        const redirectUrl = localStorage.getItem('redirectUrl') || '/auth/profile' ;
+        localStorage.removeItem('redirectUrl'); // Limpiar el redirectUrl después de usarlo
+        if(redirectUrl === '/auth/profile'){
+          localStorage.removeItem('redirectUrl')
           this.router.navigate([redirectUrl])
         }
+
+        if(data.user.role === 'client' &&  redirectUrl === '/auth/register'){ // confirmar si este es el path
+          this.router.navigate(['/reservas'])
+        }
+
+        if (redirectUrl === '/auth/login') {
+          // Después de login, redirige a reservas
+          this.router.navigate(['/reservas']);
+        }
+        
       }
-      
-      /*this.router.navigate([('auth/admin')]) descomentar cuando tengamos la ruta a la va el admin al registrarse*/
+  
     },
 
     error: (error: any) => {

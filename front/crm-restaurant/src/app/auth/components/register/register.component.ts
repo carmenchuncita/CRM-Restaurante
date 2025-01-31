@@ -53,8 +53,7 @@ export class RegisterComponent {
         console.log(data)
         localStorage.setItem('id', data.data._id)
         this.message = data.message
-        alert(this.message)
-     
+        this.router.navigate(['auth/login'])
       },
 
       error: (error: any) => {
