@@ -10,7 +10,6 @@ export class AdminService {
 
   postMenu(menu: any) {
     return this.http.post('http://localhost:5500/api/menu/create', menu);
-
   }
 
   deleteMenu(id: string) {
@@ -22,5 +21,11 @@ export class AdminService {
   }
   getMenus() {
     return this.http.get('http://localhost:5500/api/menu/');
+  }
+  getAllReservations() {
+    return this.http.get('http://localhost:5500/api/reservation/getReservations');
+  }
+  getAllReviews() {
+    return this.http.get('http://localhost:5500/api/users/getReviews');
   }
 }

@@ -1,3 +1,13 @@
+.sectionMenuList {
+  display: flex;
+  flex-direction: column;
+  flex-basis: 33%;
+  align-items: center;
+
+  h2 {
+    margin-top: 20px;
+  }
+}
 .menu-slider {
   display: flex;
   align-items: center;
@@ -6,7 +16,7 @@
   overflow: hidden;
   width: 100%;
   max-width: 800px;
-  margin: auto;
+  /* margin: auto; */
 }
 .container {
   width: 100%;

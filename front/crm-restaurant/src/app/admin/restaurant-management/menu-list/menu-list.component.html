@@ -1,9 +1,12 @@
+<section class="sectionMenuList">
+  <h2>Lista de Menús</h2>
 <div class="menu-slider">
   <button class="slider-btn prev" (click)="prevSlide()">
     <i class="fas fa-angle-left"></i>
   </button>
 
   <div class="container">
+
     <div class="menu-card" *ngFor="let menu of getVisibleMenus(); let i = index">
       <div class="menu-content">
       <h2 class="menu-title">{{ menu.name }}</h2>
@@ -56,3 +59,5 @@
   [data]="panelData"
   (close)="closePanel()"
 ></app-sidenav-panel>
+
+</section>
