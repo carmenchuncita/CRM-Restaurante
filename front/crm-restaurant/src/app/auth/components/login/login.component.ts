@@ -51,7 +51,7 @@ this.authService.loginUser(this.form.value).subscribe({
       alert(this.message)
       Swal.fire({
         title: this.message, //Editar
-        text: 'Por favor introduzca una contraseña', //"ditar
+        text: 'Por favor introduzca una contraseña fffffffffffffffffffffffffffffff', //"ditar
         background: '#f7f7f7',
         color: '#282826',
         confirmButtonColor: '#d4e157',
