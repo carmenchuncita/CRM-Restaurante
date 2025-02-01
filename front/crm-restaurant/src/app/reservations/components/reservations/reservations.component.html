@@ -7,32 +7,66 @@
 
         <form [formGroup]="form" (ngSubmit)=" handleReservationForm()">
             <div class="row">
-                <div class="col-md-6 col-12">
-                    <label for="client" class="form-label">Nombre</label>
-                    <input type="text" class="form-control" id="client" formControlName="client">
-                    <div class="invalid-feedback">
+      
+                    
+                    <!--<div class="form-group">
+                        <label>Mesa</label>
+                        <select formControlName="table">
+                            <option *ngFor="let table of tableList" [value]="table.nombre">
+                                {{table.nombre}}
+                            </option>
+                        </select>
+                    </div>-->
 
+                        <div class="form-group">
+                        <label>Mesa</label>
+                        <select formControlName="table">
+                            @for(table of tableList; track table){
+                                <option [value]="table.nombre">
+                                    {{table.nombre}}
+                                </option>
+                            }    
+                        </select>
                     </div>
-                </div>
 
-                    <div class="col-md-6 col-12">
-                        <label for="table" class="form-label">Mesa(comensales)</label>
-                        <input type="number" min="0" max="15" class="form-control" id="table" formControlName="table">
-                        <div class="invalid-feedback">
 
-                        </div>
 
+
+
+                    <div class="form-group">
+                        <label>Teléfono</label>
+                        <input class = "form-input" type="string" formControlName="telefono">
+                
+                        <!--@if (form.get('email')?.hasError('required') && isSubmitted) {
+                            <p class="form-field--text-danger">Debe rellenar este campo</p>   
+                        }
+                        @if (form.get('email')?.hasError('pattern') && isSubmitted) {
+                            <p class="form-field--text-danger">El formato de e-mail no es correcto</p>
+                        }
+                
+                        @if (form.get('email')?.hasError('notExists') && isSubmitted) {
+                            <p class="form-field--text-danger">No éxite una cuenta con esta dirección de e-mail</p>
+                    }-->
                     </div>
-                    <div class="col-md-6 col-12">
-                        <label for="email" class="form-label">Email</label>
-                        <input type="email" class="form-control" id="email" formControlName="email">
-                    </div>
 
-                    <div class="col-md-6 col-12">
-                        <label for="date" class="form-label">Fecha</label>
-                        <input type="date" class="form-control" id="date" formControlName="date">
 
+
+
+
+
+
+
+
+
+
+
+                    
+
+                    <div class="form-group">
+                        <label>Fecha</label>
+                        <input class = "form-input" type="date" [min]="dateMin" formControlName="date">
                     </div>
+                              
                     <div class="form-group">
                         <label>Hora</label>
                         <select formControlName="time">
@@ -40,18 +74,14 @@
                           <option value="cena">Cena</option>
                         </select>
                     </div>
-
-            
-                </div>
-                <div class="row mt-4">
-                    <div class="col-12 text-end">
-                        <button class="btn btn-primary">añadir reserva</button>
+        
+                    <div class="form-group">
+                        <button class="formButton">añadir reserva</button>
                     </div>
 
                     <p>Para reserva de grupos de más de 15 personas por favor contacte con nosotros</p>
-
+                    <p>{{tableName}}</p>
                 </div>
-
         </form>
 
     </div>

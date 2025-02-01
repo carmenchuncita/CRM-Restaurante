@@ -151,7 +151,7 @@ const getReservations = async (req, res) => {
                 const client = await Users.findById(id);
 
                 const tableName = await Tables.findById(element.table);
-                const datos = {"email" : client.email,
+                const datos = {"name" : client.name,
                     "table" : tableName.nombre,
                     "telefono" : element.telefono,
                     "date" : element.date,
