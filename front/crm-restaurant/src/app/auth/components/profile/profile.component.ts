@@ -19,8 +19,8 @@ export class ProfileComponent {
   public id!: string;
   public updateProfileIsActive: boolean = false;
   public userData: any = { user: {} };
-
-  public isSubmitted: boolean = false;
+  public isSubmittedUpdate: boolean = false;
+  public isSubmittedReview: boolean = false;
   private message: string = ''
   public errorMessage: string = ''
 
@@ -70,7 +70,7 @@ export class ProfileComponent {
 })
 
 handleUpdateProfileForm() {
-  this.isSubmitted = true;
+  this.isSubmittedUpdate = true;
 
   console.log(this.profileForm.value);
   console.log(this.profileForm.valid);
@@ -117,7 +117,7 @@ handleUpdateProfileForm() {
 
   handlReviewForm() {
 
-    this.isSubmitted = true;
+    this.isSubmittedReview = true;
 
     console.log(this.form.value)
     console.log(this.form.valid)

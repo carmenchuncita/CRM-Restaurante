@@ -7,7 +7,7 @@ const nodemailer = require('nodemailer');
 const { createToken } = require('../middleware/jwt-auth'); 
 
 const registerUser = async (req, res) => {
-  const { email, password, name, role } = req.body; 
+  const { email, password, name, role, telefono } = req.body; 
 
   try {
     //Check if the user already exists
@@ -20,7 +20,8 @@ const registerUser = async (req, res) => {
       name,
       email,
       password,  
-      role
+      role,
+      telefono
     });
 
     const createdUser = await newUser.save();
@@ -248,4 +249,4 @@ const getReviews = async (req, res) => {
   }
 };
 
-module.exports = { registerUser,loginUser, profileUser,updateOrRegisterUser,postReview, updateReview,verifyRole,verifyToken, sendEmail, getReviews};
+module.exports = { registerUser,loginUser, profileUser,updateUser,postReview, updateReview,verifyRole,verifyToken, sendEmail, getReviews};
