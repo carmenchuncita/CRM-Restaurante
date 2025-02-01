@@ -1,3 +1,4 @@
+import { RESERVATIONS_ROUTES } from './reservations/reservations.routes';
 import { Routes } from '@angular/router';
 import { authGuard } from './auth/guards/auth.guard';
 import { HomeComponent } from './home/home.component';
@@ -27,6 +28,13 @@ export const routes: Routes = [
     loadChildren: () =>
       import('./menus/menus.routes').then((module) => module.MENUS_ROUTES),
   },
+
+  {
+    path: '',
+    loadChildren: () =>
+      import('./reservations/reservations.routes').then((module) => module.RESERVATIONS_ROUTES),
+  },
+
 
   {
     path: 'admin',

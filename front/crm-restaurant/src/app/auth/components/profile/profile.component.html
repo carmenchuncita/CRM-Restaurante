@@ -64,9 +64,7 @@
                         <input class="form-input" type="password" formControlName="password">
 
                         @if (profileForm.get('password')?.hasError('pattern') && isSubmittedUpdate) {
-                        <p class="form-field--text-danger">La contraseña debe tener al menos 8 caracteres y debe incluir
-                            al
-                            menos una mayúscula, una minúscula y un número</p>
+                        <p class="form-field--text-danger">8 caracteres, mayúsculas, minúsculas y números</p>
                         }
                     </div>
 

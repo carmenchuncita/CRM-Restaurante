@@ -2,6 +2,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { Component, inject } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-profile',
@@ -87,7 +88,18 @@ handleUpdateProfileForm() {
 
     // Si no hay nada que actualizar, no enviamos la solicitud
     if (Object.keys(formData).length === 0) {
-      alert('No ha indicado ningún cambio');
+      
+       Swal.fire({
+              title: this.message, 
+              text: 'No se ha indicado ningún cambio a actualizar', 
+              background: '#f7f7f7',
+              color: '#282826',
+              confirmButtonColor: '#d4e157',
+              confirmButtonText: 'Close',
+              customClass: {
+                popup: 'custom-swal-popup',
+              }
+            });
       this.updateProfileIsActive = !this.updateProfileIsActive;
 
       return;
@@ -98,13 +110,23 @@ handleUpdateProfileForm() {
         console.log(data);
         this.message = data.message;
         if (formData.name) this.userData.user.name = formData.name;
-        alert(this.message);
         this.updateProfileIsActive = !this.updateProfileIsActive;
       },
       error: (error: any) => {
         console.error('Error en la ejecución del registro', error);
         if (error.error.message === 'El correo electrónico ya está registrado') {
-          alert('Ya existe una cuenta con esta dirección de e-mail.');
+       Swal.fire({
+        title: this.message, 
+        text: 'Ya existe una cuenta con esta dirección de e-mail', 
+        background: '#f7f7f7',
+        color: '#282826',
+        confirmButtonColor: '#d4e157',
+        confirmButtonText: 'Close',
+        customClass: {
+          popup: 'custom-swal-popup',
+        }
+      });
+          
           this.router.navigate(['/auth/login']);
         }
         this.errorMessage = error.error.message;
@@ -129,13 +151,35 @@ handleUpdateProfileForm() {
         next: (data: any) => {
           console.log(data)
           this.message = data.message
-          alert('Gracias por su reseña, para nosotros es muy importante su opinión')
+          Swal.fire({
+            title: this.message, 
+            text: 'Gracias por su reseña, para nosotros es muy importante su opinión', 
+            background: '#f7f7f7',
+            color: '#282826',
+            confirmButtonColor: '#d4e157',
+            confirmButtonText: 'Close',
+            customClass: {
+              popup: 'custom-swal-popup',
+            }
+          });
+          
+          
         },
 
         error: (error: any) => {
           console.log(error.error)
           if (error.error.message === 'El admin no puede hacer reseñas') {
-            alert('el administraddor no puede realizar reseñas')
+            Swal.fire({
+              title: this.message, 
+              text: 'El administraddor no puede realizar reseñas', 
+              background: '#f7f7f7',
+              color: '#282826',
+              confirmButtonColor: '#d4e157',
+              confirmButtonText: 'Close',
+              customClass: {
+                popup: 'custom-swal-popup',
+              }
+            });
           }
           if (error.error.message === 'Ya ha hecho una reseña') {
         
@@ -153,11 +197,31 @@ updateReview() {
       next: (data: any) => {
         console.log(data);
         this.message = data.message;
-        alert('Gracias por enviarnos una nueva reseña, para nosotros es muy importante su opinión');
+        Swal.fire({
+          title: this.message, 
+          text: 'Gracias por enviarnos una nueva reseña, para nosotros es muy importante su opinión', 
+          background: '#f7f7f7',
+          color: '#282826',
+          confirmButtonColor: '#d4e157',
+          confirmButtonText: 'Close',
+          customClass: {
+            popup: 'custom-swal-popup',
+          }
+        });
       },
       error: (error: any) => {
         console.error('Error al actualizar la reseña', error);
-        alert('Los sentimos, no hemos podido recibir su reseña, por favor contacte con nosotros en el e-mail: code@coderestaurante.com, su opinión es importante para nosotros');
+        Swal.fire({
+          title: this.message, 
+          text: 'Los sentimos, no hemos podido recibir su reseña, por favor contacte con nosotros en el e-mail: code@coderestaurante.com, su opinión es importante para nosotros', 
+          background: '#f7f7f7',
+          color: '#282826',
+          confirmButtonColor: '#d4e157',
+          confirmButtonText: 'Close',
+          customClass: {
+            popup: 'custom-swal-popup',
+          }
+        });
       },
     });
   }
