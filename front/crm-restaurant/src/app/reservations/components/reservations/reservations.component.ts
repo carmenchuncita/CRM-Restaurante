@@ -78,8 +78,8 @@ export class ReservationsComponent {
   }
 
   public form: FormGroup = new FormGroup({
-    telefono: new FormControl('', Validators.required),
     table: new FormControl('', Validators.required),
+    telefono: new FormControl('', Validators.required),
     date: new FormControl('', Validators.required),
     time: new FormControl('', Validators.required),
   });

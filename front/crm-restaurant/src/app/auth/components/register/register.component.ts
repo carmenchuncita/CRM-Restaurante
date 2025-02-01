@@ -33,7 +33,14 @@ export class RegisterComponent {
       Validators.required,
       Validators.minLength(8), //al menos 8 caracteres
       Validators.pattern(/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d).{8,}$/) // Al menos 1 mayúscula, 1 minúscula y 1 número
+    ]),
+
+    telefono: new FormControl('', [
+      Validators.required,
+      Validators.pattern(/^(6|7)\d{8}$/) 
     ])
+    
+
 
   })
 
