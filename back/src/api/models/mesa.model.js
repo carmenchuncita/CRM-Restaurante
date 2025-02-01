@@ -2,8 +2,8 @@ const mongoose = require('mongoose');
 
 // Definir el esquema para las mesas
 const mesaSchema = new mongoose.Schema({
-    numero: { 
-        type: Number, 
+    nombre: { 
+        type: String, 
         required: true, 
     },
     capacidad: { 
@@ -15,11 +15,6 @@ const mesaSchema = new mongoose.Schema({
         type: Boolean, 
         default: true // Indica si la mesa está disponible
     },
-    comensales: { 
-        type: Number, 
-        default: 0, 
-        min: 0, // Número de comensales debe ser mayor o igual a 0
-    }
 }, {
     collection: 'tables' // Nombre de la colección en la base de datos
 });

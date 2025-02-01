@@ -3,16 +3,19 @@ const Schema = mongoose.Schema;
 
 const reservationSchema = new Schema(
     {
-        client: { type: String},
+        client: { type: String, required: true},
         table: { type: String, required: true },
-        email: { 
+        telefono: { 
             type: String, 
-            required: true,
-            match: [/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/, 'Por favor, ingrese un correo electrónico válido']
+            required: true
         },
         date: { type: Date, required: true },
         time: { type: String,
             enum: ['mañana', 'tarde','noche'],
+            required: true
+        },
+        canceled: { type: Boolean,
+            default: false,
             required: true
         },
     },
