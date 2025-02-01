@@ -1,5 +1,6 @@
 const Users = require('../models/user.model');
 const Review = require('../models/review.model');
+const Reservations = require('../models/reservation.model');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const nodemailer = require('nodemailer');
@@ -152,9 +153,10 @@ const updateOrRegisterUser = async (req, res) => {
 //Requiere un usuario loguedo de rol cliente 
 
 const postReview = async (req, res) => {
-  const { rating, description } = req.body; 
+  const { rating, reservation, description } = req.body; 
   const user = await Users.findById(req.user.user_id);
   const reviwer = req.user.user_id;
+  console.log(reviwer);
   try {
     //Check if its a user
     if (user.role !== 'client') {
@@ -162,13 +164,24 @@ const postReview = async (req, res) => {
     }
 
     //Check if the review already exists
-    const existingReview = await Review.findOne({ reviwer });
-    if (existingReview) {
-      return res.status(409).json({ message: 'Ya ha hecho una reseña' });
+    const existingReview = await Review.findOne({ reviwer: reviwer,
+      reservation : reservation
+    });
+
+    if(existingReview){
+      return res.status(409).json({ message: 'Esa reserva ya tiene reseña' });
+    }
+
+    const existingReservation = await Reservations.findOne({ _id: reservation });
+    const fechaActual = new Date();
+
+    if(existingReservation && existingReservation.date > fechaActual){
+      return res.status(409).json({ message: 'Necesita haber visitado nuestro restaurante antes de hacer la reseña' });
     }
 
     const newReview = new Review({
       reviwer,
+      reservation,
       rating,
       description
     });
@@ -252,8 +265,42 @@ try {
 // Metodo para coger todas las reviews de la base de datos
 const getReviews = async (req, res) => {
   try {
-      const reviews = await Review.find();
-      res.status(200).json(reviews);
+    const user = await Users.findById(req.user.user_id);
+    const role = user.role;
+    const listaFinal = [];
+
+    if(role == 'admin'){
+        const reviews = await Review.find({ });
+
+        for (let element of reviews) {
+          const id = element.reviwer;
+          const reviwer = await Users.findById(id);
+
+          const datos = {"Escritor" : reviwer.name,
+            "rating" : element.rating,
+            "description" : element.description
+          };
+        console.log(element);
+
+        listaFinal.push(datos);                
+      }
+        
+    }else{
+        const id = user._id;
+        const reviews = await Review.find({ client: id });
+
+        for (let element of reviews) {
+
+          const datos = {"Escritor" : reviews.name,
+            "rating" : element.rating,
+            "description" : element.description
+          };
+          console.log(datos);
+          listaFinal.push(datos);
+        }
+    }
+
+    res.status(200).json(listaFinal);
   } catch (error) {
       res.status(500).send({ message: "Error al obtener las reseñas", error: error.message });
   }

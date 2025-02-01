@@ -33,7 +33,5 @@ router.put('/updateReview', authenticateToken, updateReview);
 router.post('/sendemail', sendEmail);
 //Ruta para que el administrador vea todas las reviews
 router.get('/getReviews',authenticateToken, getReviews);
-//Ruta para que el administrador vea todas las reviews
-router.get('/getReviews',authenticateToken, getReviews);
 
 module.exports = router;

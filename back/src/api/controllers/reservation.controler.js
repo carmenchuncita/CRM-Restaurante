@@ -78,7 +78,7 @@ const getReservations = async (req, res) => {
     try {
         const user = await Users.findById(req.user.user_id);
         const role = user.role;
-        const listaEmail = [];
+        const listaFinal = [];
 
         if(role == 'admin'){
             const reservations = await Reservations.find({ });
@@ -94,7 +94,7 @@ const getReservations = async (req, res) => {
                     "time" : element.time
                 };
 
-                listaEmail.push(datos);                
+                listaFinal.push(datos);                
             }
 
             
@@ -113,12 +113,12 @@ const getReservations = async (req, res) => {
                 };
 
                 if(element.canceled == false){
-                    listaEmail.push(datos);
+                    listaFinal.push(datos);
                 }
             }
         }
 
-        res.status(200).json(listaEmail);
+        res.status(200).json(listaFinal);
 
     } catch (error) {
         res.status(500).send({ message: "Error al obtener las reseñas", error: error.message });
