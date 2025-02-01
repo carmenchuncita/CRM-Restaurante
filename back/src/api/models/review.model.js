@@ -4,6 +4,7 @@ const Schema = mongoose.Schema;
 const reviewSchema = new Schema(
   {
     reviwer: { type: String, required: true },
+    reservation: { type: String, required: true },
     rating: { type: Number, required: true },
     description: { type: String, required: true },
   },

@@ -13,7 +13,13 @@ const userSchema = new Schema(
     password: { type: String, required: true },
     role: { type: String,
       enum: ['admin', 'client'], 
-      default: 'client' },
+      default: 'client' 
+    },
+    telefono: {
+    type: String,
+    required: true,
+    match: [/^(6|7)\d{8}$/, 'El telefono tiene que empezar por 6 o 7 y tener 9 digitos'],
+    },
   },
   {
     collection: 'users',
