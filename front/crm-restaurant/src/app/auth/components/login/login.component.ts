@@ -20,6 +20,7 @@ private message: string = ''
 public errorMessage: string = ''
 
 
+
 public form: FormGroup = new FormGroup ({
 
 email: new FormControl('', [
@@ -51,7 +52,7 @@ this.authService.loginUser(this.form.value).subscribe({
       alert(this.message)
       Swal.fire({
         title: this.message, //Editar
-        text: 'Por favor introduzca una contraseña fffffffffffffffffffffffffffffff', //"ditar
+        text: 'Por favor introduzca una contraseña', 
         background: '#f7f7f7',
         color: '#282826',
         confirmButtonColor: '#d4e157',
@@ -97,18 +98,40 @@ this.authService.loginUser(this.form.value).subscribe({
         
       }*/
       
-
+      /*localStorage.setItem('redirectUrl', window.location.pathname);
         const redirectUrl = localStorage.getItem('redirectUrl') || '/dashboard'; // Ruta por defecto
-        localStorage.removeItem('redirectUrl'); // Limpiar el valor después de usarlo
+        /ocalStorage.removeItem('redirectUrl'); /// Limpiar el valor después de usarlo*/
         
-        if (redirectUrl === '/auth/register' || '/reservas') {
+       /* if (redirectUrl === '/auth/register' || '/reservas') {
           this.router.navigate(['/reservas']).then(() => {
             window.location.reload(); // Recarga la página después de la navegación
           });
+        } else if (redirectUrl === '/home'){
+          this.router.navigate(['auth/profile']); // Redirigir a la URL almacenada o por defecto
         } else {
           this.router.navigate([redirectUrl]); // Redirigir a la URL almacenada o por defecto
-        }
-  
+        }*/
+
+ 
+// Guarda la URL antes de redirigir al login
+/*localStorage.setItem('redirectUrl', window.location.pathname);*/
+
+const redirectUrl = localStorage.getItem('redirectUrl') || '/dashboard'; // Ruta por defecto
+
+// 🔹 Compara correctamente las rutas
+if (redirectUrl === '/auth/register' || redirectUrl === '/reservas') {
+  this.router.navigate(['/reservas']).then(() => {
+    window.location.reload(); // Recarga la página si es necesario
+  });
+} else {
+  this.router.navigate(['/auth/profile']); // Si no venía de register o reservas, va a profile
+}
+
+// 🔹 Ahora sí eliminamos `redirectUrl` después de usarlo
+localStorage.removeItem('redirectUrl');
+
+
+
     },
 
     error: (error: any) => {

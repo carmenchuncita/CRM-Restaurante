@@ -5,7 +5,6 @@ import { RegisterComponent } from '../../../auth/components/register/register.co
 import { LoginComponent } from '../../../auth/components/login/login.component';
 import { TablesService } from '../../services/tables.service';
 import { HoursService } from '../../services/hours.service';
-import { DatePipe } from '@angular/common';
 import { ReservationsService } from '../../services/reservations.service';
 import { Router } from '@angular/router';
 
@@ -29,8 +28,11 @@ export class ReservationsComponent {
   private message: string = '';
   public errorMessage: boolean = false;
   public token = localStorage.getItem('token');
+  /*public redirectUrl = localStorage.getItem('redirectUrl');*/
   public isSubmittedLogin: boolean = false;
   public isSubmittedRegister: boolean = false;
+   
+
   
 
 
@@ -55,6 +57,8 @@ export class ReservationsComponent {
 
   }*/
 
+
+
       public form: FormGroup = new FormGroup({
       client: new FormControl(''),
       table: new FormControl('', Validators.required),
@@ -63,6 +67,13 @@ export class ReservationsComponent {
       time: new FormControl('', Validators.required)
       
     })
+
+
+    ngOnInit() {
+      // Guardamos la URL actual (ruta) en el localStorage cuando accedes al componente
+      localStorage.setItem('redirectUrl', window.location.pathname);
+    }
+  
 
     handleReservationForm(){
 
@@ -82,7 +93,8 @@ export class ReservationsComponent {
               console.log(data)
               this.message = data.message
               alert(this.message)
-              /*this.router.navigate(['/home'])*/
+              this.router.navigate(['/home'])
+            
       
 
            
@@ -104,16 +116,21 @@ export class ReservationsComponent {
         } else {
       
           console.log('no hay token')
+          
+         
+
+      
         }
 
          
         }
 
-         
+
         handleSummitedLogin(){
 
           this.isSubmittedLogin  = true;
           this.isSubmittedRegister = false;
+   
 
         }
 
@@ -121,6 +138,7 @@ export class ReservationsComponent {
 
           this.isSubmittedRegister = true;
           this.isSubmittedLogin  = false;
+      
           
         }
 

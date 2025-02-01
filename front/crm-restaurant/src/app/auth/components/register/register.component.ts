@@ -53,6 +53,7 @@ export class RegisterComponent {
         console.log(data)
         localStorage.setItem('id', data.data._id)
         this.message = data.message
+        localStorage.setItem('redirectUrl', '/auth/register');
         this.router.navigate(['auth/login'])
       },
 
