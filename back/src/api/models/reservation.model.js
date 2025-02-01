@@ -3,15 +3,15 @@ const Schema = mongoose.Schema;
 
 const reservationSchema = new Schema(
     {
-        client: { type: String, required: true},
-        table: { type: String, required: true },
-        telefono: { 
+        client: { type: String},
+        table: { type: Number, required: true },
+        email: { 
             type: String, 
             required: true
         },
         date: { type: Date, required: true },
         time: { type: String,
-            enum: ['comida', 'cena',],
+            enum: ['comida','cena'],
             required: true
         },
         canceled: { type: Boolean,

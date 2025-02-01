@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { Observable, of } from 'rxjs';
 
 @Injectable({
@@ -8,6 +9,7 @@ import { Observable, of } from 'rxjs';
 export class AuthService {
 
   private http: HttpClient = inject(HttpClient)
+  private router: Router = inject(Router);
 
   registerUser(userForm: any) : Observable<any>  {
     return this.http.post('http://localhost:5500/api/users/register', userForm)
@@ -15,6 +17,7 @@ export class AuthService {
 
   loginUser(userLoginForm: any) {
     return this.http.post('http://localhost:5500/api/users/login', userLoginForm)
+    
   }
 
   ProfileUser(userLoginForm: any) : Observable<any>  {
@@ -64,7 +67,6 @@ updateUser(profileForm: any): Observable<any> {
     return this.http.put('http://localhost:5500/api/users/updateReview/', reviewData )
     
   }
-
   
 
 

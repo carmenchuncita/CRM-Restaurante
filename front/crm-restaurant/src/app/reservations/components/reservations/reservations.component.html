@@ -1,0 +1,73 @@
+<p>reservations works!</p>
+
+<div class="row">
+
+    @if(token){
+    <div class=" col-12">
+
+        <form [formGroup]="form" (ngSubmit)=" handleReservationForm()">
+            <div class="row">
+                <div class="col-md-6 col-12">
+                    <label for="client" class="form-label">Nombre</label>
+                    <input type="text" class="form-control" id="client" formControlName="client">
+                    <div class="invalid-feedback">
+
+                    </div>
+                </div>
+
+                    <div class="col-md-6 col-12">
+                        <label for="table" class="form-label">Mesa(comensales)</label>
+                        <input type="number" min="0" max="15" class="form-control" id="table" formControlName="table">
+                        <div class="invalid-feedback">
+
+                        </div>
+
+                    </div>
+                    <div class="col-md-6 col-12">
+                        <label for="email" class="form-label">Email</label>
+                        <input type="email" class="form-control" id="email" formControlName="email">
+                    </div>
+
+                    <div class="col-md-6 col-12">
+                        <label for="date" class="form-label">Fecha</label>
+                        <input type="date" class="form-control" id="date" formControlName="date">
+
+                    </div>
+                    <div class="form-group">
+                        <label>Hora</label>
+                        <select formControlName="time">
+                          <option value="comida">Comida</option>
+                          <option value="cena">Cena</option>
+                        </select>
+                    </div>
+
+            
+                </div>
+                <div class="row mt-4">
+                    <div class="col-12 text-end">
+                        <button class="btn btn-primary">añadir reserva</button>
+                    </div>
+
+                    <p>Para reserva de grupos de más de 15 personas por favor contacte con nosotros</p>
+
+                </div>
+
+        </form>
+
+    </div>
+    }
+
+    @if(!token){
+    <button (click)="handleSummitedLogin()">Ya soy cliente</button>
+    <button (click)="handleSummitedRegister()">Registrate</button>
+
+    @if(isSubmittedLogin){  
+    <app-login></app-login>
+    }
+
+    @if(isSubmittedRegister){
+        <app-register></app-register>
+    }
+
+}
+</div>
