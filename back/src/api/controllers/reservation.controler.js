@@ -9,13 +9,9 @@ const createReservationClient = async (req, res) => {
     const { table, telefono, date, time } = req.body;
 
     const user = await Users.findById(req.user.user_id);
-<<<<<<< HEAD
     const client = req.user.user_id;
     console.log(req.user.user_id)
     const email = user.email;
-=======
-    const client = user._id;
->>>>>>> develop
 
     try {
         const reservationList = await Reservations.find({ });

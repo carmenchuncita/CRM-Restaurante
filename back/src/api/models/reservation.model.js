@@ -3,15 +3,9 @@ const Schema = mongoose.Schema;
 
 const reservationSchema = new Schema(
     {
-<<<<<<< HEAD
         client: { type: String},
         table: { type: Number, required: true },
         email: { 
-=======
-        client: { type: String, required: true},
-        table: { type: String, required: true },
-        telefono: { 
->>>>>>> develop
             type: String, 
             required: true
         },
