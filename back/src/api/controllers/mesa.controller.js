@@ -25,18 +25,17 @@ const getMesaById = async (req, res) => {
 
 const createMesa = async (req, res) => {
     try {
-        const { numero, capacidad, comensales } = req.body;
+        const { nombre, capacidad } = req.body;
 
         // Validar la cantidad de comensales en el controlador
-        if (comensales > capacidad) {
-            return res.status(400).json({ error: 'El número de comensales no puede superar la capacidad de la mesa.' });
-        }
+        //if (comensales > capacidad) {
+        //    return res.status(400).json({ error: 'El número de comensales no puede superar la capacidad de la mesa.' });
+        //}
 
         // Crear una nueva mesa
         const nuevaMesa = new Mesa({
-            numero,
-            capacidad,
-            comensales
+            nombre,
+            capacidad
         });
 
         // Guardar la mesa en la base de datos
@@ -50,12 +49,12 @@ const createMesa = async (req, res) => {
 
 // Actualizar los datos de una mesa
 const updateMesa = async (req, res) => {
-    const { numero, capacidad, isAvailable, comensales } = req.body;
+    const { nombre, capacidad, isAvailable } = req.body;
 
     try {
         const mesa = await Mesa.findByIdAndUpdate(
             req.params.mesaId,
-            { numero, capacidad, isAvailable, comensales },
+            { nombre, capacidad, isAvailable },
             { new: true }
         );
         if (!mesa) {
