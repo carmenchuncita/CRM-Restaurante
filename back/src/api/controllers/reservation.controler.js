@@ -1,6 +1,6 @@
 const Reservations = require('../models/reservation.model');
 const Users = require('../models/user.model');
-
+const nodemailer = require('nodemailer');
 
 // Crear un nuevo menú estnado logueado
 const createReservationClient = async (req, res) => {
@@ -33,6 +33,67 @@ const createReservationClient = async (req, res) => {
         });
         
         await newReservation.save();
+        
+        //Enviar correo de confirmacion de reserva
+        try {
+          //Config del tipo de correo host y port
+          const transporter = nodemailer.createTransport({
+            host: 'smtp.gmail.com', // Cambia según el proveedor (por ejemplo, Outlook, Yahoo, etc.)
+            port: 587, // Puerto para STARTTLS
+            secure: false, // true para puerto 465, false para otros puertos
+            auth: {
+              user: 'joshuaalejandro1999@gmail.com', // Tu correo electrónico
+              pass: 'rqat imod pnqt jvim', // Tu contraseña o token de aplicación (en caso de usar Gmail, activa la verificación en dos pasos y usa un token de aplicación)
+            },
+          });
+        
+          //Creacion del correo para el admin
+          const reservaAdmin = await transporter.sendMail({
+            from: 'josh@gmail.com', // Dirección del remitente
+            to: 'joshua.gutierrez@bootcamp-upgrade.com', // Lista de destinatarios
+            subject: 'Reserva code experience', // Asunto del correo
+            html: 
+            `
+              <div style="font-family: Arial, sans-serif; color: #333; max-width: 600px; margin: left; padding: 20px; border: 1px solid #ddd; border-radius: 10px;">
+                <h2 style="color:#e3f982;">¡Nueva reserva confirmada! 🎉</h2>
+                <p>Reserva del cliente <strong>${user.name}</strong>,</p>
+                <p>Detalles de su reserva:</p>
+                <ul style="list-style: none; padding: 0;">
+                  <li>🪑 <strong>Mesa:</strong> ${table} comensales</li>
+                  <li>📅 <strong>Fecha:</strong> ${date} por la ${time}</li>
+                  <li>📧 <strong>Correo:</strong> ${email}</li>
+                </ul>
+              </div>
+            `, // HTML
+          });
+          //Creacion del correo para el usuario
+          const reservaUser = await transporter.sendMail({
+            from: 'josh@gmail.com', // Dirección del remitente
+            to: `${email}`, // Lista de destinatarios
+            subject: 'Reserva code experience', // Asunto del correo
+            html: 
+            `
+              <div style="font-family: Arial, sans-serif; color: #333; max-width: 600px; margin: left; padding: 20px; border: 1px solid #ddd; border-radius: 10px;">
+                <h2 style="color:#e3f982;">¡Tu reserva ha sido confirmada! 🎉</h2>
+                <p>Hola <strong>${user.name}</strong>,</p>
+                <p>Te confirmamos los detalles de tu reserva:</p>
+                <ul style="list-style: none; padding: 0;">
+                  <li>🪑 <strong>Mesa:</strong> ${table} comensales</li>
+                  <li>📅 <strong>Fecha:</strong> ${date} por la ${time}</li>
+                </ul>
+                <p>Si necesitas modificar o cancelar tu reserva, contáctanos.</p>
+                <p>📞 Teléfono: 123-456-789</p>
+                <p>¡Te esperamos pronto! 😊</p>
+              </div>
+            `, // HTML
+          });
+          
+          console.log('Correo enviado: %s', reservaAdmin.messageId);
+          console.log('Correo enviado: %s', reservaUser.messageId);
+        } catch (error) {
+          console.error('Error enviando el correo:', error);
+        }
+
         res.status(201).send({ message: "Reserva creado con éxito", reservation: newReservation });
     } catch (error) {
         res.status(400).send({ message: "Error al crear la reserva", error: error.message });
