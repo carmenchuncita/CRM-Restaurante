@@ -2,6 +2,7 @@ import { CanActivateFn, Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 import { inject } from '@angular/core';
 import { catchError, map, of } from 'rxjs';
+import Swal from 'sweetalert2';
 
 export const authGuard: CanActivateFn = (route, state) => {
 
@@ -12,9 +13,9 @@ export const authGuard: CanActivateFn = (route, state) => {
   const $authService = authService.verifyToken()
   const router: Router = inject(Router)
 
- /*Utilizamos RXJS y el operador pipe que nos permite que las respuestas se manipulen de manera eficiente antes de ser devueltas como un Observable.*/ 
+  /*Utilizamos RXJS y el operador pipe que nos permite que las respuestas se manipulen de manera eficiente antes de ser devueltas como un Observable.*/
   return $authService.pipe(
-/*map para modificar los datos antes de que lleguen a los suscriptores.*/ 
+    /*map para modificar los datos antes de que lleguen a los suscriptores.*/
     map((data) => {
       console.log(data)
       return data.verified
@@ -23,21 +24,37 @@ export const authGuard: CanActivateFn = (route, state) => {
     catchError((err) => {
 
       if (err.error.message === 'No hay token') {
-        alert('Es nesario que inicie sesion para acceder a esta ruta')
+        Swal.fire({
+          title: 'Ruta protegida',
+          text: 'Por favor, inicie sesión',
+          background: '#f7f7f7',
+          color: '#282826',
+          confirmButtonColor: '#d4e157',
+          confirmButtonText: 'Close',
+          customClass: {
+            popup: 'custom-swal-popup',
+          }
+        });
       }
       console.log(err.error.message)
 
       if (err.error.message === 'Token expired') {
-        alert('Su sesión a expirado, por favor vuelva a inicar sesión')
+        Swal.fire({
+          title: 'Ruta protegida',
+          text: 'Su sesión ha expirado, por favor inicie sesión de nuevo',
+          background: '#f7f7f7',
+          color: '#282826',
+          confirmButtonColor: '#d4e157',
+          confirmButtonText: 'Close',
+          customClass: {
+            popup: 'custom-swal-popup',
+          }
+        });
       }
-      /*router.navigate(['auth/login'])*/
-     /*localStorage.setItem('redirectUrl', state.url); // Guarda la URL antes del login
-      router.navigate(['/auth/login']);*/
 
       localStorage.setItem('redirectUrl', window.location.pathname);
       router.navigate(['/auth/login']);
 
-    
       return of(false)
     })
 

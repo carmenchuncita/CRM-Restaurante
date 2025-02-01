@@ -49,7 +49,7 @@
             <p class="form-field--text-danger">Debe rellenar este campo</p>   
         }
         @if (form.get('password')?.hasError('pattern') && isSubmitted) {
-            <p class="form-field--text-danger">La contraseña debe tener al menos 8 caracteres y debe incluir al menos una mayúscula, una minúscula y un número</p>
+            <p class="form-field--text-danger">8 caracteres, mayúsculas, minúsculas y números</p>
         }
 
     </div>

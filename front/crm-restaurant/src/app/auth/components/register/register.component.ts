@@ -3,6 +3,7 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
 import { HeaderComponent } from '../../../header/header.component';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-register',
@@ -12,14 +13,14 @@ import { HeaderComponent } from '../../../header/header.component';
 })
 export class RegisterComponent {
 
-    private authservice: AuthService = inject(AuthService)
-    private router: Router = inject(Router)
-    private message: string = ''
-    public isSubmitted: boolean = false;
-    public errorMessage: boolean = false;
+  private authservice: AuthService = inject(AuthService)
+  private router: Router = inject(Router)
+  private message: string = ''
+  public isSubmitted: boolean = false;
+  public errorMessage: boolean = false;
 
 
-    public form: FormGroup = new FormGroup  ({
+  public form: FormGroup = new FormGroup({
     name: new FormControl('', [
       Validators.required,
       Validators.minLength(3) //al menos debe tener 3 caracteres
@@ -38,50 +39,60 @@ export class RegisterComponent {
 
 
 
-  handleRegisterForm(){
+  handleRegisterForm() {
 
     this.isSubmitted = true;
 
     console.log(this.form.value)
     console.log(this.form.valid)
 
-    if(this.form.valid) {
+    if (this.form.valid) {
 
-    this.authservice.registerUser(this.form.value).subscribe({
+      this.authservice.registerUser(this.form.value).subscribe({
 
-      next: (data: any) => {
-        console.log(data)
-        localStorage.setItem('id', data.data._id)
-        this.message = data.message
-        localStorage.setItem('redirectUrl', '/auth/register');
-        this.router.navigate(['auth/login'])
-      },
+        next: (data: any) => {
+          console.log(data)
+          localStorage.setItem('id', data.data._id)
+          this.message = data.message
+          localStorage.setItem('redirectUrl', '/auth/register');
+          this.router.navigate(['auth/login'])
+        },
 
-      error: (error: any) => {
-        console.error('Error en la ejecución del registro', error);
+        error: (error: any) => {
+          console.error('Error en la ejecución del registro', error);
 
           // Validaciones específicas del backend
           if (error.error.message === 'El correo electrónico ya está registrado') {
-            alert('Ya exite una cuenta con esta dirección de e-mail, por favor inicie sesión para confirmar su reserva')
+            Swal.fire({
+              title: this.message,
+              text: 'Ya exite una cuenta con esta dirección de e-mail, por favor inicie sesión para confirmar su reserva',
+              background: '#f7f7f7',
+              color: '#282826',
+              confirmButtonColor: '#d4e157',
+              confirmButtonText: 'Close',
+              customClass: {
+                popup: 'custom-swal-popup',
+              }
+            });
             this.router.navigate(['/auth/login'])
           }
-        
+
           this.errorMessage = error.error.message;
-       
-      }
-    })
-      
-    }
-     
+
+        }
+      })
+
     }
 
   }
 
+}
 
 
 
 
 
 
-        
+
+
 
