@@ -28,4 +28,7 @@ export class AdminService {
   getAllReviews() {
     return this.http.get('http://localhost:5500/api/users/getReviews');
   }
+  getAllTables() {
+    return this.http.get('http://localhost:5500/api/mesa/todas')
+  }
 }

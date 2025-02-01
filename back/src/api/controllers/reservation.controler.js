@@ -140,7 +140,7 @@ const createReservation = async (req, res) => {
 // Metodo para coger todas las reservas de un cliente
 const getReservations = async (req, res) => {
     try {
-        const user = await Users.findById(req.user.user_id);
+        const user = await Users.findById(req.user._id);
         const role = user.role;
         const listaFinal = [];
 
@@ -151,7 +151,8 @@ const getReservations = async (req, res) => {
                 const client = await Users.findById(id);
 
                 const tableName = await Tables.findById(element.table);
-                const datos = {"email" : client.email,
+                const datos = {
+                    "name" : client.name,
                     "table" : tableName.nombre,
                     "telefono" : element.telefono,
                     "date" : element.date,

@@ -13,10 +13,11 @@ export class ReviewsListComponent {
   private adminService: AdminService = inject(AdminService);
   private message: string = '';
 
-  ngOnInit() {
+  OnInit() {
     this.adminService.getAllReviews().subscribe({
       next: (data: any) => {
         this.reviewList = data;
+        console.log("data", data);
       },
       error: (error: any) => {
         console.log(error);

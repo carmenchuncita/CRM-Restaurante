@@ -6,20 +6,18 @@
       Para hoy</button>
   </div>
   <div class="reservations-container">
-    @if (reservationsList.length > 0) {
+
       <div class="reservation-container">
         @for (reservation of reservationsList; track reservation._id) {
           <div class="reservation-card">
-            <h3>Mesa: {{ reservation.table }}</h3>
-            <p><strong>Cliente:</strong> {{ reservation.client }}</p>
-            <p><strong>Email:</strong> {{ reservation.email }}</p>
+            <p><strong>Nombre:</strong> {{ reservation.name }}</p>
+            <p><strong>Mesa:</strong> {{ reservation.table }}</p>
+            <p><strong>Telefono:</strong> {{ reservation.telefono }}</p>
             <p><strong>Fecha:</strong> {{ reservation.date  | date:'dd/MM/yyyy'}}</p>
             <p><strong>Horario:</strong> {{ reservation.time }}</p>
+            <p><strong>Cancelada:</strong> {{ reservation.canceled }}</p>
           </div>
         }
       </div>
-    } @else {
-      <p class="no-reservations">No hay reservas disponibles</p>
-    }
   </div>
 </section>
