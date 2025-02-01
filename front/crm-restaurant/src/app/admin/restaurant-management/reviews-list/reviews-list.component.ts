@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { inject } from '@angular/core';
-import { AdminService } from './../../services/admin.service';
+import { AdminService } from '../../services/admin.service';
 
 @Component({
   selector: 'app-reviews-list',

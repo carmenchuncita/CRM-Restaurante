@@ -1,7 +1,11 @@
 <section class="reservationSection">
-  <div class="reservations-container">
+  <div class="header">
     <h2>Lista de Reservas</h2>
-
+    <button class="btn btn-primary">
+      <i class="fa-solid fa-filter"></i>
+      Para hoy</button>
+  </div>
+  <div class="reservations-container">
     @if (reservationsList.length > 0) {
       <div class="reservation-container">
         @for (reservation of reservationsList; track reservation._id) {

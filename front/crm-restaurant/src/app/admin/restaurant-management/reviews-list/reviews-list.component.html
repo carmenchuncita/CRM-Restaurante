@@ -1,9 +1,22 @@
 <section class="reviewsSection">
-<p>reviews-list works!</p>
-
+  <div class="header">
+    <h2>Lista de Reseñas</h2>
+    <div class="filters">
+      <button class="btn btn-primary">
+        <i class="fa-solid fa-filter"></i>
+        Hoy
+      </button>
+      <button class="btn btn-primary">
+        <i class="fa-solid fa-filter"></i>
+        Mejor puntuación
+      </button>
+      <button class="btn btn-primary">
+        <i class="fa-solid fa-filter"></i>
+        Peor puntuación
+      </button>
+    </div>
+  </div>
   <div class="reviews-container">
-    <h2>Lista de Reservas</h2>
-
     @if (reviewList.length > 0) {
       <div class="reservation-container">
         @for (review of reviewList; track review._id) {

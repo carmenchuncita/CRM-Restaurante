@@ -1,33 +1,41 @@
 <section class="homeSection">
-
   <div class="main-content">
+
+    <!-- Redes Sociales -->
     <div class="rrss">
-      <a href="https://facebook.com" target="_blank">
-        <i class="fab fa-facebook-f"></i>
-      </a>
-      <a href="https://instagram.com" target="_blank">
-        <i class="fab fa-instagram"></i>
-      </a>
-      <a href="https://www.linkedin.com" target="_blank">
-        <i class="fab fa-linkedin"></i>
-      </a>
+      <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>
+      <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+      <a href="https://www.linkedin.com" target="_blank"><i class="fab fa-linkedin"></i></a>
     </div>
+
+    <!-- Contenedor Principal -->
     <div class="contenedor">
+      <!-- Líneas decorativas -->
       <span class="line top-left"></span>
       <span class="line top-right"></span>
       <span class="line bottom-left"></span>
       <span class="line bottom-right"></span>
+
+      <!-- Contenido central -->
       <div class="content">
         <h1>CODE</h1>
-        <img src="home.jpg" alt="restaurant" class="main-image" />
+        <img src="home-cuadrada.jpg" alt="restaurant" class="main-image" />
       </div>
     </div>
-    <div class="hamburguer">
+
+    <!-- Menú hamburguesa -->
+    <div class="hamburguer" (click)="toggleMenu()">
       <i class="fas fa-bars"></i>
     </div>
   </div>
-  <div class="main-buttons">
-    <button>Reserva</button>
-    <button [routerLink]="('/menudeldia')" >Ver Menu</button>
-  </div>
+
+  <!-- Menú deslizante -->
+  <nav class="menu" [class.active]="menuOpen">
+    <ul>
+      <li><a [routerLink]="'/auth/login'">Inicia Sesión</a></li>
+      <li><a [routerLink]="'/experienciaCode'">Experiencia Code</a></li>
+      <li><a [routerLink]="'/menudeldia'">Menú del día</a></li>
+      <li><a [routerLink]="'/reservas'">Reserva</a></li>
+    </ul>
+  </nav>
 </section>

@@ -25,7 +25,7 @@
 }
 
 .review-card {
-  width: 350px;
+  width:245px;
   background: #f9f9f9;
   border-radius: 10px;
   padding: 15px;
@@ -60,3 +60,37 @@
   color: #777;
   margin-top: 20px;
 }
+@media (min-width: 768px) {
+  .reviews-container{
+    flex-direction: row;
+    flex-wrap: wrap;
+    max-width: 814px;
+  }
+  .review-card {
+    width: 290px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .review-card {
+    width: 350px;
+  }
+  .header{
+    display: flex;
+    flex-direction: row;
+    gap: 40px;
+    align-items: center;
+    justify-content: space-between;
+    width: 95%;
+    height: 40px;
+    background: rgb(192, 185, 185);
+    padding: 12px 24px;
+  }
+  .filters {
+    display: flex;
+    gap:8px
+
+
+  }
+}
+

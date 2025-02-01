@@ -2,65 +2,46 @@
   width: 100%;
   height: 100%;
 }
-.reviewsection {
-  display: flex;
-  flex-direction: column;
-  flex-basis: 33%;
-  align-items: center;
+.managementSection {
+padding: 48px;
 }
-.reviews-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1rem;
-  padding: 20px;
-  max-width: 400px;
+.modules{
+  display: grid;
+  grid-template-columns: 1fr;
+  width: 100%;
+}
+.module-menus {
+  background:#dacece;
+}
+.module-reservations {
+  background:#dacece;
 
 }
+.module-reviews {
+  background:#dacece;
 
-.review-container{
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 38px;
-  padding: 20px;
+}
+.module-tables {
+  background:#dacece;
 }
 
-.review-card {
-  width: 350px;
-  background: #f9f9f9;
-  border-radius: 10px;
-  padding: 15px;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+@media (min-width: 768px) {
+  .managementSection{
+    padding: 24px;
+  }
+  .modules {
+    grid-template-columns: repeat(1, 1fr);
+  }
+
 }
 
-.review-card h3 {
-  font-size: 1.3rem;
-  color: #333;
-  margin-bottom: 10px;
-  text-align: center;
+@media (min-width: 1024px) {
+  .managementSection {
+    padding: 24px;
+  }
+  .modules  {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 48px;
+
+  }
 }
-
-
-.review-card p {
-  font-size: 1rem;
-  color: #555;
-  line-height: 1.4;
-  margin-bottom: 5px;
-}
-
-
-.review-card p strong {
-  color: #222;
-}
-
-
-.no-reviews {
-  text-align: center;
-  font-size: 1.2rem;
-  color: #777;
-  margin-top: 20px;
-}
-
