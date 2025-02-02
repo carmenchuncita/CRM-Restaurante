@@ -32,11 +32,11 @@
   color: #282826;
   font-size: 1.5rem;
   text-decoration: none;
-  transition: color 0.3s ease-in-out, transform 0.2s ease-in-out;
+
 }
 
 .social-icons a:hover {
-  color: #ef8686;
+  color: var(--green-primary);
   transform: scale(1.2);
 }
 
@@ -54,7 +54,7 @@
 .menu-hamburguesa {
   display: flex;
   justify-content: flex-end;
-  flex-basis: 10%;
+  flex-basis: 21%;
 
 }
 
@@ -68,7 +68,7 @@
 }
 
 .hamburger-button:hover {
-  color: #ef8686;
+  color: var(--green-primary);
   transform: rotate(10deg) scale(1.1);
 }
 
@@ -80,9 +80,9 @@
   background: white;
   border: 1px solid #ddd;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-  padding: 15px;
   border-radius: 5px;
   transition: all 0.3s ease-in-out;
+  z-index: 21;
 }
 
 .menu[hidden] {
@@ -96,7 +96,7 @@
 }
 
 .menu ul li {
-  padding: 15px 0;
+  padding: 15px;
   text-align: center;
   transition: background-color 0.3s ease-in-out;
 }
@@ -113,11 +113,8 @@
   transition: color 0.3s ease-in-out;
 }
 
-.menu ul li a:hover {
-  color: #ef8686;
-}
 
-@media (max-width: 768px) {
+@media (min-width: 768px) {
 }
 @media (min-width: 1024px) {
   .menu-hamburguesa {
