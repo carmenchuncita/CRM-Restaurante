@@ -52,6 +52,7 @@ export const authGuard: CanActivateFn = (route, state) => {
         });
       }
 
+     
       localStorage.setItem('redirectUrl', window.location.pathname);
       router.navigate(['/auth/login']);
 

@@ -38,8 +38,12 @@ export class ReservationsComponent {
   public dateMin: string = '';
   public tableList: any [] = [];
   public tableName: any [] = [];
+  
 
   ngOnInit() {
+
+     // Guardamos la URL actual (ruta) en el localStorage cuando accedes al componente
+     localStorage.setItem('redirectUrl', window.location.pathname);
 
     this.tablesService.getAllTables().subscribe({
       next: (data: any) => {
@@ -55,8 +59,7 @@ export class ReservationsComponent {
       },
     });
 
-    // Guardamos la URL actual (ruta) en el localStorage cuando accedes al componente
-    localStorage.setItem('redirectUrl', window.location.pathname);
+  
 
     // Obtener la fecha actual en formato YYYY-MM-DD
     this.dateMin = new Date().toISOString().split('T')[0];
@@ -81,7 +84,7 @@ export class ReservationsComponent {
     table: new FormControl('', Validators.required),
     date: new FormControl('', Validators.required),
     time: new FormControl('', Validators.required),
-    telefono: new FormControl('', Validators.required),
+    telefono: new FormControl('', [Validators.required,  Validators.pattern(/^(6|7)\d{8}$/)]),
   });
 
   handleReservationForm() {

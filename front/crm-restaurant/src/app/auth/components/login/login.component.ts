@@ -73,6 +73,9 @@ export class LoginComponent {
 
           console.error('Error de inicio de sesión', error);
 
+
+          
+
           // Validaciones específicas del backend
           if (error.error.message === 'Usuario no encontrado') {
             this.form.get('email')?.setErrors({ notExists: true });
