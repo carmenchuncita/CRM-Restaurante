@@ -16,7 +16,11 @@
             <p><strong>Telefono:</strong> {{ reservation.telefono }}</p>
             <p><strong>Fecha:</strong> {{ reservation.date  | date:'dd/MM/yyyy'}}</p>
             <p><strong>Horario:</strong> {{ reservation.time }}</p>
-            <p><strong>Cancelada:</strong> {{ reservation.canceled }}</p>
+            @if (reservation.canceled == false) {
+              <p><strong>Cancelada:</strong> No </p>
+            }@else{
+              <p><strong>Cancelada:</strong> Si </p>
+            }
           </div>
         }
       </div>
