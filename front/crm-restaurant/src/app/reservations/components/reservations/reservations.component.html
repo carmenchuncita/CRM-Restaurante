@@ -1,17 +1,25 @@
-<p>reservations works!</p>
 
-<div class="row">
+<section class="reservation-form-section">
+
+    <figure class = "reservation-figure">
+        <img class = "reservation-icon" src="imagenes/icono11.png" alt="icono reservas">
+    </figure>
 
     @if(token){
-    <div class=" col-12">
+    <div class="contenedor">
 
-        <form [formGroup]="form" (ngSubmit)=" handleReservationForm()">
-            <div class="row">
+        <span class="line top-left"></span>
+        <span class="line top-right"></span>
+        <span class="line bottom-left"></span>
+        <span class="line bottom-right"></span>
+
+        <form [formGroup]="form" (ngSubmit)=" handleReservationForm()" class="form">
+            
 
 
                 <div class="form-group">
                     <label>Mesa</label>
-                    <select formControlName="table">
+                    <select class="form-input" formControlName="table">
                         @for(table of tableList; track table){
                         <option [value]="table.nombre">
                             {{table.nombre}}
@@ -19,7 +27,7 @@
                         }
                     </select>
                     @if (form.get('table')?.hasError('required') && isSubmitted) {
-                        <p class="form-field--text-danger">Debe rellenar este campo</p>   
+                    <p class="form-field--text-danger">Debe rellenar este campo</p>
                     }
                 </div>
 
@@ -29,23 +37,20 @@
                     <label>Fecha</label>
                     <input class="form-input" type="date" [min]="dateMin" formControlName="date">
                     @if (form.get('date')?.hasError('required') && isSubmitted) {
-                        <p class="form-field--text-danger">Debe rellenar este campo</p>   
+                    <p class="form-field--text-danger">Debe rellenar este campo</p>
                     }
                 </div>
 
                 <div class="form-group">
                     <label>Hora</label>
-                    <select formControlName="time">
+                    <select class="form-input" formControlName="time">
                         <option value="comida">Comida</option>
                         <option value="cena">Cena</option>
                     </select>
                     @if (form.get('time')?.hasError('required') && isSubmitted) {
-                        <p class="form-field--text-danger">Debe rellenar este campo</p>   
+                    <p class="form-field--text-danger">Debe rellenar este campo</p>
                     }
                 </div>
-
-
-
 
 
                 <div class="form-group">
@@ -60,21 +65,25 @@
                     }
                 </div>
 
-                <div class="form-group">
-                    <button class="formButton">añadir reserva</button>
-                </div>
+                    <button class="form-button">Confirmar reserva</button>
+                    <p class = "group-reservations-text">Para reserva de grupos de más de 15 personas por favor contacte con nosotros</p>
+           
 
-                <p>Para reserva de grupos de más de 15 personas por favor contacte con nosotros</p>
-                <p>{{tableName}}</p>
-            </div>
+               
+               
+     
         </form>
+      
 
     </div>
+   
     }
 
+    <section class= "buttons-box">
+
     @if(!token){
-    <button (click)="handleSummitedLogin()">Ya soy cliente</button>
-    <button (click)="handleSummitedRegister()">Registrate</button>
+    <button class = "login-button"(click)="handleSummitedLogin()">Ya soy cliente</button>
+    <button class = "register-button"(click)="handleSummitedRegister()">Registrate</button>
 
     @if(isSubmittedLogin){
     <app-login></app-login>
@@ -85,4 +94,5 @@
     }
 
     }
-</div>
+    </section>
+</section>

@@ -1,0 +1,312 @@
+:host {
+	width: 100%;
+	height: 100%;
+	background-color: #f7f7f7;
+
+}
+
+.reservation-form-section {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	background-color: #f7f7f7;
+    min-height: 100vh; 
+}
+
+.reservation-figure {
+	width: 150px;
+    margin-top: 2%;
+}
+
+.reservation-icon {
+	width: 100%;
+}
+
+.reservaton-title{
+    font-size: 1.3rem;
+    letter-spacing: 0.1rem;
+}
+
+.contenedor {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: relative;
+	width: 85%;
+	height: 490px;
+	background-color: #f7f7f7;
+	border-right: 1px solid #282826;
+	border-left: 1px solid #282826;
+	margin-bottom: 55%;
+}
+
+.line {
+	content: '';
+	position: absolute;
+	z-index: 20;
+	height: 1px;
+	width: 16%;
+	background: repeating-linear-gradient(to right,
+			#282826 0,
+			#282826 10px,
+			transparent 0px,
+			transparent 0px);
+}
+
+.top-left {
+	top: 0;
+	left: 0;
+}
+
+.top-right {
+	top: 0;
+	right: 0;
+}
+
+.bottom-left {
+	bottom: 0;
+	left: 0;
+}
+
+.bottom-right {
+	bottom: 0;
+	right: 0;
+}
+
+.form {
+	display: flex;
+	justify-content: start;
+	align-items: center;
+	flex-direction: column;
+	position: absolute;
+	width: 90%;
+	height: auto;
+	gap: 1rem;
+	background-color: #e3f982;
+	padding-top: 25px;
+	top: 3.5%;
+}
+
+.form-group {
+	width: 70%;
+	align-content: center;
+}
+
+label {
+	display: block;
+	color: #282826;
+	letter-spacing: 0.9px;
+	font-size: 0.9rem;
+	font-weight: 430;
+	margin-top: 2rem;
+}
+
+.form-input {
+	width: 100%;
+	padding: 0.5rem 0 0 0;
+	margin: 0.2rem 0 0 0;
+	background-color: #e3f982;
+	border: none;
+	border-bottom: 1px solid #282826;
+	font-size: 0.8rem;
+	font-family: "Raleway";
+	font-weight: 200;
+}
+
+.form-input:focus {
+	outline: none;
+	border-bottom: 1px solid #282826;
+}
+
+.form-field--text-danger {
+	color: #ed5555;
+	font-size: 0.7rem;
+	font-weight: 450;
+	letter-spacing: 1px;
+	line-height: 1.5;
+	margin-top: 0.5rem;
+}
+
+.form-button {
+	align-items: center;
+	width: 70%;
+	margin-top: 4rem;
+	padding: 0.7rem;
+	background-color: #e3f982;
+	border: 1px solid #282826;
+	color: #282826;
+	font-family: "Raleway";
+	font-size: 0.9rem;
+	letter-spacing: 0.9px;
+	cursor: pointer;
+}
+
+.form-button:hover {
+	background-color: #282826;
+	color: #e3f982;
+}
+
+.group-reservations-text{
+    margin: 15% 0 5%;
+    font-size: 0.8;
+    padding: 0 4%;
+    line-height: 1.5;
+}
+
+
+.buttons-box{
+    display: inline;
+    align-items: center;
+    width: 70%;
+    height: 50%;
+
+}
+
+.login-button{
+        align-items: center;
+        width: 40%;
+        padding: 0.7rem;
+        margin-right: 5%;
+        background-color: #e3f982;
+        border: none;
+        color: #282826;
+        font-family: "Raleway";
+        font-size: 0.9rem;
+        letter-spacing: 0.9px;
+        cursor: pointer;
+    }
+
+
+.login-button:hover {
+    background-color: #282826;
+    color: #e3f982;
+}
+
+
+.register-button{
+
+        align-items: center;
+        width: 40%;
+        padding: 0.7rem;
+        margin-left: 5%;
+        background-color: #e3f982;
+        border: none;
+        color: #282826;
+        font-family: "Raleway";
+        font-size: 0.9rem;
+        letter-spacing: 0.9px;
+        cursor: pointer;
+
+}
+
+.register-button:hover {
+    background-color: #282826;
+    color: #e3f982;
+}
+
+
+input:-webkit-autofill {
+	background-color: #e3f982; /* Color de fondo */
+	color: #282826; /* Color del texto */
+	-webkit-text-fill-color: #282826; /* Color del texto en navegadores WebKit */
+	transition: background-color 5000s ease-in-out 0s; /* Evita el cambio brusco de color */
+  }
+  
+  input:-webkit-autofill:hover,
+  input:-webkit-autofill:focus,
+  input:-webkit-autofill:active {
+	background-color: #d4ffcc; /* Color diferente cuando se enfoca */
+	-webkit-text-fill-color: #282826;
+  }
+
+
+
+@media(min-width: 768px) {
+
+    .reservation-figure {
+        width: 250px;
+        margin-top: 3%;
+    }
+
+    .reservaton-title{
+        font-size: 1.5rem;
+    }
+
+
+	.contenedor {
+		width: 70%;
+		height: 600px;
+		margin-bottom: 20% ;
+	}
+
+	.form {
+		width: 85%;
+		height: auto;
+		padding-top: 30px;
+		top: 7%;
+	}
+
+	label {
+		font-size: 1.1rem;
+	}
+
+	.form-input {
+		font-size: 1rem;
+	}
+
+	.form-field--text-danger {
+		font-size: 0.8rem;
+	}
+
+	.form-button {
+		font-family: "Raleway";
+		font-size: 1rem;
+		padding: 1rem;
+	}
+
+    .group-reservations-text{
+        margin: 5% 0 5%;
+    }
+
+}
+
+
+
+@media(min-width: 1024px) {
+
+    .reservation-figure {
+        width: 300px;
+    }
+
+    .reservaton-title{
+        font-size: 1.7rem;
+    }
+
+	.contenedor {
+		width: 55%;
+		height: 695px;
+		margin-bottom: 15% ;
+	}
+
+	.form {
+		width: 86.1%;
+		height: auto;
+		top: 10%;
+	}
+
+	.form-field--text-danger {
+		font-size: 0.9rem;
+	}
+
+	.form-button {
+		font-family: "Raleway";
+		font-size: 1rem;
+	}
+
+    .group-reservations-text{
+        font-size: 0.9;
+        margin: 15% 0 5%;
+    }
+  
+}
