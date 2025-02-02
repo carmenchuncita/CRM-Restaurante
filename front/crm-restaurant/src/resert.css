@@ -16,12 +16,12 @@ body {
   height: 100vh;
 }
 main {
-   
+
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    
+
 }
 
 /* http://meyerweb.com/eric/tools/css/reset/
@@ -152,4 +152,14 @@ q:after {
 table {
   border-collapse: collapse;
   border-spacing: 0;
+}
+.swal2-icon.swal2-warning.swal2-icon-show {
+  width: 50px !important;
+  height: 50px !important;
+  .swal2-icon-content {
+    font-size: 2.75em !important;
+  }
+}
+.swal2-cancel.swal2-styled.swal2-default-outline{
+  border-radius: 0px !important;
 }

@@ -1,3 +1,4 @@
+
 const Reservations = require('../models/reservation.model');
 const Users = require('../models/user.model');
 const nodemailer = require('nodemailer');
@@ -144,6 +145,10 @@ const createReservation = async (req, res) => {
 const getReservations = async (req, res) => {
     try {
         const user = await Users.findById(req.user.user_id);
+        // Validar si el usuario existe 
+      if (!user) {
+          return res.status(404).json({ message: "Usuario no encontrado" });
+      }
         const role = user.role;
         const listaFinal = [];
 
@@ -153,11 +158,17 @@ const getReservations = async (req, res) => {
                 const id = element.client;
                 const client = await Users.findById(id);
 
-                const table = await Tables.findById(element.table);
+                      // Validar si el cliente existe
+              if (!client) {
+                console.warn(`Advertencia: No se encontró el usuario con ID ${id}`);
+                continue; 
+            }
+
+            const tableName = await Tables.findOne({ nombre: element.table });
                 const datos = {
                     "id":element._id,
                     "name" : client.name,
-                    "table" : element.table,
+                    "table": tableName ? tableName.nombre : element.table, 
                     "telefono" : element.telefono,
                     "date" : element.date,
                     "time" : element.time
@@ -257,3 +268,4 @@ const updateReservation = async (req, res) => {
 
 
 module.exports = { createReservationClient, getReservations, updateReservation, deleteReservation};
+

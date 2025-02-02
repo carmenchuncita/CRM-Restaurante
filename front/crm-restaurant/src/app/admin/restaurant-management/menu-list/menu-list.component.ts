@@ -24,8 +24,17 @@ export class MenuListComponent implements OnInit {
   public panelTitle = '';
   public panelComponent: any = null;
   public panelData: any = null;
+  public menusToShow: number = window.innerWidth < 768 ? 1 : 2;
+
+ public getVisibleMenus(): any[] {
+  return this.menuList.slice(this.currentIndex, this.currentIndex + this.menusToShow);
+}
+
 
   ngOnInit() {
+    window.addEventListener('resize', () => {
+      this.menusToShow = window.innerWidth < 768 ? 1 : 2;
+    });
     this.adminService.getMenus().subscribe((menu) => {
       this.menuList = menu;
       if (this.menuList.length > 0) {
@@ -35,16 +44,14 @@ export class MenuListComponent implements OnInit {
   }
 
   public nextSlide() {
-    if (this.currentIndex < this.menuList.length - 1) {
+    if (this.currentIndex < this.menuList.length - 2) {
       this.currentIndex++;
-      this.currentMenu = this.menuList[this.currentIndex];
     }
   }
 
   public prevSlide() {
     if (this.currentIndex > 0) {
       this.currentIndex--;
-      this.currentMenu = this.menuList[this.currentIndex];
     }
   }
 
@@ -85,8 +92,8 @@ export class MenuListComponent implements OnInit {
       text: 'Esta acción no se puede deshacer.',
       icon: 'warning',
       showCancelButton: true,
-      confirmButtonColor: '#d33',
-      cancelButtonColor: '#3085d6',
+      confirmButtonColor: '#e3f982',
+      cancelButtonColor: '#e3e4dc',
       confirmButtonText: 'Sí, eliminar',
       cancelButtonText: 'Cancelar',
     }).then((result) => {
@@ -123,8 +130,8 @@ export class MenuListComponent implements OnInit {
       }.`,
       icon: 'warning',
       showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
+      confirmButtonColor: '#e3f982',
+      cancelButtonColor: '#e3e4dc',
       confirmButtonText: `Sí, marcar como ${
         newState ? 'disponible' : 'no disponible'
       }`,

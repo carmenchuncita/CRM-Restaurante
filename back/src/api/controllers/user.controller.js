@@ -265,8 +265,11 @@ const getReviews = async (req, res) => {
         for (let element of reviews) {
           const id = element.reviwer;
           const reviwer = await Users.findById(id);
+          console.log("reviwer",reviwer);
 
-          const datos = {"Escritor" : reviwer.name,
+          const datos = {
+            "id" : element._id,
+            "Escritor" : reviwer.name,
             "rating" : element.rating,
             "description" : element.description
           };
@@ -275,7 +278,7 @@ const getReviews = async (req, res) => {
         listaFinal.push(datos);                
       }
         
-    }else{
+    } else { 
         const id = user._id;
         const reviews = await Review.find({ client: id });
 

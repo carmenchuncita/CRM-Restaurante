@@ -48,8 +48,8 @@ export class LoginComponent {
         next: (data: any) => {
           console.log(data)
           this.message = data.message
-       
-          // guardo en el localStorage el token, el email, el role y el id 
+
+          // guardo en el localStorage el token, el email, el role y el id
           localStorage.setItem('token', data.token)
           localStorage.setItem('email', data.user.email)
           localStorage.setItem('role', data.user.role)

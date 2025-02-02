@@ -1,0 +1,47 @@
+:host {
+  width: 100%;
+  height: 100%;
+}
+.managementSection {
+padding: 48px;
+}
+.modules{
+  display: grid;
+  grid-template-columns: 1fr;
+  width: 100%;
+}
+.module-menus {
+  background:#dacece;
+}
+.module-reservations {
+  background:#dacece;
+
+}
+.module-reviews {
+  background:#dacece;
+
+}
+.module-tables {
+  background:#dacece;
+}
+
+@media (min-width: 768px) {
+  .managementSection{
+    padding: 24px;
+  }
+  .modules {
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+}
+
+@media (min-width: 1024px) {
+  .managementSection {
+    padding: 24px;
+  }
+  .modules  {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 48px;
+
+  }
+}

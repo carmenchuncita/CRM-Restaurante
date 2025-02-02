@@ -1,0 +1,44 @@
+<section class="TableListSection">
+  <div class="header">
+    <h2>Lista de Mesas</h2>
+  </div>
+
+  <div class="tables-container">
+    <div class="table-container">
+      @for (table of tableList; track table._id) {
+      <div class="table-card">
+        <p><strong>Nombre:</strong> {{ table.nombre }}</p>
+        <p><strong>Capacidad:</strong> {{ table.capacidad }}</p>
+        <p><strong>Disponible:</strong> {{ table.isAvailable }}</p>
+
+        <div class="button-card">
+          <button (click)="openCreatePanelTable()">
+            <i class="fa-solid fa-plus"></i>
+          </button>
+          <button (click)="openEditPanelTable(table)">
+            <i class="fas fa-edit"></i>
+          </button>
+          <button (click)="deleteTable(table)">
+            <i class="fas fa-trash-alt"></i>
+          </button>
+          <button (click)="toggleAvailability(table)">
+            <i
+              class="fa-solid"
+              [ngClass]="table.isAvailable ? 'fa-toggle-on' : 'fa-toggle-off'"
+            ></i>
+          </button>
+        </div>
+      </div>
+      }
+    </div>
+  </div>
+
+  <!-- Panel lateral -->
+  <app-sidenav-panel
+    [isOpen]="isPanelOpen"
+    [title]="panelTitle"
+    [currentComponent]="panelComponent"
+    [data]="panelData"
+    (close)="closePanel()"
+  ></app-sidenav-panel>
+</section>

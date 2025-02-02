@@ -11,7 +11,7 @@ import { UpdateMenuComponent } from '../admin/restaurant-management/update-menu/
 
 
 export const AUTH_ROUTES: Routes = [
-    
+
 {
     path: 'register',
     component: RegisterComponent
@@ -26,9 +26,9 @@ export const AUTH_ROUTES: Routes = [
     path: 'profile',
     canActivate: [authGuard],
     component: ProfileComponent
- 
+
 },
 
 
-    
+
 ];
