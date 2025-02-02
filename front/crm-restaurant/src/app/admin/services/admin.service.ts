@@ -31,13 +31,16 @@ export class AdminService {
   getAllTables() {
     return this.http.get('http://localhost:5500/api/mesa/todas')
   }
+  postTable(table: any) {
+    return this.http.post('http://localhost:5500/api/mesa/create', table);
+  }
   createTables() {
     return this.http.get('http://localhost:5500/api/mesa/createMesa')
   }
-  updateTables() {
-    return this.http.get('http://localhost:5500/api/mesa/updateMesa')
+  updateTable(id: string, usertoUpdate: any) {
+    return this.http.put(`http://localhost:5500/api/mesa/${id}`, usertoUpdate)
   }
-  deleteTables() {
-    return this.http.get('http://localhost:5500/api/mesa/deleteMesa')
+  deleteTable(id: string) {
+    return this.http.delete(`http://localhost:5500/api/mesa/${id}`)
   }
 }

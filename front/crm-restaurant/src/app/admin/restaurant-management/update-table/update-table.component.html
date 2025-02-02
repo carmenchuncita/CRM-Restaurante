@@ -1,0 +1,21 @@
+<form [formGroup]="form" (ngSubmit)="handleEditTable()">
+  <div class="form-group">
+    <label>Nombre de la mesa</label>
+    <input type="text" formControlName="nombre" />
+  </div>
+  <div class="form-group">
+    <label>Capacidad</label>
+    <input type="number" formControlName="Capacidad" />
+  </div>
+  <div class="checkbox">
+    <label for="isAvailable">
+      <input type="checkbox" id="isAvailable" formControlName="isAvailable" />
+      Disponible
+    </label>
+  </div>
+  <div class="main-buttons">
+    <button type="submit" class="btn-update">Actualizar Mesa</button>
+    <button type="button" class="btn-cancel">Cancelar</button>
+  </div>
+
+</form>

@@ -20,6 +20,7 @@ export class ReviewsListComponent {
         this.reviewList = data;
         console.log("data", data);
       },
+
       error: (error: any) => {
         console.log(error);
       },
