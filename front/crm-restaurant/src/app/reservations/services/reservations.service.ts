@@ -10,7 +10,7 @@ export class ReservationsService {
   private http: HttpClient = inject(HttpClient);
 
   createReservationClient(form: any): Observable<any>{
-    const id = localStorage.getItem('id');
+    const id = localStorage.getItem('id'); 
     console.log(id);
     if (!id) {
       console.error('No se encontró el ID en el localStorage');

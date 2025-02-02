@@ -24,8 +24,8 @@ const createReservationClient = async (req, res) => {
                 && element.date.getTime() == dateFormat.getTime() 
                 && element.time == time){
                   console.log('estoy dentro');
-               return res.status(401).send({ message: "Ya hay una reserva en ese momento" });  
-                      
+               return res.status(401).send({ message: "Ya hay una reserva en ese momento", error: error.message });   
+                     
             }
         });
 
