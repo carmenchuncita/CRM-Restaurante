@@ -1,19 +1,21 @@
 <section class="headerSection">
-    <header class="header">
+  
         <div class="social-icons">
             <a href="#"><i class="fab fa-facebook"></i></a>
             <a href="#"><i class="fab fa-linkedin"></i></a> 
             <a href="#"><i class="fab fa-instagram"></i></a>
         </div>
 
-        <div class="logo-container">
-            <img src="/logo_resturant.png" alt="Logo de CRM Restaurant" class="logo"/>
-        </div>
+        <figure class="logo-container">
+            <a [routerLink]="('/home')">
+            <img src="imagenes/logo_restaurante_grueso.png" alt="Logo de CRM Restaurant" class="logo"/>
+        </a>
+        </figure>
 
         <div class="menu-hamburguesa">
             <button class="hamburger-button" (click)="toggleMenu()">☰</button>
         </div>
-    </header>
+
 
 
     <nav class="menu" [hidden]="!menuVisible">
