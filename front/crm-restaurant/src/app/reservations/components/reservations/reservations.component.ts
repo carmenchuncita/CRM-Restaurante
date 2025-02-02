@@ -40,6 +40,8 @@ export class ReservationsComponent {
   public tableName: any [] = [];
 
   ngOnInit() {
+  // Guardamos la URL actual (ruta) en el localStorage cuando accedes al componente
+  localStorage.setItem('redirectUrl', window.location.pathname);
 
     this.tablesService.getAllTables().subscribe({
       next: (data: any) => {
@@ -47,16 +49,15 @@ export class ReservationsComponent {
         this.tableList = data;
         /*this.tableName = data.map((mesa: any) => mesa.nombre); // Extraer los nombres
         console.log(this.tableName);*/
-       
-      
+
+
       },
       error: (error: any) => {
         console.log(error);
       },
     });
 
-    // Guardamos la URL actual (ruta) en el localStorage cuando accedes al componente
-    localStorage.setItem('redirectUrl', window.location.pathname);
+
 
     // Obtener la fecha actual en formato YYYY-MM-DD
     this.dateMin = new Date().toISOString().split('T')[0];
@@ -165,22 +166,22 @@ export class ReservationsComponent {
 }
 
 /*get controlName(){
-  return this.form.get('name') 
+  return this.form.get('name')
 }
 get controlEmail(){
-  return this.form.get('email') 
+  return this.form.get('email')
 }
 get controlPhone(){
-  return this.form.get('phone') 
+  return this.form.get('phone')
 }
 get controlDate(){
-  return this.form.get('date') 
+  return this.form.get('date')
 }
 get controlHour(){
-  return this.form.get('hour') 
+  return this.form.get('hour')
 }
 get controlGuests(){
-  return this.form.get('guests') 
+  return this.form.get('guests')
 }
 
 addBooking() {
