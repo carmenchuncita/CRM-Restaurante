@@ -10,7 +10,7 @@
 	align-items: center;
 	flex-direction: column;
 	background-color: #f7f7f7;
-	flex-grow: 1; 
+	flex-grow: 1;
 }
 
 .contenedor {
@@ -24,7 +24,7 @@
 	border-right: 1px solid #282826;
 	border-left: 1px solid #282826;
 	margin: 15% 0 30% 0;
-	flex-grow: 1; 
+	flex-grow: 1;
 }
 
 .line {
@@ -134,19 +134,41 @@ label {
 }
 
 input:-webkit-autofill {
-	background-color: #e3f982; /* Color de fondo */
-	color: #282826; /* Color del texto */
-	-webkit-text-fill-color: #282826; /* Color del texto en navegadores WebKit */
-	transition: background-color 5000s ease-in-out 0s; /* Evita el cambio brusco de color */
-  }
-  
-  input:-webkit-autofill:hover,
-  input:-webkit-autofill:focus,
-  input:-webkit-autofill:active {
-	background-color: #d4ffcc; /* Color diferente cuando se enfoca */
+	background-color: #e3f982;
+	/* Color de fondo */
+	color: #282826;
+	/* Color del texto */
 	-webkit-text-fill-color: #282826;
-  }
+	/* Color del texto en navegadores WebKit */
+	transition: background-color 5000s ease-in-out 0s;
+	/* Evita el cambio brusco de color */
+}
 
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+	background-color: #d4ffcc;
+	/* Color diferente cuando se enfoca */
+	-webkit-text-fill-color: #282826;
+}
+
+.button-container {
+	display: block;
+	width: 70%;
+	text-align: right;
+
+}
+
+.registration-button {
+	background-color: #e3f982;
+	color: #282826;
+	font-family: "Raleway";
+	font-size: 0.7rem;
+	letter-spacing: 0.9px;
+	border: none;
+	cursor: pointer;
+	text-decoration: none;
+}
 
 
 
@@ -190,6 +212,10 @@ input:-webkit-autofill {
 		padding: 1rem;
 	}
 
+	.registration-button {
+		font-size: 0.8rem;
+	}
+
 }
 
 
@@ -216,6 +242,10 @@ input:-webkit-autofill {
 	.form-button {
 		font-family: "Raleway";
 		font-size: 1rem;
+	}
+
+	.registration-button {
+		font-size: 0.9rem;
 	}
 
 
