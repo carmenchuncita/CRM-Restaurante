@@ -3,8 +3,6 @@
 <!--formulario reactivo con validadciones de campo requerido, número de de caracteres y pattern que debe cumplir-->
 <section class="registerFormSection">
 
-    <hr class="timeLine">
-
 <div class= "contenedor">
 
     <span class="line top-left"></span>
@@ -50,6 +48,20 @@
         }
         @if (form.get('password')?.hasError('pattern') && isSubmitted) {
             <p class="form-field--text-danger">8 caracteres, mayúsculas, minúsculas y números</p>
+        }
+
+    </div>
+
+
+    <div class="form-group">
+        <label>Telefono</label>
+        <input class = "form-input" type="text" formControlName="telefono">
+
+        @if (form.get('telefono')?.hasError('required') && isSubmitted) {
+            <p class="form-field--text-danger">Debe rellenar este campo</p>   
+        }
+        @if (form.get('telefono')?.hasError('pattern') && isSubmitted) {
+            <p class="form-field--text-danger">formato incorrecto</p>
         }
 
     </div>
