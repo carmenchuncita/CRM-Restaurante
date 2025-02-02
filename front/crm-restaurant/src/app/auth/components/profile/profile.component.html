@@ -80,7 +80,7 @@
     <figure class="reservationsFigure">
         <img class="reservationsIcon" src="imagenes/icono8.png" alt="icono reservas">
     </figure>
-    <button (click)="clickUpdateProfile()" class="updateProfileButton">
+    <button (click)="clickShowReservation()" class="updateProfileButton">
         <i class="fa-regular fa-pen-to-square"></i>
     </button>
     <h2 class ="reservationTitle">Gestiona tus reservas</h2>
@@ -91,11 +91,11 @@
 
   <!--SECCIÓN PROFILE RESEÑAS-->
 
-<section class = reviewsIconSection>
+<section  class = reviewsIconSection>
     <figure class="reviewsFigure">
         <img class="reviewsIcon" src="imagenes/icono10.png" alt="icono reseñas">
     </figure>
-    <button (click)="clickUpdateProfile()" class="updateProfileButton">
+    <button (click)="clickShowReservation()" class="updateProfileButton">
         <i class="fa-regular fa-pen-to-square"></i>
     </button>
     <h2 class ="reviewTitle">Envía una reseña</h2>
@@ -103,7 +103,23 @@
 
 </section>
 
-    <section class="reviewFormSection">
+<div [class.box-table-reservations]="isSubmittedReservationList" class="box-table-resevation-disable">
+    @for (reserva of reservationsList; track reserva; let idx = $index){
+        <p>{{reserva.table}}</p>
+        <p>{{reserva.date | date: 'd/M/y' }}</p>
+        <p>{{reserva.time}}</p>
+        <i (click)="handleCancelReservation(reserva.id, idx)" class="fa-solid fa-xmark cancel-icon"></i>
+        <i 
+  (click)="clickShowReviews()" 
+  [class.review-icon-active]="isReviewAllowed(reserva.date)" 
+  [class.review-icon-disable]="!isReviewAllowed(reserva.date)"
+  class="fa-solid fa-comment">
+</i>
+
+    }
+    </div>
+
+    <section [class.reviewFormSection]="isSubmittedReviews"class="reviewFormSection-disabled">
         <div class="reviewContenedor">
             <span class="line top-left"></span>
             <span class="line top-right"></span>
@@ -156,18 +172,6 @@
             </form>
         </div>
     </section>
-
-    <div>
-        @for (reserva of reservationsList; track reserva; let idx = $index){
-        
-        
-            <p>{{reserva.table}}</p>
-            <p>{{reserva.date | date: 'd/M/y' }}</p>
-            <p>{{reserva.time}}</p>
-            <i (click)="handleCancelReservation(reserva.id, idx)" class="fa-solid fa-xmark"></i>
-            <i class="fa-solid fa-comment"></i>
-        }
-        
-        </div>
+  
 
 </section>
