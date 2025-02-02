@@ -1,29 +1,19 @@
-.reservationSection {
+.TableListSection {
   display: flex;
   flex-direction: column;
   flex-basis: 33%;
   align-items: center;
 }
-.header{
-  display: flex;
-  flex-direction: row;
-  gap:4px;
-  align-items: center;
-  justify-content: center;
-}
-.reservations-container {
+.tables-container {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
   gap: 1rem;
   padding: 20px;
   max-width: 400px;
-
-
 }
 
-.reservation-container {
+.table-container {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -32,62 +22,55 @@
   padding: 20px;
 }
 
-.reservation-card {
-  width:245px;
-  background: #e97474;
+.table-card {
+  width: 245px;
+  background: #f9f9f9;
   border-radius: 10px;
   padding: 15px;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
   transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
 }
 
-.reservation-card h3 {
+.table-card h3 {
   font-size: 1.3rem;
   color: #333;
   margin-bottom: 10px;
   text-align: center;
 }
 
-
-.reservation-card p {
+.table-card p {
   font-size: 1rem;
   color: #555;
   line-height: 1.4;
   margin-bottom: 5px;
 }
 
-
-.reservation-card p strong {
+.table-card p strong {
   color: #222;
 }
 
-
-.no-reservations {
+.no-tables {
   text-align: center;
   font-size: 1.2rem;
   color: #777;
   margin-top: 20px;
 }
-
 @media (min-width: 768px) {
-  .reservations-container{
+  .tables-container {
     flex-direction: row;
     flex-wrap: wrap;
     max-width: 814px;
   }
-  .reservation-card {
+  .table-card {
     width: 290px;
   }
 }
 
 @media (min-width: 1024px) {
-  .reservation-card {
-    width: 211px;
+  .table-card {
+    width: 350px;
   }
-  .reservation-container {
-    padding: 0px;
-  }
-  .header{
+  .header {
     display: flex;
     flex-direction: row;
     gap: 40px;
@@ -98,6 +81,8 @@
     background: rgb(192, 185, 185);
     padding: 12px 24px;
   }
+  .filters {
+    display: flex;
+    gap: 8px;
+  }
 }
-
-

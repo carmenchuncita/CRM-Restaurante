@@ -11,11 +11,11 @@
     border-bottom: 1px solid #282826;
     transition: background-color 0.3s ease-in-out;
   }
-  
+
   .headerSection:hover {
     background-color: #eaeaea;
   }
-  
+
   .header {
     display: flex;
     justify-content: space-between;
@@ -24,42 +24,42 @@
     background-color: #f7f7f7;
     color: #282826;
   }
-  
+
   .social-icons {
     display: flex;
     gap: 15px;
   }
-  
+
   .social-icons a {
     color: #282826;
     font-size: 1.5rem;
     text-decoration: none;
     transition: color 0.3s ease-in-out, transform 0.2s ease-in-out;
   }
-  
+
   .social-icons a:hover {
     color: #ef8686;
     transform: scale(1.2);
   }
-  
+
   .logo-container {
     flex-grow: 1;
     display: flex;
     justify-content: center;
     margin-right: 50px;
   }
-  
+
   .logo {
     height: 60px;
     max-width: 100%;
     transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
   }
-  
+
   .logo:hover {
     opacity: 0.8;
     transform: scale(1.05);
   }
-  
+
   .menu-hamburguesa {
     display: flex;
     justify-content: flex-end;
@@ -73,12 +73,12 @@
     cursor: pointer;
     transition: color 0.3s ease-in-out, transform 0.2s ease-in-out;
   }
-  
+
   .hamburger-button:hover {
     color: #ef8686;
     transform: rotate(10deg) scale(1.1);
   }
-  
+
   .menu {
     position: absolute;
     top: 80px;
@@ -91,27 +91,27 @@
     border-radius: 5px;
     transition: all 0.3s ease-in-out;
   }
-  
+
   .menu[hidden] {
     display: none;
   }
-  
+
   .menu ul {
     list-style: none;
     margin: 0;
     padding: 0;
   }
-  
+
   .menu ul li {
     padding: 15px 0;
     text-align: center;
     transition: background-color 0.3s ease-in-out;
   }
-  
+
   .menu ul li:hover {
     background-color: #f0f0f0;
   }
-  
+
   .menu ul li a {
     text-decoration: none;
     color: #282826;
@@ -119,30 +119,30 @@
     font-weight: bold;
     transition: color 0.3s ease-in-out;
   }
-  
+
   .menu ul li a:hover {
     color: #ef8686;
   }
-  
+
   @media (max-width: 768px) {
     .header {
       flex-direction: column;
       align-items: center;
       padding: 10px 15px;
     }
-  
+
     .social-icons {
       margin-bottom: 10px;
     }
-  
+
     .logo-container {
       margin-bottom: 15px;
     }
-  
+
     .menu-hamburguesa {
       align-self: flex-end;
     }
-  
+
     .menu {
       width: 100%;
       top: 60px;
@@ -150,37 +150,37 @@
       border-radius: 0;
     }
   }
-  
+
   @media (max-width: 480px) {
     .header {
       flex-direction: column;
       align-items: center;
       padding: 10px;
     }
-  
+
     .social-icons {
       font-size: 1.2rem;
     }
-  
+
     .logo {
       height: 50px;
     }
-  
+
     .hamburger-button {
       font-size: 1.8rem;
     }
-  
+
     .menu {
       width: 100%;
       top: 50px;
       right: 0;
       border-radius: 0;
     }
-  
+
     .menu ul li {
       padding: 10px 0;
     }
-  
+
     .menu ul li a {
       font-size: 1.2rem;
     }
@@ -202,11 +202,31 @@
     padding: 20px;
 }
 
-
 .headerSection:hover {
-    background-color: #eaeaea;
+  background-color: #eaeaea;
 }
 
+<<<<<<< HEAD
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
+  background-color: #f7f7f7;
+  color: #282826;
+}
+
+.social-icons {
+  display: flex;
+  gap: 15px;
+}
+
+.social-icons a {
+  color: #282826;
+  font-size: 1.5rem;
+  text-decoration: none;
+  transition: color 0.3s ease-in-out, transform 0.2s ease-in-out;
+=======
 
 .sectionIcons {
     display: flex;
@@ -228,10 +248,26 @@
     font-size: 1.5rem;
     text-decoration: none;
     transition: color 0.3s ease-in-out, transform 0.2s ease-in-out;
+>>>>>>> develop
 }
 
-
 .social-icons a:hover {
+<<<<<<< HEAD
+  color: #ef8686;
+  transform: scale(1.2);
+}
+
+.logo-container {
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.logo {
+  height: 60px;
+  max-width: 100%;
+  transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+=======
     transform: scale(1.2);
 }
 
@@ -250,20 +286,38 @@
     max-width: 200px;
     height: auto;
     transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+>>>>>>> develop
 }
 
 .logo:hover {
-    opacity: 0.8;
-    transform: scale(1.05);
+  opacity: 0.8;
+  transform: scale(1.05);
 }
 
 .menu-hamburguesa {
+<<<<<<< HEAD
+  display: flex;
+  justify-content: flex-end;
+=======
     display: flex;
- 
+
+>>>>>>> develop
 }
 
-
 .hamburger-button {
+<<<<<<< HEAD
+  background: none;
+  border: none;
+  color: #282826;
+  font-size: 2rem;
+  cursor: pointer;
+  transition: color 0.3s ease-in-out, transform 0.2s ease-in-out;
+}
+
+.hamburger-button:hover {
+  color: #ef8686;
+  transform: rotate(10deg) scale(1.1);
+=======
     background: none;
     border: none;
     color: #282826;
@@ -274,10 +328,22 @@
 
 .hamburger-button:hover {
     transform: rotate(10deg) scale(1.1);
+>>>>>>> develop
 }
 
-
 .menu {
+<<<<<<< HEAD
+  position: absolute;
+  top: 80px;
+  right: 0;
+  width: 250px;
+  background: white;
+  border: 1px solid #ddd;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 15px;
+  border-radius: 5px;
+  transition: all 0.3s ease-in-out;
+=======
     position: absolute;
     top: 160.8px;
     bottom: 0;
@@ -290,13 +356,25 @@
     transition: all 0.3s ease-in-out;
     z-index: 50;
     overflow-y: auto;
+>>>>>>> develop
 }
 
 .menu[hidden] {
-    display: none;
+  display: none;
 }
 
 .menu ul {
+<<<<<<< HEAD
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.menu ul li {
+  padding: 15px 0;
+  text-align: center;
+  transition: background-color 0.3s ease-in-out;
+=======
     list-style: none;
     margin: 0;
     margin-top: 50px;
@@ -307,10 +385,87 @@
     padding: 15px 50px;
     text-align: start;
     transition: background-color 0.3s ease-in-out;
+>>>>>>> develop
 }
 
-
 .menu ul li:hover {
+<<<<<<< HEAD
+  background-color: #f0f0f0;
+}
+
+.menu ul li a {
+  text-decoration: none;
+  color: #282826;
+  font-size: 1.4rem;
+  font-weight: bold;
+  transition: color 0.3s ease-in-out;
+}
+
+.menu ul li a:hover {
+  color: #ef8686;
+}
+
+@media (max-width: 768px) {
+  .header {
+    flex-direction: column;
+    align-items: center;
+    padding: 10px 15px;
+  }
+
+  .social-icons {
+    margin-bottom: 10px;
+  }
+
+  .logo-container {
+    margin-bottom: 15px;
+  }
+
+  .menu-hamburguesa {
+    align-self: flex-end;
+  }
+
+  .menu {
+    width: 100%;
+    top: 60px;
+    right: 0;
+    border-radius: 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .header {
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+  }
+
+  .social-icons {
+    font-size: 1.2rem;
+  }
+
+  .logo {
+    height: 50px;
+  }
+
+  .hamburger-button {
+    font-size: 1.8rem;
+  }
+
+  .menu {
+    width: 100%;
+    top: 50px;
+    right: 0;
+    border-radius: 0;
+  }
+
+  .menu ul li {
+    padding: 10px 0;
+  }
+
+  .menu ul li a {
+    font-size: 1.2rem;
+  }
+=======
     background-color: #e3f982;
 }
 
@@ -455,6 +610,7 @@
     }
 
 
+>>>>>>> develop
 }
 
 

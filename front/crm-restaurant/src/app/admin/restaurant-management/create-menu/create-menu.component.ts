@@ -1,6 +1,7 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, ReactiveFormsModule } from '@angular/forms';
 import { AdminService } from './../../services/admin.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-create-menu',
@@ -13,7 +14,9 @@ export class CreateMenuComponent implements OnInit {
   @Output() closePanel: EventEmitter<boolean> = new EventEmitter<boolean>(); // Emite eventos para cerrar el panel
   form!: FormGroup;
 
-  constructor(private fb: FormBuilder, private adminService: AdminService) {}
+  constructor(
+    private fb: FormBuilder,
+    private adminService: AdminService) {}
 
   ngOnInit() {
     this.form = this.fb.group({
@@ -38,9 +41,22 @@ export class CreateMenuComponent implements OnInit {
     if (this.form.valid) {
       const newMenu = this.form.value;
       console.log('Datos enviados al backend:', newMenu);
+
       this.adminService.postMenu(newMenu).subscribe({
         next: (res) => {
           console.log('Menú creado con éxito:', res);
+
+          Swal.fire({
+            icon: 'success',
+            title: '¡Menú creado!',
+            text: 'Tu menú se ha creado con éxito.',
+            confirmButtonText: 'Aceptar'
+          }).then(() => {
+            this.form.reset();
+            //no cierra el panel//
+            this.cancel();
+          });
+
         },
         error: (err) => {
           console.error('Error al crear el menú:', err.error);
@@ -51,8 +67,7 @@ export class CreateMenuComponent implements OnInit {
     }
   }
 
-
-  cancelar() {
-    this.closePanel.emit(false); 
+  cancel() {
+    this.closePanel.emit(false);
   }
 }
