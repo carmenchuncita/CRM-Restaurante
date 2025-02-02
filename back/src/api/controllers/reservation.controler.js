@@ -1,3 +1,4 @@
+
 const Reservations = require('../models/reservation.model');
 const Users = require('../models/user.model');
 const nodemailer = require('nodemailer');
@@ -142,69 +143,68 @@ const createReservation = async (req, res) => {
 
 // Metodo para coger todas las reservas de un cliente
 const getReservations = async (req, res) => {
-  try {
-      const user = await Users.findById(req.user.user_id);
-
-      // Validar si el usuario existe 
+    try {
+        const user = await Users.findById(req.user.user_id);
+        // Validar si el usuario existe 
       if (!user) {
           return res.status(404).json({ message: "Usuario no encontrado" });
       }
+        const role = user.role;
+        const listaFinal = [];
 
-      const role = user.role;
-      const listaFinal = [];
+        if(role == 'admin'){
+            const reservations = await Reservations.find({ });
+            for (let element of reservations) {
+                const id = element.client;
+                const client = await Users.findById(id);
 
-      if (role === 'admin') {
-          const reservations = await Reservations.find({});
-          for (let element of reservations) {
-              const id = element.client;
-              const client = await Users.findById(id);
-
-              // Validar si el cliente existe
+                      // Validar si el cliente existe
               if (!client) {
-                  console.warn(`Advertencia: No se encontró el usuario con ID ${id}`);
-                  continue; 
-              }
+                console.warn(`Advertencia: No se encontró el usuario con ID ${id}`);
+                continue; 
+            }
 
-              const tableName = await Tables.findOne({ nombre: element.table });
+            const tableName = await Tables.findOne({ nombre: element.table });
+                const datos = {
+                    "id":element._id,
+                    "name" : client.name,
+                    "table": tableName ? tableName.nombre : element.table, 
+                    "telefono" : element.telefono,
+                    "date" : element.date,
+                    "time" : element.time
+                };
 
-              const datos = {
-                  "id": element._id,
-                  "name": client.name, 
-                  "table": tableName ? tableName.nombre : element.table, 
-                  "telefono": element.telefono,
-                  "date": element.date,
-                  "time": element.time
-              };
+                listaFinal.push(datos);                
+            }
 
-              listaFinal.push(datos);
-          }
-      } else {
-        const id = user._id;
-        const reservations = await Reservations.find({ client: id });
+            
+        }else{
+            const id = user._id;
+            const reservations = await Reservations.find({ client: id });
+            console.log(reservations)
 
-        for (let element of reservations) {
+            for (let element of reservations) {
 
-            const tableName = await Tables.findById(element.table);
-            const datos = {
-                "email" : user.email,
-                "table" : tableName.nombre,
-                "telefono" : element.telefono,
-                "date" : element.date,
-                "time" : element.time
-            };
+                const datos = {
+                    "id":element._id,
+                    "table" : element.table,
+                    "telefono" : element.telefono,
+                    "date" : element.date,
+                    "time" : element.time
+                };
+                console.log(datos)
 
-            if(element.canceled == false){
-                listaFinal.push(datos);
+                if(element.canceled == false){
+                    listaFinal.push(datos);
+                }
             }
         }
-      }
 
-      res.status(200).json(listaFinal);
+        res.status(200).json(listaFinal);
 
-  } catch (error) {
-      console.error("Error en getReservations:", error);
-      res.status(500).send({ message: "Error al obtener las reservas", error: error.message });
-  }
+    } catch (error) {
+        res.status(500).send({ message: "Error al obtener las reseñas", error: error.message });
+    }
 };
 
 const updateReservation = async (req, res) => {
@@ -228,7 +228,7 @@ const updateReservation = async (req, res) => {
     }
 };
 
-const deleteReservation = async (req, res) => {
+/*const deleteReservation = async (req, res) => {
     const { reservation } = req.body; 
   
     try {
@@ -242,6 +242,30 @@ const deleteReservation = async (req, res) => {
     } catch (error) {
       res.status(500).json({ message: 'Error al procesar la solicitud', error: error.message });
     }
-  };
+  };*/
+
+
+  const deleteReservation = async (req, res) => {
+    const { id } = req.body;  // Asegúrate de recibir el ID correcto
+  
+    try {
+        let reserv = await Reservations.findByIdAndUpdate(
+            id,               
+            { canceled: true },
+            { new: true } // Devuelve el objeto actualizado
+        );
+
+        if (!reserv) {
+            return res.status(404).json({ message: 'Reserva no encontrada' });
+        }
+
+        res.status(200).json({ reserv });
+  
+    } catch (error) {
+        res.status(500).json({ message: 'Error al procesar la solicitud', error: error.message });
+    }
+};
+
 
 module.exports = { createReservationClient, getReservations, updateReservation, deleteReservation};
+

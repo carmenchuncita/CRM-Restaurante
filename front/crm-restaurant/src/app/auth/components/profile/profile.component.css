@@ -283,6 +283,10 @@ label {
 	letter-spacing: 0.03rem;
 }
 
+.reviewFormSection-disabled{
+	display: none;
+}
+
 .reviewFormSection {
 	display: flex;
 	justify-content: start;
@@ -293,6 +297,7 @@ label {
 	flex-direction: column;
 	background-color: #f7f7f7;
 }
+
 
 .reviewContenedor {
 	display: flex;
@@ -430,8 +435,36 @@ input:-webkit-autofill:active {
 	background-color: #d4ffcc;
 	/* Color diferente cuando se enfoca */
 	-webkit-text-fill-color: #282826;
+
+
+	
 }
 
+.box-table-resevation-disable{
+	display: none;
+
+}
+
+.box-table-reservations{
+	display: block;
+}
+
+.cancel-icon{
+	color:  #ed5555;
+	font-weight: bold;
+	font-size: 1.4rem;
+}
+
+.review-icon-disable{
+	color:  #eaeaea;
+	pointer-events: none;
+}
+
+.review-icon-active{
+	color: #b8c94f;
+	font-weight: bold;
+	font-size: 1.4rem;
+}
 
 
 
@@ -531,6 +564,7 @@ input:-webkit-autofill:active {
 		padding: 0.7rem;
 		font-size: 1rem;
 	}
+	
 
 }
 
@@ -546,5 +580,6 @@ input:-webkit-autofill:active {
 		gap: 8%;
 		margin: 5% 0 8% 0;
 	}
+	
 
 }
