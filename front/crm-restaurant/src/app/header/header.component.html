@@ -1,40 +1,31 @@
-
-<section class="sectionIcons">
-    <div class="social-icons-top">
-        <a href="#"><i class="fab fa-facebook"></i></a>
-        <a href="#"><i class="fab fa-linkedin"></i></a> 
-        <a href="#"><i class="fab fa-instagram"></i></a>
+<section class="headerSection">
+  <header class="header">
+    <div class="social-icons">
+      <a href="#"><i class="fab fa-facebook"></i></a>
+      <a href="#"><i class="fab fa-linkedin"></i></a>
+      <a href="#"><i class="fab fa-instagram"></i></a>
     </div>
- </section>
 
-<section class="headerSection">    
-    <header class ="header">
-            <div class="social-icons">
-                <a href="#"><i class="fab fa-facebook"></i></a>
-                <a href="#"><i class="fab fa-linkedin"></i></a> 
-                <a href="#"><i class="fab fa-instagram"></i></a>
-            </div>
-         
+    <figure class="logo-container">
+      <a [routerLink]="'/home'">
+        <img
+          src="imagenes/logo_restaurante_grueso.png"
+          alt="Logo de CRM Restaurant"
+          class="logo"
+        />
+      </a>
+    </figure>
 
-        <figure class="logo-container">
-            <a [routerLink]="('/home')">
-            <img src="imagenes/logo_restaurante_grueso.png" alt="Logo de CRM Restaurant" class="logo"/>
-        </a>
-        </figure>
-
-        <div class="menu-hamburguesa">
-            <button class="hamburger-button" (click)="toggleMenu()">☰</button>
-        </div>
-
-
-    </header>   
-    <nav class="menu" [hidden]="!menuVisible">
-        <ul>
-            <li><a href="#">Menu</a></li>
-            <li><a href="#">Reservas</a></li>
-            <li><a href="#">Contacto</a></li>
-            <li><a href="#">Iniciar Sesion </a></li>
-        </ul>
-    </nav>
-
+    <div class="menu-hamburguesa">
+      <button class="hamburger-button" (click)="toggleMenu()">☰</button>
+    </div>
+  </header>
+  <nav class="menu" [hidden]="!menuVisible">
+    <ul>
+      <li><a href="#">Menu</a></li>
+      <li><a href="#">Reservas</a></li>
+      <li><a href="#">Contacto</a></li>
+      <li><a href="#">Iniciar Sesion </a></li>
+    </ul>
+  </nav>
 </section>
