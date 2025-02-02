@@ -11,20 +11,37 @@ import { CommonModule } from '@angular/common';
 })
 export class ReviewsListComponent {
   public reviewList: any[] = [];
+  public filteredReviews: any[] = [];
   private adminService: AdminService = inject(AdminService);
-  private message: string = '';
 
   ngOnInit() {
     this.adminService.getAllReviews().subscribe({
       next: (data: any) => {
         this.reviewList = data;
-        console.log("data", data);
+        this.filteredReviews = [...data];
       },
-
       error: (error: any) => {
         console.log(error);
       },
     });
+  }
 
+  getStars(rating: number): string {
+    return '★★★★★☆☆☆☆☆'.slice(5 - rating, 10 - rating);
+  }
+
+  // Filtra por mejor puntuación (5 estrellas)
+  filterBestReviews() {
+    this.filteredReviews = this.reviewList.filter(review => review.rating === 5);
+  }
+
+  // Filtra por peor puntuación (1 estrella)
+  filterWorstReviews() {
+    this.filteredReviews = this.reviewList.filter(review => review.rating === 1);
+  }
+
+  // Restablece la lista completa
+  resetFilter() {
+    this.filteredReviews = [...this.reviewList];
   }
 }

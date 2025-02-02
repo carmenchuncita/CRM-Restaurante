@@ -1,12 +1,6 @@
 <section class="TableListSection">
   <div class="header">
     <h2>Lista de Mesas</h2>
-    <div class="filters">
-      <button class="btn btn-primary">
-        <i class="fa-solid fa-filter"></i>
-        Hoy
-      </button>
-    </div>
   </div>
 
   <div class="tables-container">
@@ -24,10 +18,10 @@
           <button (click)="openEditPanelTable(table)">
             <i class="fas fa-edit"></i>
           </button>
-          <button>
+          <button (click)="deleteTable(table)">
             <i class="fas fa-trash-alt"></i>
           </button>
-          <button>
+          <button (click)="toggleAvailability(table)">
             <i
               class="fa-solid"
               [ngClass]="table.isAvailable ? 'fa-toggle-on' : 'fa-toggle-off'"
@@ -39,12 +33,12 @@
     </div>
   </div>
 
-<!-- Panel lateral -->
-<app-sidenav-panel
-  [isOpen]="isPanelOpen"
-  [title]="panelTitle"
-  [currentComponent]="panelComponent"
-  [data]="panelData"
-  (close)="closePanel()"
-></app-sidenav-panel>
+  <!-- Panel lateral -->
+  <app-sidenav-panel
+    [isOpen]="isPanelOpen"
+    [title]="panelTitle"
+    [currentComponent]="panelComponent"
+    [data]="panelData"
+    (close)="closePanel()"
+  ></app-sidenav-panel>
 </section>

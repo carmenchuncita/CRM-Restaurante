@@ -7,6 +7,7 @@ import {
 } from '@angular/forms';
 import { AdminService } from '../../services/admin.service';
 import { CommonModule } from '@angular/common';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-update-table',
@@ -16,6 +17,12 @@ import { CommonModule } from '@angular/common';
   styleUrl: './update-table.component.css'
 })
 export class UpdateTableComponent implements OnInit{
+  public tableList: any = [];
+  public isPanelOpen = false;
+  public panelTitle = '';
+  public panelComponent: any = null;
+
+
   @Input() panelData: any;
   form!: FormGroup;
 
@@ -42,18 +49,45 @@ export class UpdateTableComponent implements OnInit{
     if (this.form.valid) {
       const updatedTable = this.form.value;
       this.adminService
-        .updateTable(this.data.taleData._id, updatedTable)
+        .updateTable(this.data.tableData._id, updatedTable)
         .subscribe({
           next: (res) => {
-            console.log('Mesa actualizada con éxito:', res);
+            Swal.fire({
+              icon: 'success',
+              title: 'Mesa actualizada',
+              text: 'Los cambios se han guardado correctamente.',
+              confirmButtonText: 'Aceptar'
+            }).then(() => {
+              this.closePanel();
+            });
           },
           error: (err) => {
-            console.error('Error al actualizar el mesa:', err);
-          },
+            Swal.fire({
+              icon: 'error',
+              title: 'Error',
+              text: 'Hubo un problema al actualizar la mesa.',
+              confirmButtonText: 'Cerrar'
+            });
+            console.error('Error al actualizar la mesa:', err);
+          }
         });
     }
   }
 
+ private refreshTableList(): void {
+    this.adminService.getAllTables().subscribe((table) => {
+      this.tableList = table;
+
+    });
+  }
+
+  closePanel(): void {
+    this.isPanelOpen = false;
+    this.panelTitle = '';
+    this.panelComponent = null;
+    this.panelData = null;
+    this.refreshTableList();
+  }
   cancel() {
     this.initializeForm();
     console.log('Edición cancelada, formulario restablecido');

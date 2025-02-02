@@ -8,7 +8,8 @@
   <div class="reservations-container">
 
       <div class="reservation-container">
-        @for (reservation of reservationsList; track reservation._id) {
+        @for (reservation of reservationsList; track reservation.id) {
+
           <div class="reservation-card">
             <p><strong>Nombre:</strong> {{ reservation.name }}</p>
             <p><strong>Mesa:</strong> {{ reservation.table }}</p>

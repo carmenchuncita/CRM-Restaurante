@@ -18,8 +18,6 @@ export class TableListComponent implements OnInit {
   private adminService: AdminService = inject(AdminService);
   public tableList: any = [];
 
-
-
   public isPanelOpen = false;
   public panelTitle = '';
   public panelComponent: any = null;
@@ -28,7 +26,6 @@ export class TableListComponent implements OnInit {
   ngOnInit() {
     this.adminService.getAllTables().subscribe({
       next: (data: any) => {
-        console.log('tableData', data);
         this.tableList = data;
       },
       error: (error: any) => {
@@ -51,13 +48,13 @@ export class TableListComponent implements OnInit {
     this.panelData = null;
   }
 
-    closePanel(): void {
-      this.isPanelOpen = false;
-      this.panelTitle = '';
-      this.panelComponent = null;
-      this.panelData = null;
-      this.refreshTableList();
-    }
+  closePanel(): void {
+    this.isPanelOpen = false;
+    this.panelTitle = '';
+    this.panelComponent = null;
+    this.panelData = null;
+    this.refreshTableList();
+  }
 
   private refreshTableList(): void {
     this.adminService.getAllTables().subscribe((table) => {
@@ -66,81 +63,83 @@ export class TableListComponent implements OnInit {
     });
   }
 
-  //   deleteTable(table: any): void {
-  //     Swal.fire({
-  //       title: `¿Estás seguro de eliminar la mesa "${table.name}"?`,
-  //       text: 'Esta acción no se puede deshacer.',
-  //       icon: 'warning',
-  //       showCancelButton: true,
-  //       confirmButtonColor: '#e3f982',
-  //       cancelButtonColor: '#e3e4dc',
-  //       confirmButtonText: 'Sí, eliminar',
-  //       cancelButtonText: 'Cancelar',
-  //     }).then((result) => {
-  //       if (result.isConfirmed) {
-  //         this.adminService.deleteTables(table._id).subscribe({
-  //           next: (res) => {
-  //             Swal.fire(
-  //               'Eliminado',
-  //               'La Mesa ha sido eliminada con éxito.',
-  //               'success'
-  //             );
-  //             this.refreshTableList();
-  //           },
-  //           error: (err) => {
-  //             Swal.fire(
-  //               'Error',
-  //               'Ocurrió un error al eliminar la mesa.',
-  //               'error'
-  //             );
-  //             console.error('Error al eliminar la mesa:', err);
-  //           },
-  //         });
-  //       }
-  //     });
-  //   }
+  toggleAvailability(table: any) {
+    const newState = !table.isAvailable;
 
-  //   toggleAvailability(table: any) {
-  //     const newState = !table.isAvailable;
+    Swal.fire({
+      title: '¿Estás seguro?',
+      text: `La mesa será marcada como ${
+        newState ? 'disponible' : 'no disponible'
+      }.`,
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#e3f982',
+      cancelButtonColor: '#e3e4dc',
+      confirmButtonText: `Sí, marcar como ${
+        newState ? 'disponible' : 'no disponible'
+      }`,
+      cancelButtonText: 'Cancelar',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.adminService
+          .updateTable(table._id, { isAvailable: newState })
+          .subscribe({
+            next: (res) => {
+              Swal.fire(
+                '¡Actualizado!',
+                `La mesa ahora está ${
+                  newState ? 'disponible' : 'no disponible'
+                }.`,
+                'success'
+              );
+              table.isAvailable = newState;
+            },
+            error: (err) => {
+              Swal.fire(
+                'Error',
+                'No se pudo actualizar el estado de la mesa.',
+                'error'
+              );
+              console.error(err);
+            },
+          });
+      }
+    });
+  }
 
-  //     Swal.fire({
-  //       title: '¿Estás seguro?',
-  //       text: `La mesa será marcada como ${
-  //         newState ? 'disponible' : 'no disponible'
-  //       }.`,
-  //       icon: 'warning',
-  //       showCancelButton: true,
-  //       confirmButtonColor: '#e3f982',
-  //       cancelButtonColor: '#e3e4dc',
-  //       confirmButtonText: `Sí, marcar como ${
-  //         newState ? 'disponible' : 'no disponible'
-  //       }`,
-  //       cancelButtonText: 'Cancelar',
-  //     }).then((result) => {
-  //       if (result.isConfirmed) {
-  //         this.adminService
-  //           .updateTables(table._id, { isAvailable: newState })
-  //           .subscribe({
-  //             next: (res) => {
-  //               Swal.fire(
-  //                 '¡Actualizado!',
-  //                 `La mesa ahora está ${
-  //                   newState ? 'disponible' : 'no disponible'
-  //                 }.`,
-  //                 'success'
-  //               );
-  //               table.isAvailable = newState;
-  //             },
-  //             error: (err) => {
-  //               Swal.fire(
-  //                 'Error',
-  //                 'No se pudo actualizar el estado de la mesa.',
-  //                 'error'
-  //               );
-  //               console.error(err);
-  //             },
-  //           });
-  //       }
-  //     });
-  //   }
+  deleteTable(table: any) {
+    Swal.fire({
+      icon: 'warning',
+      title: `¿Estás seguro de eliminar la mesa "${table.nombre}"?`,
+      text: 'Esta acción no se puede deshacer.',
+      showCancelButton: true,
+      confirmButtonColor: '#e3f982',
+      cancelButtonColor: '#e3e4dc',
+      confirmButtonText: 'Sí, eliminar',
+      cancelButtonText: 'Cancelar',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.adminService.deleteTable(table._id).subscribe({
+          next: () => {
+            Swal.fire({
+              icon: 'success',
+              title: 'Mesa eliminada',
+              text: 'La mesa ha sido eliminada correctamente.',
+            }).then(() => {
+              this.refreshTableList();
+            });
+          },
+          error: (err) => {
+            Swal.fire({
+              icon: 'error',
+              title: 'Error',
+              text: 'Hubo un problema al eliminar la mesa.',
+            });
+            console.error('Error al eliminar la mesa:', err);
+          },
+        });
+      }
+    });
+  }
+
 }

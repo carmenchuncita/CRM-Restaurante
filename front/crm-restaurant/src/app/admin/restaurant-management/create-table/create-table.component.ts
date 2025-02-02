@@ -20,19 +20,8 @@ export class CreateTableComponent {
 
   ngOnInit() {
     this.form = this.fb.group({
-      name: ['', Validators.required],
-      description: ['', Validators.required],
-      price: [0, [Validators.required, Validators.min(0)]],
-      principalOptionA: ['', Validators.required],
-      principalOptionB: ['', Validators.required],
-      principalOptionC: ['', Validators.required],
-      secondOptionA: ['', Validators.required],
-      secondOptionB: ['', Validators.required],
-      secondOptionC: ['', Validators.required],
-      dessertsOptionA: ['', Validators.required],
-      dessertsOptionB: ['', Validators.required],
-      dessertsOptionC: ['', Validators.required],
-      day: ['', Validators.required],
+      nombre: ['', Validators.required],
+      capacidad: ['', Validators.required],
       isAvailable: [true],
     });
   }

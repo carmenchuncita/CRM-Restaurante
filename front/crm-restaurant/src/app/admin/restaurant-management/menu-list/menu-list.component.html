@@ -1,63 +1,71 @@
 <section class="sectionMenuList">
-  <h2>Lista de Menús</h2>
-<div class="menu-slider">
-  <button class="slider-btn prev" (click)="prevSlide()">
-    <i class="fas fa-angle-left"></i>
-  </button>
-
-  <div class="container">
-
-    <div class="menu-card" *ngFor="let menu of getVisibleMenus(); let i = index">
-      <div class="menu-content">
-      <h2 class="menu-title">{{ menu.name }}</h2>
-      <p class="menu-description">{{ menu.description }}</p>
-      <p class="menu-subtitle">Primeros</p>
-      <p class="menu-plate">{{ menu.principalOptionA }}</p>
-      <p class="menu-plate">{{ menu.principalOptionB }}</p>
-      <p class="menu-plate">{{ menu.principalOptionC }}</p>
-      <p class="menu-subtitle">Segundos</p>
-      <p class="menu-plate">{{ menu.secondOptionA }}</p>
-      <p class="menu-plate">{{ menu.secondOptionB }}</p>
-      <p class="menu-plate">{{ menu.secondOptionC }}</p>
-      <p class="menu-subtitle">Postres</p>
-      <p class="menu-plate">{{ menu.dessertsOptionA }}</p>
-      <p class="menu-plate">{{ menu.dessertsOptionB }}</p>
-      <p class="menu-plate">{{ menu.dessertsOptionC }}</p>
-      <p class="menu-subtitle">Día disponible</p>
-      <p class="menu-plate"> {{ menu.day }}</p>
-      <p class="menu-price">Precio: {{ menu.price | currency:'EUR':'symbol':'1.2-2':'es-ES' }}</p>
-    </div>
-    <div class="button-card">
-      <button (click)="openCreatePanel()">
-        <i class="fa-solid fa-plus"></i>
-      </button>
-      <button (click)="openEditPanel(menu)">
-        <i class="fas fa-edit"></i>
-      </button>
-      <button (click)="deleteMenu(menu)">
-        <i class="fas fa-trash-alt"></i>
-      </button>
-      <button (click)="toggleAvailability(menu)">
-        <i
-          class="fa-solid"
-          [ngClass]="currentMenu.isAvailable ? 'fa-toggle-on' : 'fa-toggle-off'"
-        ></i>
-      </button>
-    </div>
+  <div class="header">
+    <h2>Lista de Reseñas</h2>
   </div>
-</div>
-  <button class="slider-btn next" (click)="nextSlide()">
-    <i class="fa-solid fa-angle-right"></i>
-  </button>
-</div>
+  <div class="menu-slider">
+    <button class="slider-btn prev" (click)="prevSlide()">
+      <i class="fas fa-angle-left"></i>
+    </button>
 
-<!-- Panel lateral -->
-<app-sidenav-panel
-  [isOpen]="isPanelOpen"
-  [title]="panelTitle"
-  [currentComponent]="panelComponent"
-  [data]="panelData"
-  (close)="closePanel()"
-></app-sidenav-panel>
+    <div class="container">
+      <div
+        class="menu-card"
+        *ngFor="let menu of getVisibleMenus(); let i = index"
+      >
+        <div class="menu-content">
+          <h2 class="menu-title">{{ menu.name }}</h2>
+          <p class="menu-description">{{ menu.description }}</p>
+          <p class="menu-subtitle">Primeros</p>
+          <p class="menu-plate">{{ menu.principalOptionA }}</p>
+          <p class="menu-plate">{{ menu.principalOptionB }}</p>
+          <p class="menu-plate">{{ menu.principalOptionC }}</p>
+          <p class="menu-subtitle">Segundos</p>
+          <p class="menu-plate">{{ menu.secondOptionA }}</p>
+          <p class="menu-plate">{{ menu.secondOptionB }}</p>
+          <p class="menu-plate">{{ menu.secondOptionC }}</p>
+          <p class="menu-subtitle">Postres</p>
+          <p class="menu-plate">{{ menu.dessertsOptionA }}</p>
+          <p class="menu-plate">{{ menu.dessertsOptionB }}</p>
+          <p class="menu-plate">{{ menu.dessertsOptionC }}</p>
+          <p class="menu-subtitle">Día disponible</p>
+          <p class="menu-plate">{{ menu.day }}</p>
+          <p class="menu-price">
+            Precio:
+            {{ menu.price | currency : "EUR" : "symbol" : "1.2-2" : "es-ES" }}
+          </p>
+        </div>
+        <div class="button-card">
+          <button (click)="openCreatePanel()">
+            <i class="fa-solid fa-plus"></i>
+          </button>
+          <button (click)="openEditPanel(menu)">
+            <i class="fas fa-edit"></i>
+          </button>
+          <button (click)="deleteMenu(menu)">
+            <i class="fas fa-trash-alt"></i>
+          </button>
+          <button (click)="toggleAvailability(menu)">
+            <i
+              class="fa-solid"
+              [ngClass]="
+                currentMenu.isAvailable ? 'fa-toggle-on' : 'fa-toggle-off'
+              "
+            ></i>
+          </button>
+        </div>
+      </div>
+    </div>
+    <button class="slider-btn next" (click)="nextSlide()">
+      <i class="fa-solid fa-angle-right"></i>
+    </button>
+  </div>
 
+  <!-- Panel lateral -->
+  <app-sidenav-panel
+    [isOpen]="isPanelOpen"
+    [title]="panelTitle"
+    [currentComponent]="panelComponent"
+    [data]="panelData"
+    (close)="closePanel()"
+  ></app-sidenav-panel>
 </section>

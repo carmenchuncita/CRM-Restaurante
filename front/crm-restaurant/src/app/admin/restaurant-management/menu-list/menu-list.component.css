@@ -4,9 +4,17 @@
   flex-basis: 33%;
   align-items: center;
 
-  h2 {
-    margin-top: 20px;
-  }
+}
+.header {
+  display: flex;
+  flex-direction: row;
+  gap: 40px;
+  align-items: center;
+  justify-content: space-between;
+  width: 95%;
+  height: 40px;
+  background: rgb(192, 185, 185);
+  padding: 12px 24px;
 }
 .menu-slider {
   display: flex;
@@ -15,7 +23,7 @@
   position: relative;
   overflow: hidden;
   width: 100%;
- 
+
 }
 .container {
   width: 100%;

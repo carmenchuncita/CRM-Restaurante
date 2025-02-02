@@ -29,14 +29,6 @@ export const AUTH_ROUTES: Routes = [
 
 },
 
-<<<<<<< HEAD
-{
-    path: 'actualizar-contrasena',
-    component: UpdatePasswordComponent
-
-}
-=======
->>>>>>> develop
 
 
 ];

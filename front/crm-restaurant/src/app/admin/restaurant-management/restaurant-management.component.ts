@@ -11,8 +11,8 @@ import { TableListComponent } from './table-list/table-list.component';
   imports: [
     MenuListComponent,
     MatDialogModule,
-    // // ReservationsListComponent,
-    // ReviewsListComponent,
+    ReservationsListComponent,
+    ReviewsListComponent,
     TableListComponent,
   ],
   templateUrl: './restaurant-management.component.html',

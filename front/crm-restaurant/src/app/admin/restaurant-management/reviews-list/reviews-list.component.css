@@ -3,7 +3,6 @@
   flex-direction: column;
   flex-basis: 33%;
   align-items: center;
-  padding-top: 20px;
 }
 .reviews-container {
   display: flex;
