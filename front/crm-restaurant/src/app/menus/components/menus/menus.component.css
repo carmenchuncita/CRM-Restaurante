@@ -2,6 +2,7 @@
   background-color: #f7f7f7;
   width: 100%;
   height: 100%;
+  padding-top: 24px;
 }
 
 .dayMenuSection {
@@ -12,7 +13,7 @@
   margin: 48px 24px 86px 24px;
 }
 .title-section {
-  color:#282826 ;
+  color: #282826;
   font-size: 38px;
   font-weight: 500;
   text-align: center;
@@ -21,6 +22,7 @@
 
 .contenedor {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   position: relative;
@@ -30,7 +32,6 @@
   border-right: 1px solid #282826;
   border-left: 1px solid #282826;
   padding: 24px 0px;
-
 }
 
 .main-content {
@@ -39,9 +40,9 @@
   align-items: center;
   flex-direction: column;
   width: 70%;
-  background-color: var(--green-primary);
   padding: 0px 24px;
-
+  position: relative;
+  top: -35px;
 }
 
 .menu-card {
@@ -52,19 +53,20 @@
   width: 100%;
   height: 100%;
   gap: 8px;
-  padding: 48px 0px 58px 0px;
+  padding: 48px 24px 58px 24px;
+  background-color: var(--green-primary);
 
   .card-title {
     font-weight: 600;
     font-size: 18px;
     margin-bottom: 12px;
+    text-align: center;
   }
 
   .card-description {
     font-size: 14px;
-   font-style: italic;
+    font-style: italic;
     text-align: center;
-
   }
 
   .card-price {
@@ -132,7 +134,7 @@
     padding: 0.7rem;
     background-color: var(--dark-black);
     border: 1px solid var(--dark-black);
-    color: var(--green-primary);;
+    color: var(--green-primary);
     font-family: "Raleway";
     font-size: 0.9rem;
     letter-spacing: 0.9px;
@@ -142,8 +144,6 @@
       background-color: var(--green-primary);
       border: 1px solid var(--black-secondary);
       color: var(--black-secondary);
-
-
     }
   }
 }
@@ -159,16 +159,13 @@
     height: 50%;
   }
 
-  .main-content {
+  .menu-card {
+    padding: 48px 0px 58px 0px;
   }
 }
 
 @media (min-width: 1024px) {
   .contenedor {
     width: 40%;
-  
-  }
-
-  .main-content {
   }
 }

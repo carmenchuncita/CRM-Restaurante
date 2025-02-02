@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import { inject } from '@angular/core';
 import { AdminService } from '../../services/admin.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-reviews-list',
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './reviews-list.component.html',
   styleUrl: './reviews-list.component.css'
 })
@@ -13,7 +14,7 @@ export class ReviewsListComponent {
   private adminService: AdminService = inject(AdminService);
   private message: string = '';
 
-  OnInit() {
+  ngOnInit() {
     this.adminService.getAllReviews().subscribe({
       next: (data: any) => {
         this.reviewList = data;

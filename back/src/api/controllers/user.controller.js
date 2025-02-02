@@ -265,8 +265,10 @@ const getReviews = async (req, res) => {
         for (let element of reviews) {
           const id = element.reviwer;
           const reviwer = await Users.findById(id);
+          console.log("reviwer",reviwer);
 
-          const datos = {"Escritor" : reviwer.name,
+          const datos = {
+            "Escritor" : reviwer.name,
             "rating" : element.rating,
             "description" : element.description
           };

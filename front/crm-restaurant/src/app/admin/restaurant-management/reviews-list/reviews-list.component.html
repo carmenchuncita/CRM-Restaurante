@@ -17,21 +17,22 @@
     </div>
   </div>
   <div class="reviews-container">
-    @if (reviewList.length > 0) {
+
       <div class="reservation-container">
         @for (review of reviewList; track review._id) {
           <div class="review-card">
 
             <p><strong>Cliente:</strong> {{ review.reviwer }}</p>
+            <p><strong>Reservado:</strong> {{ review.reservation }}</p>
             <p><strong>Puntuación:</strong> {{ review.rating }}</p>
             <p><strong>Descripción:</strong> {{ review.description }}</p>
 
           </div>
         }
       </div>
-    } @else {
-      <p class="no-reviews">No hay reseñas disponibles</p>
-    }
+
+     
+
   </div>
 </section>
 

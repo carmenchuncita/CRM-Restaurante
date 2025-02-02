@@ -41,7 +41,7 @@
   align-items: center;
   position: relative;
   width: 85%;
-  height: 66%;
+  height: 40%;
   background-color: var(--black-primary);
   border-right: 1px solid var(--green-primary);
   border-left: 1px solid var(--green-primary);
@@ -87,12 +87,14 @@ img {
   right: 0;
 }
 
-
 .content {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  position: relative;
+  top: -9%;
+
   h1 {
     color: var(--green-primary);
     font-size: 3rem;
@@ -111,9 +113,8 @@ img {
   position: fixed;
   top: 0;
   right: 0;
-  width: 50vw;
+  width: 85vw;
   height: 100vh;
-
   box-shadow: -4px 0 10px rgba(0, 0, 0, 0.1);
   transform: translateX(100%);
   transition: transform 0.3s ease-in-out;
@@ -128,8 +129,7 @@ img {
   background-position: center center;
   background-blend-mode: multiply;
   color: white;
-  display: flex
-;
+  display: flex;
 
 }
 
@@ -167,48 +167,50 @@ background-color: rgba(255, 255, 255, 0.685);
 }
 
 
-@media (min-width: 768px) {
+@media (min-width: 767px) {
   .timeLine {
     width: 70%;
     margin-top: 10%;
   }
+
   img {
     max-width: 100%;
   }
 
   .contenedor {
     width: 70%;
-    height: 71%;
-    margin: 5% 0 0% 0;
-    padding: 22px 40px 0px 40px;
+    height: 48%;
+    padding: 0px 40px 0px 40px;
   }
-  h1 {
-    color: var(--green-primary);
-    font-size: 3.5rem;
-    font-weight: 700;
-    margin: 0px 0px 20px 0px;
+
+  .content {
+    h1 {
+      color: var(--green-primary);
+      font-size: 4rem;
+      font-weight: 700;
+      margin: 0px 0px 20px 0px;
+    }
   }
+
   .hamburguer {
     position: relative;
+    font-size: 43px;
+  }
+
+  .menu {
+    width: 63vw;
+  }
+  .rrss {
+    gap: 20px;
+    a{
+      i {
+        font-size: 26px;
+      }
+    }
   }
 
 }
 @media (min-width: 1024px) {
-  .contenedor {
-    width: 100%;
-    height: 66%;
-    margin: 0px;
-    padding: 0px 80px 80px 80px;
-
-    h1 {
-      color: var(--green-primary);
-      font-size: 76px;
-      letter-spacing: 14px;
-      font-weight: 700;
-      margin: 0px 0px 20px 0px;
-      padding: 0px
-    }
-  }
   .main-content {
     gap: 108px;
     height: 62%;
@@ -221,14 +223,34 @@ background-color: rgba(255, 255, 255, 0.685);
         }
       }
     }
-    .hamburguer {
-      font-size: 40px;
+
+  }
+  .contenedor {
+    width: 100%;
+    height: 66%;
+    margin: 0px;
+    padding: 0px 80px 80px 80px;
+
+
+    h1 {
+      color: var(--green-primary);
+      font-size: 76px;
+      letter-spacing: 14px;
+      font-weight: 700;
+      margin: 0px 0px 20px 0px;
+      padding: 0px
     }
+  }
+  .content {
+    top:0;
   }
   .hamburguer {
     font-size: 58px;
   }
   .rrss {
     gap: 37px;
+  }
+  .menu {
+    width: 50vw;
   }
 }
