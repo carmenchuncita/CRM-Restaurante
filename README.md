@@ -1,146 +1,144 @@
-# Documentación del Proyecto: CMR CODE RESTAURANT
+# Documentación del Frontend: CMR CODE RESTAURANT
 
 ## 1. Descripción General
-**CMR CODE RESTAURANT** es una API desarrollada para gestionar reservas de mesas y menús en un restaurante. Los usuarios pueden registrarse, iniciar sesión y hacer reservas, mientras que los administradores pueden gestionar menús, mesas y reservas. 
+El frontend de **CMR CODE RESTAURANT** fue desarrollado en **Angular** y proporciona una interfaz de usuario para la gestión de menús, reservas y usuarios del restaurante. Incluye autenticación, manejo de permisos y paneles interactivos para administradores y clientes.
 
 ### Características principales:
-- Registro e inicio de sesión con autenticación JWT.
-- Creación y gestión de menús.
-- Creación y asignación de mesas con disponibilidad.
-- Reservas de mesas por parte de clientes.
-- Reseñas y valoraciones de los clientes.
-- Gestión de roles (cliente/admin) y permisos de acceso.
+- Desarrollo basado en **componentes** con Angular.
+- Uso de **Angular Material** para la interfaz.
+- Notificaciones con **SweetAlert**.
+- Autenticación y protección de rutas con **Guards**.
+- Gestión de estados mediante servicios.
 
 ---
 
 ## 2. Tecnologías Utilizadas
-- **Node.js** con **Express** para el backend.
-- **MongoDB** como base de datos.
-- **Mongoose** para la manipulación de datos.
-- **JWT (Json Web Token)** para autenticación.
-- **bcrypt.js** para encriptación de contraseñas.
-- **Nodemailer** para el envío de correos.
+- **Angular** (Framework frontend basado en TypeScript).
+- **Angular Material** (Componentes UI para el diseño del frontend).
+- **SweetAlert** (Alertas interactivas y personalizables).
+- **RxJS** (Manejo de flujos asíncronos y suscripciones en Angular).
+- **RouterModule** (Sistema de enrutamiento en Angular).
 
 ---
 
-## 3. Modelos de Datos
+## 3. Estructura del Proyecto
 
-### 3.1. Modelo de Usuario (`User`)
-```json
-{
-  "name": "string",
-  "email": "string",
-  "password": "string",
-  "role": "client" | "admin",
-  "telefono": "string"
-}
+```
+/front
+├── src/
+│   ├── app/
+│   │   ├── about-us/ (Sección sobre el restaurante)
+│   │   ├── admin/ (Panel de administración y gestión)
+│   │   ├── error404/ (Página de error 404 personalizada)
+│   │   ├── footer/ (Pie de página con información del restaurante)
+│   │   ├── header/ (Encabezado y menú de navegación)
+│   │   ├── home/ (Página de inicio con presentación del restaurante)
+│   │   ├── main/ (Vista principal con estructura general)
+│   │   ├── menus/ (Sección de menús del restaurante)
+│   │   ├── reservations/ (Módulo de reservas de mesas)
+│   │   ├── app.routes.ts (Enrutamiento de la aplicación)
+│   │   ├── app.module.ts (Módulo principal de Angular)
+│   ├── environments/ (Configuraciones de entornos de desarrollo y producción)
+│   ├── index.html (Página principal de la aplicación)
+│   ├── main.ts (Punto de entrada de la aplicación Angular)
+
+---
+
+## 4. Componentes Principales
+
+### 4.1. **Menú**
+- `CreateMenuComponent`: Formulario para crear menús.
+- `UpdateMenuComponent`: Edición de menús.
+- `DeleteMenuComponent`: Eliminación de menús con confirmación en SweetAlert.
+- `MenuListComponent`: Lista de menús disponibles con opción de paginación y edición.
+
+### 4.2. **Reservas**
+- `ReservationsListComponent`: Lista de reservas realizadas por los clientes.
+- `ReservationsComponent`: Formulario para realizar reservas.
+
+### 4.3. **Reseñas**
+- `ReviewsListComponent`: Muestra reseñas de clientes.
+
+### 4.4. **Autenticación y Usuarios**
+- `LoginComponent`: Formulario de inicio de sesión con validación.
+- `RegisterComponent`: Formulario de registro de usuarios.
+- `ProfileComponent`: Sección de perfil de usuario.
+- `UpdatePasswordComponent`: Cambio de contraseña.
+
+### 4.5. **Panel de Administración**
+- `SidenavPanelComponent`: Panel lateral para navegación y selección de opciones de administración.
+- `RestaurantManagementComponent`: Gestión centralizada de menús y reservas.
+
+---
+
+## 5. Enrutamiento (Routes)
+
+### 5.1. **Administración** (`ADMIN_ROUTES`)
+```ts
+export const ADMIN_ROUTES: Routes = [
+  { path: 'management', component: RestaurantManagementComponent, canActivate: [authGuard] },
+  { path: 'create-menu', component: CreateMenuComponent, canActivate: [authGuard] },
+  { path: 'delete-menu/:id', component: DeleteMenuComponent, canActivate: [authGuard] },
+  { path: 'update-menu/:id', component: UpdateMenuComponent, canActivate: [authGuard] },
+];
 ```
 
-### 3.2. Modelo de Menú (`Menu`)
-```json
-{
-  "name": "string",
-  "description": "string",
-  "price": "number",
-  "principalOptionA": "string",
-  "principalOptionB": "string",
-  "principalOptionC": "string",
-  "secondOptionA": "string",
-  "secondOptionB": "string",
-  "secondOptionC": "string",
-  "dessertsOptionA": "string",
-  "dessertsOptionB": "string",
-  "dessertsOptionC": "string",
-  "day": "string",
-  "isAvailable": "boolean"
-}
+### 5.2. **Autenticación** (`AUTH_ROUTES`)
+```ts
+export const AUTH_ROUTES: Routes = [
+  { path: 'register', component: RegisterComponent },
+  { path: 'login', component: LoginComponent },
+  { path: 'profile', component: ProfileComponent, canActivate: [authGuard] },
+  { path: 'actualizar-contrasena', component: UpdatePasswordComponent },
+];
 ```
 
-### 3.3. Modelo de Mesa (`Mesa`)
-```json
-{
-  "nombre": "string",
-  "capacidad": "number",
-  "isAvailable": "boolean"
-}
-```
+---
 
-### 3.4. Modelo de Reservas (`Reservation`)
-```json
-{
-  "client": "UserID",
-  "table": "MesaID",
-  "email": "string",
-  "date": "string",
-  "time": "string",
-  "canceled": "boolean"
-}
-```
+## 6. Servicios
+- `AdminService`: Maneja las peticiones al backend para la creación, edición y eliminación de menús.
+- `AuthService`: Gestión de autenticación y verificación de usuarios.
+- `ReservationsService`: Manejo de reservas.
 
-### 3.5. Modelo de Reseñas (`Review`)
-```json
+---
+
+## 7. Seguridad y Protección de Rutas
+Se utilizan **Guards** para proteger las rutas:
+- `authGuard`: Protege rutas que requieren autenticación.
+- `adminGuard`: Restringe acceso a secciones administrativas.
+
+Ejemplo de protección de ruta:
+```ts
 {
-  "reviwer": "UserID",
-  "reservation": "ReservationID",
-  "rating": "number",
-  "description": "string"
+  path: 'management',
+  component: RestaurantManagementComponent,
+  canActivate: [authGuard]
 }
 ```
 
 ---
 
-## 4. Endpoints de la API
+## 8. Instalación y Ejecución
+### **1️⃣ Clonar el repositorio**
+```bash
+git clone https://github.com/carmenchuncita/CRM-Restaurante.git
+cd front
+```
 
-### 4.1. Autenticación
-| Método | Ruta              | Descripción |
-|---------|------------------|-------------|
-| POST    | `/auth/register` | Registro de usuario |
-| POST    | `/auth/login`    | Inicio de sesión y obtención de token |
-| GET     | `/auth/verify`   | Verificación de token JWT |
-| GET     | `/auth/profile`  | Obtener perfil del usuario |
+### **2️⃣ Instalar dependencias**
+```bash
+npm install
+```
 
-### 4.2. Gestión de Menús
-| Método | Ruta                | Descripción |
-|---------|--------------------|-------------|
-| GET     | `/menus`           | Obtener todos los menús |
-| GET     | `/menus/:id`       | Obtener un menú por ID |
-| POST    | `/menus`           | Crear un menú (requiere rol admin) |
-| PUT     | `/menus/:id`       | Actualizar un menú (requiere rol admin) |
-| DELETE  | `/menus/:id`       | Eliminar un menú (requiere rol admin) |
+### **3️⃣ Ejecutar la aplicación**
+```bash
+ng serve
+```
 
-### 4.3. Gestión de Mesas
-| Método | Ruta                | Descripción |
-|---------|--------------------|-------------|
-| GET     | `/mesas`           | Obtener todas las mesas |
-| GET     | `/mesas/:id`       | Obtener una mesa por ID |
-| POST    | `/mesas`           | Crear una nueva mesa (requiere rol admin) |
-| PUT     | `/mesas/:id`       | Actualizar una mesa (requiere rol admin) |
-| DELETE  | `/mesas/:id`       | Eliminar una mesa (requiere rol admin) |
-
-### 4.4. Gestión de Reservas
-| Método | Ruta                | Descripción |
-|---------|--------------------|-------------|
-| POST    | `/reservas`        | Crear una reserva |
-| GET     | `/reservas`        | Obtener reservas del usuario |
-| PUT     | `/reservas/:id`    | Modificar una reserva |
-| DELETE  | `/reservas/:id`    | Cancelar una reserva |
-
-### 4.5. Gestión de Reseñas
-| Método | Ruta                | Descripción |
-|---------|--------------------|-------------|
-| POST    | `/reviews`         | Crear una reseña (requiere reserva previa) |
-| PUT     | `/reviews/:id`     | Modificar una reseña |
-| GET     | `/reviews`         | Obtener reseñas |
+La aplicación estará disponible en `http://localhost:4200/`.
 
 ---
 
-## 5. Seguridad y Autenticación
-- Todas las rutas protegidas requieren un **token JWT**.
-- Los administradores pueden gestionar menús, mesas y reservas.
-- Los clientes solo pueden hacer reservas, dejar reseñas y ver menús.
-
----
-
-## 6. Conclusión
-Este sistema permite gestionar de manera eficiente las reservas y administración de un restaurante, asegurando seguridad, disponibilidad y una experiencia optimizada para los usuarios y administradores.
+## 9. Conclusión
+El frontend de **CMR CODE RESTAURANT** proporciona una experiencia fluida para la gestión de reservas y menús, asegurando una buena experiencia para administradores y clientes mediante Angular, Angular Material y SweetAlert. 🚀
 
