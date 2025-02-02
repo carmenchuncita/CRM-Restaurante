@@ -22,10 +22,10 @@
   </header>
   <nav class="menu" [hidden]="!menuVisible">
     <ul>
-      <li><a href="#">Menu</a></li>
-      <li><a href="#">Reservas</a></li>
-      <li><a href="#">Contacto</a></li>
-      <li><a href="#">Iniciar Sesion </a></li>
+      <li (click)="closeMenu()"><a [routerLink]="'/about-us'">Experiencia Code</a></li>
+      <li (click)="closeMenu()"><a [routerLink]="'/menudeldia'">Menú del día</a></li>
+      <li (click)="closeMenu()"><a [routerLink]="'/reservas'">Reserva</a></li>
+      <li (click)="closeMenu()"><a [routerLink]="'/auth/login'">Inicia Sesión</a></li>
     </ul>
   </nav>
 </section>

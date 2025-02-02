@@ -7,7 +7,7 @@
 .headerSection {
   width: 100%;
   background-color: #f7f7f7;
-  border-bottom: 1px solid #282826;
+  border-bottom: 1px solid var(--black-primary);
   transition: background-color 0.3s ease-in-out;
 }
 
