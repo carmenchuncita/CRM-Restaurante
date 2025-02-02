@@ -1,3 +1,4 @@
+
 const Reservations = require('../models/reservation.model');
 const Users = require('../models/user.model');
 const nodemailer = require('nodemailer');
@@ -7,6 +8,7 @@ const Tables = require('../models/mesa.model');
 // Crear un nuevo menú estnado logueado
 const createReservationClient = async (req, res) => {
     const { table, telefono, date, time } = req.body;
+    console.log(table,telefono,date,time)
 
     const user = await Users.findById(req.user.user_id);
     const client = req.user.user_id;
@@ -15,16 +17,17 @@ const createReservationClient = async (req, res) => {
 
     try {
         const reservationList = await Reservations.find({ });
-
-        reservationList.forEach(element => {
-            const dateFormat = new Date(date);
-            
-            if(element.table == table 
-                && element.date.getTime() == dateFormat.getTime() 
-                && element.time == time){
-                res.status(401).send({ message: "Ya hay una reserva en ese momento", error: error.message });
-            }
-        });
+        const dateFormat = new Date(date);
+        for (const element of reservationList) {
+          if (
+              element.table == table &&
+              element.date.getTime() == dateFormat.getTime() &&
+              element.time == time
+          ) {
+              console.log("estoy dentro");
+              return res.status(401).send({ message: "Ya hay una reserva en ese momento" });
+          }
+      }
 
         const newReservation = new Reservations({ 
             client,
@@ -62,16 +65,17 @@ const createReservationClient = async (req, res) => {
                 <p>Detalles de su reserva:</p>
                 <ul style="list-style: none; padding: 0;">
                   <li>🪑 <strong>Mesa:</strong> ${table} comensales</li>
-                  <li>📅 <strong>Fecha:</strong> ${date} por la ${time}</li>
+                  <li>📅 <strong>Fecha:</strong> ${date} en turno de ${time}</li>
                   <li>📧 <strong>Correo:</strong> ${email}</li>
                 </ul>
               </div>
             `, // HTML
           });
           //Creacion del correo para el usuario
+          console.log(user.email)
           const reservaUser = await transporter.sendMail({
             from: 'josh@gmail.com', // Dirección del remitente
-            to: `${email}`, // Lista de destinatarios
+            to: `${user.email}`, // Lista de destinatarios
             subject: 'Reserva code experience', // Asunto del correo
             html: 
             `
@@ -81,10 +85,10 @@ const createReservationClient = async (req, res) => {
                 <p>Te confirmamos los detalles de tu reserva:</p>
                 <ul style="list-style: none; padding: 0;">
                   <li>🪑 <strong>Mesa:</strong> ${table} comensales</li>
-                  <li>📅 <strong>Fecha:</strong> ${date} por la ${time}</li>
+                  <li>📅 <strong>Fecha:</strong> ${date} en turno de ${time}</li>
                 </ul>
                 <p>Si necesitas modificar o cancelar tu reserva, contáctanos.</p>
-                <p>📞 Teléfono: 123-456-789</p>
+                <p>📞 Teléfono: +34 609 77 44 55 </p>
                 <p>¡Te esperamos pronto! 😊</p>
               </div>
             `, // HTML
@@ -98,7 +102,7 @@ const createReservationClient = async (req, res) => {
 
         res.status(201).send({ message: "Reserva creado con éxito", reservation: newReservation });
     } catch (error) {
-        res.status(400).send({ message: "Error al crear la reserva", error: error.message });
+        res.status(400).send({ message: "Error al crear la reserva", error: error.message});
     }
 };
 
@@ -141,6 +145,10 @@ const createReservation = async (req, res) => {
 const getReservations = async (req, res) => {
     try {
         const user = await Users.findById(req.user.user_id);
+        // Validar si el usuario existe 
+      if (!user) {
+          return res.status(404).json({ message: "Usuario no encontrado" });
+      }
         const role = user.role;
         const listaFinal = [];
 
@@ -150,9 +158,17 @@ const getReservations = async (req, res) => {
                 const id = element.client;
                 const client = await Users.findById(id);
 
-                const tableName = await Tables.findById(element.table);
-                const datos = {"email" : client.email,
-                    "table" : tableName.nombre,
+                      // Validar si el cliente existe
+              if (!client) {
+                console.warn(`Advertencia: No se encontró el usuario con ID ${id}`);
+                continue; 
+            }
+
+            const tableName = await Tables.findOne({ nombre: element.table });
+                const datos = {
+                    "id":element._id,
+                    "name" : client.name,
+                    "table": tableName ? tableName.nombre : element.table, 
                     "telefono" : element.telefono,
                     "date" : element.date,
                     "time" : element.time
@@ -165,16 +181,18 @@ const getReservations = async (req, res) => {
         }else{
             const id = user._id;
             const reservations = await Reservations.find({ client: id });
+            console.log(reservations)
 
             for (let element of reservations) {
 
-                const tableName = await Tables.findById(element.table);
-                const datos = {"email" : user.email,
-                    "table" : tableName.nombre,
+                const datos = {
+                    "id":element._id,
+                    "table" : element.table,
                     "telefono" : element.telefono,
                     "date" : element.date,
                     "time" : element.time
                 };
+                console.log(datos)
 
                 if(element.canceled == false){
                     listaFinal.push(datos);
@@ -210,7 +228,7 @@ const updateReservation = async (req, res) => {
     }
 };
 
-const deleteReservation = async (req, res) => {
+/*const deleteReservation = async (req, res) => {
     const { reservation } = req.body; 
   
     try {
@@ -224,6 +242,30 @@ const deleteReservation = async (req, res) => {
     } catch (error) {
       res.status(500).json({ message: 'Error al procesar la solicitud', error: error.message });
     }
-  };
+  };*/
+
+
+  const deleteReservation = async (req, res) => {
+    const { id } = req.body;  // Asegúrate de recibir el ID correcto
+  
+    try {
+        let reserv = await Reservations.findByIdAndUpdate(
+            id,               
+            { canceled: true },
+            { new: true } // Devuelve el objeto actualizado
+        );
+
+        if (!reserv) {
+            return res.status(404).json({ message: 'Reserva no encontrada' });
+        }
+
+        res.status(200).json({ reserv });
+  
+    } catch (error) {
+        res.status(500).json({ message: 'Error al procesar la solicitud', error: error.message });
+    }
+};
+
 
 module.exports = { createReservationClient, getReservations, updateReservation, deleteReservation};
+

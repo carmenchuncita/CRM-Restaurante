@@ -1,12 +1,14 @@
+import { ReservationsService } from './../../../reservations/services/reservations.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { Component, inject } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import Swal from 'sweetalert2';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-profile',
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, DatePipe],
   templateUrl: './profile.component.html',
   styleUrl: './profile.component.css'
 })
@@ -15,6 +17,7 @@ export class ProfileComponent {
  
   private activatedRoute: ActivatedRoute = inject(ActivatedRoute)
   private authService: AuthService = inject(AuthService)
+  private reservationsService: ReservationsService = inject(ReservationsService)
   private router: Router = inject(Router)
 
   public id!: string;
@@ -22,8 +25,11 @@ export class ProfileComponent {
   public userData: any = { user: {} };
   public isSubmittedUpdate: boolean = false;
   public isSubmittedReview: boolean = false;
+  public isSubmittedReservationList: boolean = false;
+  public isSubmittedReviews: boolean = false;
   private message: string = ''
   public errorMessage: string = ''
+  public reservationsList: any[] = [];
 
   
 
@@ -52,6 +58,22 @@ export class ProfileComponent {
         }
       })
     });
+
+   this.reservationsService.getReservations().subscribe({
+    next: (data:any) => {
+      console.log(data)
+      localStorage.setItem('id_reservation', data.id)
+    
+      this.reservationsList = data  
+      
+     
+    },
+    error: (error:any) => {
+      console.log(error.error)
+    }
+
+   })
+
   }
 
   //evento click del botton editar del profile data para mostrarlo solo cuanto se produce el eventoclik 
@@ -134,6 +156,44 @@ handleUpdateProfileForm() {
     });
   }
 }
+
+
+
+
+
+
+
+
+clickShowReservation(){
+  this.isSubmittedReservationList = !this.isSubmittedReservationList
+  console.log(this.isSubmittedReservationList)
+
+}
+
+
+
+// Función que verifica si la fecha de la reserva ya ha pasado o es hoy
+isReviewAllowed(reservationDate: string): boolean {
+  const today = new Date(); // Obtener la fecha actual
+  today.setHours(0, 0, 0, 0);  // Normalizar la fecha actual a las 00:00:00 para no considerar las horas
+  
+  const resDate = new Date(reservationDate); // Obtener la fecha de la reserva
+  resDate.setHours(0, 0, 0, 0);  // Normalizar la fecha de la reserva a las 00:00:00 para no considerar las horas
+  
+  // Comparar si la fecha de la reserva es igual o posterior a la fecha actual
+  return resDate <= today;  // El icono se activa si la fecha de la reserva ya pasó o es hoy
+}
+
+
+
+clickShowReviews(){
+  
+  this.isSubmittedReviews = !this.isSubmittedReviews
+  console.log(this.isSubmittedReviews)
+
+}
+
+
 
   // me permite crear una nueva reseña, si el id del usuario es igual al id de alguna de las reseñas existentes en la BBDD entonces devuelve el error Ya ha hecho una reseña y  no permite crear la reseña lo que hace es ejecutar el método updateReview para actualizarla. 
 
@@ -226,6 +286,27 @@ updateReview() {
     });
   }
 
+
+  // elminar reservas
+
+  handleCancelReservation(id:string, idx:any){
+
+    this.reservationsService.deleteReservation(id).subscribe({
+      next: (data:any) => {
+        console.log(data)
+        
+       
+      },
+      error: (error:any) => {
+        console.log(error.error)
+      }
+
+    })
+    console.log(idx)
+    this.reservationsList = this.reservationsList.filter((reserva: any, index) => index !== idx)
+
+  }
+
   // método para el LogOut del usuario que redirege a la home
 
   handleLogOut(){
@@ -235,8 +316,8 @@ updateReview() {
   localStorage.removeItem('email')
   localStorage.removeItem('id')
   localStorage.removeItem('role')
+  localStorage.removeItem('id_reservation')
   this.router.navigate(['/home']) 
-
 }
 
 }

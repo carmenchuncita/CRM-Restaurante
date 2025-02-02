@@ -1,12 +1,12 @@
 import { Component, OnInit ,inject} from '@angular/core';
-import { Inject } from '@angular/core';
 import { MenusService } from '../../service/menus.service';
 import { CommonModule } from '@angular/common';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-menus',
   standalone: true,
-  imports:[CommonModule],
+  imports:[CommonModule,RouterLink],
   templateUrl: './menus.component.html',
   styleUrls: ['./menus.component.css'],
 })

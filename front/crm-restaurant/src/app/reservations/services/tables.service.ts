@@ -10,6 +10,6 @@ export class TablesService {
 
   
   getAllTables() {
-    return this.http.get('http://localhost:4500/api/mesa/todas')
+    return this.http.get('http://localhost:5500/api/mesa/todas')
   }
 }

@@ -1,1 +1,28 @@
-<p>reviews-list works!</p>
+<section class="reviewsSection">
+  <div class="header">
+    <h2>Lista de Reseñas</h2>
+    <div class="filters">
+      <button class="btn btn-primary" (click)="resetFilter()">
+        <i class="fa-solid fa-filter"></i> Todas
+      </button>
+      <button class="btn btn-primary" (click)="filterBestReviews()">
+        <i class="fa-solid fa-arrow-up"></i> Mejor puntuación
+      </button>
+      <button class="btn btn-primary" (click)="filterWorstReviews()">
+        <i class="fa-solid fa-arrow-down"></i> Peor puntuación
+      </button>
+    </div>
+  </div>
+  <div class="reviews-container">
+    <div class="reservation-container">
+      @for (review of filteredReviews; track review.id) {
+      <div class="review-card">
+        <p><strong>Cliente:</strong> {{ review.reviwer }}</p>
+        <p><strong>Reservado:</strong> {{ review.reservation }}</p>
+        <p><strong>Valoración:</strong> {{ getStars(review.rating) }}</p>
+        <p><strong>Descripción:</strong> {{ review.description }}</p>
+      </div>
+      }
+    </div>
+  </div>
+</section>

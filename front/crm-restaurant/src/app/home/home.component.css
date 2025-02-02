@@ -1,7 +1,6 @@
-
 :host {
   width: 100%;
-  height: 100%;
+  height: 100vh;
 }
 
 .homeSection {
@@ -18,7 +17,7 @@
   display: flex;
   flex-direction: column;
   gap: 8px;
-  a{
+  a {
     text-decoration: none;
     i {
       color: var(--green-primary);
@@ -34,7 +33,6 @@
   flex-direction: row;
   height: 100%;
   gap: 24px;
-  margin-top: 48px;
 }
 
 .contenedor {
@@ -43,12 +41,13 @@
   align-items: center;
   position: relative;
   width: 85%;
-  height: 72%;
+  height: 40%;
   background-color: var(--black-primary);
   border-right: 1px solid var(--green-primary);
   border-left: 1px solid var(--green-primary);
   margin: 0px;
 }
+
 img {
   max-width: 80%;
 }
@@ -88,37 +87,14 @@ img {
   right: 0;
 }
 
-.main-buttons {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 24px;
-  margin: 66px 0px 0px 0px;
-  padding-bottom: 48px;
-
-  button {
-    align-items: center;
-    width: 125px;
-    padding: 0.7rem;
-    background-color: var(--green-primary);
-    border: 1px solid var(--black-secondary);
-    color: var(--black-secondary);
-    font-family: "Raleway";
-    font-size: 0.9rem;
-    letter-spacing: 0.9px;
-    cursor: pointer;
-
-    &:hover {
-      background-color: var(--dark-black);
-      color: var(--green-primary);;
-    }
-  }
-}
 .content {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  position: relative;
+  top: -9%;
+
   h1 {
     color: var(--green-primary);
     font-size: 3rem;
@@ -126,53 +102,155 @@ img {
     margin: 0px 0px 20px 0px;
   }
 }
+
 .hamburguer {
- color: var(--green-primary);
- font-size: 30px;
+  color: var(--green-primary);
+  font-size: 30px;
+  position: relative;
 }
-@media (min-width: 768px) {
+
+.menu {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 85vw;
+  height: 100vh;
+  box-shadow: -4px 0 10px rgba(0, 0, 0, 0.1);
+  transform: translateX(100%);
+  transition: transform 0.3s ease-in-out;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-image: url("../../../public/home.jpg");
+  background-color: #777575;
+  background-size: cover;
+  background-position: center center;
+  background-blend-mode: multiply;
+  color: white;
+  display: flex;
+
+}
+
+/* Cuando está abierto */
+.menu.active {
+  transform: translateX(0);
+}
+
+.menu ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+
+  width: 100%;
+}
+
+.menu ul li {
+  padding: 16px;
+  padding-left: 34px;
+}
+
+.menu ul li:first-child {
+
+  padding-left: 34px;
+}
+
+.menu ul li a {
+  text-decoration: none;
+   color: white;
+  font-size: 18px;
+}
+
+.menu ul li:hover {
+background-color: rgba(255, 255, 255, 0.685);
+}
+
+
+@media (min-width: 767px) {
   .timeLine {
     width: 70%;
     margin-top: 10%;
   }
 
+  img {
+    max-width: 100%;
+  }
+
   .contenedor {
     width: 70%;
-    height: 56%;
-    margin: 5% 0 0% 0;
-}
-h1 {
-  color: var(--green-primary);
-  font-size: 3.5rem;
-  font-weight: 700;
-  margin: 0px 0px 20px 0px;
-}
+    height: 48%;
+    padding: 0px 40px 0px 40px;
+  }
 
+  .content {
+    h1 {
+      color: var(--green-primary);
+      font-size: 4rem;
+      font-weight: 700;
+      margin: 0px 0px 20px 0px;
+    }
+  }
+
+  .hamburguer {
+    position: relative;
+    font-size: 43px;
+  }
+
+  .menu {
+    width: 63vw;
+  }
+  .rrss {
+    gap: 20px;
+    a{
+      i {
+        font-size: 26px;
+      }
+    }
+  }
+
+}
 @media (min-width: 1024px) {
-  .contenedor {
-    width: 50%;
-    height: 88%;
-    margin: 0px;
-  }
-  h1 {
-    color: var(--green-primary);
-    font-size: 4.5rem;
-    font-weight: 700;
-    margin: 0px 0px 20px 0px;
-  }
   .main-content {
-    gap: 42px;
+    gap: 108px;
+    height: 62%;
+    margin: 0px;
 
-    .rrss{
+    .rrss {
       a {
-        i{
-          font-size: 24px;
+        i {
+          font-size: 28px;
         }
       }
     }
-    .hamburguer{
-      font-size: 40px;
+
+  }
+  .contenedor {
+    width: 100%;
+    height: 66%;
+    margin: 0px;
+    padding: 0px 80px 80px 80px;
+
+
+    h1 {
+      color: var(--green-primary);
+      font-size: 76px;
+      letter-spacing: 14px;
+      font-weight: 700;
+      margin: 0px 0px 20px 0px;
+      padding: 0px
     }
   }
-}
+  .content {
+    top:0;
+  }
+  .hamburguer {
+    font-size: 58px;
+  }
+  .rrss {
+    gap: 37px;
+  }
+  .menu {
+    width: 50vw;
+  }
 }
