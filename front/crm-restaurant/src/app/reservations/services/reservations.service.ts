@@ -20,16 +20,27 @@ export class ReservationsService {
     return this.http.post('http://localhost:5500/api/reservation/postReservationClient', form, {
       params: { id }
     })
+  }
 
+  getReservations(): Observable<any>{
+    const id = localStorage.getItem('id');
+    console.log(id);
+    if (!id) {
+      console.error('No se encontró el ID en el localStorage');
+      return of (null); // O manejar el caso según la lógica de tu aplicación
+    }
+
+    return this.http.get('http://localhost:5500/api/reservation/getReservations', {
+      params: { id }
+    })
   }
 
 
-  /*createReservationClient(form: any){
-
-    return this.http.post('http://localhost:5500/api/reservation/postReservationClient', form)
-
-  }*/
-
+  deleteReservation(id:string): Observable<any>{
+    return this.http.put('http://localhost:5500/api/reservation/deleteReservation', {
+      id
+    })
+  }
 
 }
 

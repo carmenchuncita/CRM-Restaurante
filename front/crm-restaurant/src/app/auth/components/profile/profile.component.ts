@@ -1,12 +1,14 @@
+import { ReservationsService } from './../../../reservations/services/reservations.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { Component, inject } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import Swal from 'sweetalert2';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-profile',
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, DatePipe],
   templateUrl: './profile.component.html',
   styleUrl: './profile.component.css'
 })
@@ -15,6 +17,7 @@ export class ProfileComponent {
  
   private activatedRoute: ActivatedRoute = inject(ActivatedRoute)
   private authService: AuthService = inject(AuthService)
+  private reservationsService: ReservationsService = inject(ReservationsService)
   private router: Router = inject(Router)
 
   public id!: string;
@@ -24,6 +27,7 @@ export class ProfileComponent {
   public isSubmittedReview: boolean = false;
   private message: string = ''
   public errorMessage: string = ''
+  public reservationsList: any[] = [];
 
   
 
@@ -52,6 +56,22 @@ export class ProfileComponent {
         }
       })
     });
+
+   this.reservationsService.getReservations().subscribe({
+    next: (data:any) => {
+      console.log(data)
+      localStorage.setItem('id_reservation', data.id)
+    
+      this.reservationsList = data  
+      
+     
+    },
+    error: (error:any) => {
+      console.log(error.error)
+    }
+
+   })
+
   }
 
   //evento click del botton editar del profile data para mostrarlo solo cuanto se produce el eventoclik 
@@ -224,6 +244,27 @@ updateReview() {
         });
       },
     });
+  }
+
+
+  // elminar reservas
+
+  handleCancelReservation(id:string, idx:any){
+
+    this.reservationsService.deleteReservation(id).subscribe({
+      next: (data:any) => {
+        console.log(data)
+        
+       
+      },
+      error: (error:any) => {
+        console.log(error.error)
+      }
+
+    })
+    console.log(idx)
+    this.reservationsList = this.reservationsList.filter((reserva: any, index) => index !== idx)
+
   }
 
   // método para el LogOut del usuario que redirege a la home

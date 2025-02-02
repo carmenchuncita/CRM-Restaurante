@@ -153,9 +153,11 @@ const getReservations = async (req, res) => {
                 const id = element.client;
                 const client = await Users.findById(id);
 
-                const tableName = await Tables.findById(element.table);
-                const datos = {"name" : client.name,
-                    "table" : tableName.nombre,
+                const table = await Tables.findById(element.table);
+                const datos = {
+                    "id":element._id,
+                    "name" : client.name,
+                    "table" : element.table,
                     "telefono" : element.telefono,
                     "date" : element.date,
                     "time" : element.time
@@ -168,16 +170,18 @@ const getReservations = async (req, res) => {
         }else{
             const id = user._id;
             const reservations = await Reservations.find({ client: id });
+            console.log(reservations)
 
             for (let element of reservations) {
 
-                const tableName = await Tables.findById(element.table);
-                const datos = {"email" : user.email,
-                    "table" : tableName.nombre,
+                const datos = {
+                    "id":element._id,
+                    "table" : element.table,
                     "telefono" : element.telefono,
                     "date" : element.date,
                     "time" : element.time
                 };
+                console.log(datos)
 
                 if(element.canceled == false){
                     listaFinal.push(datos);
@@ -213,7 +217,7 @@ const updateReservation = async (req, res) => {
     }
 };
 
-const deleteReservation = async (req, res) => {
+/*const deleteReservation = async (req, res) => {
     const { reservation } = req.body; 
   
     try {
@@ -227,6 +231,29 @@ const deleteReservation = async (req, res) => {
     } catch (error) {
       res.status(500).json({ message: 'Error al procesar la solicitud', error: error.message });
     }
-  };
+  };*/
+
+
+  const deleteReservation = async (req, res) => {
+    const { id } = req.body;  // Asegúrate de recibir el ID correcto
+  
+    try {
+        let reserv = await Reservations.findByIdAndUpdate(
+            id,               
+            { canceled: true },
+            { new: true } // Devuelve el objeto actualizado
+        );
+
+        if (!reserv) {
+            return res.status(404).json({ message: 'Reserva no encontrada' });
+        }
+
+        res.status(200).json({ reserv });
+  
+    } catch (error) {
+        res.status(500).json({ message: 'Error al procesar la solicitud', error: error.message });
+    }
+};
+
 
 module.exports = { createReservationClient, getReservations, updateReservation, deleteReservation};

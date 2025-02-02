@@ -86,6 +86,9 @@
     <h2 class ="reservationTitle">Gestiona tus reservas</h2>
 </section>
 
+<!--SECCIÓN RESERVAS-->
+
+
   <!--SECCIÓN PROFILE RESEÑAS-->
 
 <section class = reviewsIconSection>
@@ -153,5 +156,18 @@
             </form>
         </div>
     </section>
+
+    <div>
+        @for (reserva of reservationsList; track reserva; let idx = $index){
+        
+        
+            <p>{{reserva.table}}</p>
+            <p>{{reserva.date | date: 'd/M/y' }}</p>
+            <p>{{reserva.time}}</p>
+            <i (click)="handleCancelReservation(reserva.id, idx)" class="fa-solid fa-xmark"></i>
+            <i class="fa-solid fa-comment"></i>
+        }
+        
+        </div>
 
 </section>
