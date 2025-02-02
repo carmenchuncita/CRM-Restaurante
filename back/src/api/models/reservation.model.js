@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 const reservationSchema = new Schema(
     {
-        client: { type: String, required: true },
+        client: { type: String, required: true},
         table: { type: String, required: true },
         telefono: {type: String, required: true, match: [/^(6|7)\d{8}$/, 'El telefono tiene que empezar por 6 o 7 y tener 9 digitos'],},
         date: { type: Date, required: true },

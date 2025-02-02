@@ -7,6 +7,7 @@ const Tables = require('../models/mesa.model');
 // Crear un nuevo menú estnado logueado
 const createReservationClient = async (req, res) => {
     const { table, telefono, date, time } = req.body;
+    console.log(table,telefono,date,time)
 
     const user = await Users.findById(req.user.user_id);
     const client = req.user.user_id;
@@ -22,7 +23,9 @@ const createReservationClient = async (req, res) => {
             if(element.table == table 
                 && element.date.getTime() == dateFormat.getTime() 
                 && element.time == time){
-                res.status(401).send({ message: "Ya hay una reserva en ese momento", error: error.message });
+                  console.log('estoy dentro');
+               return res.status(401).send({ message: "Ya hay una reserva en ese momento", error: error.message });   
+                     
             }
         });
 
@@ -62,16 +65,17 @@ const createReservationClient = async (req, res) => {
                 <p>Detalles de su reserva:</p>
                 <ul style="list-style: none; padding: 0;">
                   <li>🪑 <strong>Mesa:</strong> ${table} comensales</li>
-                  <li>📅 <strong>Fecha:</strong> ${date} por la ${time}</li>
+                  <li>📅 <strong>Fecha:</strong> ${date} en turno de ${time}</li>
                   <li>📧 <strong>Correo:</strong> ${email}</li>
                 </ul>
               </div>
             `, // HTML
           });
           //Creacion del correo para el usuario
+          console.log(user.email)
           const reservaUser = await transporter.sendMail({
             from: 'josh@gmail.com', // Dirección del remitente
-            to: `${email}`, // Lista de destinatarios
+            to: `${user.email}`, // Lista de destinatarios
             subject: 'Reserva code experience', // Asunto del correo
             html: 
             `
@@ -81,10 +85,10 @@ const createReservationClient = async (req, res) => {
                 <p>Te confirmamos los detalles de tu reserva:</p>
                 <ul style="list-style: none; padding: 0;">
                   <li>🪑 <strong>Mesa:</strong> ${table} comensales</li>
-                  <li>📅 <strong>Fecha:</strong> ${date} por la ${time}</li>
+                  <li>📅 <strong>Fecha:</strong> ${date} en turno de ${time}</li>
                 </ul>
                 <p>Si necesitas modificar o cancelar tu reserva, contáctanos.</p>
-                <p>📞 Teléfono: 123-456-789</p>
+                <p>📞 Teléfono: +34 609 77 44 55 </p>
                 <p>¡Te esperamos pronto! 😊</p>
               </div>
             `, // HTML
@@ -98,7 +102,7 @@ const createReservationClient = async (req, res) => {
 
         res.status(201).send({ message: "Reserva creado con éxito", reservation: newReservation });
     } catch (error) {
-        res.status(400).send({ message: "Error al crear la reserva", error: error.message });
+        res.status(400).send({ message: "Error al crear la reserva", error: error.message});
     }
 };
 
