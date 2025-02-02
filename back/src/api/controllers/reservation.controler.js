@@ -16,18 +16,17 @@ const createReservationClient = async (req, res) => {
 
     try {
         const reservationList = await Reservations.find({ });
-
-        reservationList.forEach(element => {
-            const dateFormat = new Date(date);
-            
-            if(element.table == table 
-                && element.date.getTime() == dateFormat.getTime() 
-                && element.time == time){
-                  console.log('estoy dentro');
-               return res.status(401).send({ message: "Ya hay una reserva en ese momento", error: error.message });   
-                     
-            }
-        });
+        const dateFormat = new Date(date);
+        for (const element of reservationList) {
+          if (
+              element.table == table &&
+              element.date.getTime() == dateFormat.getTime() &&
+              element.time == time
+          ) {
+              console.log("estoy dentro");
+              return res.status(401).send({ message: "Ya hay una reserva en ese momento" });
+          }
+      }
 
         const newReservation = new Reservations({ 
             client,
