@@ -159,7 +159,7 @@ const postReview = async (req, res) => {
     });
 
     if(existingReview){
-      return res.status(409).json({ message: 'Esa reserva ya tiene reseña' });
+      return res.status(409).json({ message: 'Esa reserva ya tiene reseña' }); 
     }
 
     const existingReservation = await Reservations.findOne({ _id: reservation });
@@ -187,6 +187,8 @@ const postReview = async (req, res) => {
     return res.status(500).json({ message: 'Error al crear la reseña', error: error });
   }
 };
+
+
 
 //Metodo que recibe 2 parametros y recoge id del usuario para actualizar una reseña
 //Requiere un usuario loguedo de rol cliente 

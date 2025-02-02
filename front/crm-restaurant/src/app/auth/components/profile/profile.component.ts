@@ -21,6 +21,7 @@ export class ProfileComponent {
   private router: Router = inject(Router)
 
   public id!: string;
+  public idReview: string ='';
   public updateProfileIsActive: boolean = false;
   public userData: any = { user: {} };
   public isSubmittedUpdate: boolean = false;
@@ -185,10 +186,10 @@ isReviewAllowed(reservationDate: string): boolean {
 }
 
 
+clickShowReviews(id : string){
 
-clickShowReviews(){
-  
   this.isSubmittedReviews = !this.isSubmittedReviews
+  this.idReview = id;
   console.log(this.isSubmittedReviews)
 
 }
@@ -201,12 +202,17 @@ clickShowReviews(){
 
     this.isSubmittedReview = true;
 
-    console.log(this.form.value)
-    console.log(this.form.valid)
+    const reviewData = {
+      rating : this.form.value.rating,
+      reservation : this.idReview,
+      description : this.form.value.description
+    };
+
+    console.log(reviewData);
 
     if (this.form.valid) {
 
-      this.authService.postReview(this.form.value).subscribe({
+      this.authService.postReview(reviewData).subscribe({
 
         next: (data: any) => {
           console.log(data)
@@ -222,8 +228,8 @@ clickShowReviews(){
               popup: 'custom-swal-popup',
             }
           });
-          
-          
+
+
         },
 
         error: (error: any) => {
@@ -241,50 +247,53 @@ clickShowReviews(){
               }
             });
           }
-          if (error.error.message === 'Ya ha hecho una reseña') {
-        
-            this.updateReview();
-          }    
+          if (error.error.message === 'Esa reserva ya tiene reseña') {
+
+            this.updateReview(reviewData);
+          }
         }
       })
     }
   }
 
 
+
   // metodo para actualizar el reseña, cuando el usuario ya tiene una reseña no puede realizar una nueva, si no que actualiza la que ya tenía
-updateReview() {
-    this.authService.updateReview(this.form.value).subscribe({
-      next: (data: any) => {
-        console.log(data);
-        this.message = data.message;
-        Swal.fire({
-          title: this.message, 
-          text: 'Gracias por enviarnos una nueva reseña, para nosotros es muy importante su opinión', 
-          background: '#f7f7f7',
-          color: '#282826',
-          confirmButtonColor: '#d4e157',
-          confirmButtonText: 'Close',
-          customClass: {
-            popup: 'custom-swal-popup',
-          }
-        });
-      },
-      error: (error: any) => {
-        console.error('Error al actualizar la reseña', error);
-        Swal.fire({
-          title: this.message, 
-          text: 'Los sentimos, no hemos podido recibir su reseña, por favor contacte con nosotros en el e-mail: code@coderestaurante.com, su opinión es importante para nosotros', 
-          background: '#f7f7f7',
-          color: '#282826',
-          confirmButtonColor: '#d4e157',
-          confirmButtonText: 'Close',
-          customClass: {
-            popup: 'custom-swal-popup',
-          }
-        });
-      },
-    });
-  }
+// metodo para actualizar el reseña, cuando el usuario ya tiene una reseña no puede realizar una nueva, si no que actualiza la que ya tenía
+updateReview(reviewData: any) {
+  this.authService.updateReview(reviewData).subscribe({
+    next: (data: any) => {
+      console.log(data);
+      this.message = data.message;
+      Swal.fire({
+        title: this.message, 
+        text: 'Gracias por enviarnos una nueva reseña, para nosotros es muy importante su opinión', 
+        background: '#f7f7f7',
+        color: '#282826',
+        confirmButtonColor: '#d4e157',
+        confirmButtonText: 'Close',
+        customClass: {
+          popup: 'custom-swal-popup',
+        }
+      });
+    },
+    error: (error: any) => {
+      console.error('Error al actualizar la reseña', error);
+      Swal.fire({
+        title: this.message, 
+        text: 'Los sentimos, no hemos podido recibir su reseña, por favor contacte con nosotros en el e-mail: code@coderestaurante.com, su opinión es importante para nosotros', 
+        background: '#f7f7f7',
+        color: '#282826',
+        confirmButtonColor: '#d4e157',
+        confirmButtonText: 'Close',
+        customClass: {
+          popup: 'custom-swal-popup',
+        }
+      });
+    },
+  });
+}
+
 
 
   // elminar reservas

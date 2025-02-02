@@ -110,7 +110,7 @@
         <p>{{reserva.time}}</p>
         <i (click)="handleCancelReservation(reserva.id, idx)" class="fa-solid fa-xmark cancel-icon"></i>
         <i 
-  (click)="clickShowReviews()" 
+  (click)="clickShowReviews(reserva.id)" 
   [class.review-icon-active]="isReviewAllowed(reserva.date)" 
   [class.review-icon-disable]="!isReviewAllowed(reserva.date)"
   class="fa-solid fa-comment">
