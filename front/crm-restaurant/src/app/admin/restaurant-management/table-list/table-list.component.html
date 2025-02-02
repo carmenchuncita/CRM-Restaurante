@@ -1,0 +1,23 @@
+<p>table-list works!</p>
+<section class="TableListSection">
+  <div class="header">
+    <h2>Lista de Mesas</h2>
+    <div class="filters">
+      <button class="btn btn-primary">
+        <i class="fa-solid fa-filter"></i>
+        Hoy
+      </button>
+    </div>
+  </div>
+  <div class="tables-container">
+    <div class="table-container">
+      @for (table of tableList; track table._id) {
+      <div class="table-card">
+        <p><strong>Nombre:</strong> {{ table.nombre }}</p>
+        <p><strong>Capacidad:</strong> {{ table.capacidad }}</p>
+        <p><strong>Disponible:</strong> {{ table.isAvailable }}</p>
+      </div>
+      }
+    </div>
+  </div>
+</section>

@@ -1,11 +1,11 @@
-.reviewsSection {
+.TableListSection {
   display: flex;
   flex-direction: column;
   flex-basis: 33%;
   align-items: center;
   padding-top: 20px;
 }
-.reviews-container {
+.tables-container {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -14,7 +14,7 @@
   max-width: 400px;
 }
 
-.review-container {
+.table-container {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -23,7 +23,7 @@
   padding: 20px;
 }
 
-.review-card {
+.table-card {
   width: 245px;
   background: #f9f9f9;
   border-radius: 10px;
@@ -32,43 +32,43 @@
   transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
 }
 
-.review-card h3 {
+.table-card h3 {
   font-size: 1.3rem;
   color: #333;
   margin-bottom: 10px;
   text-align: center;
 }
 
-.review-card p {
+.table-card p {
   font-size: 1rem;
   color: #555;
   line-height: 1.4;
   margin-bottom: 5px;
 }
 
-.review-card p strong {
+.table-card p strong {
   color: #222;
 }
 
-.no-reviews {
+.no-tables {
   text-align: center;
   font-size: 1.2rem;
   color: #777;
   margin-top: 20px;
 }
 @media (min-width: 768px) {
-  .reviews-container {
+  .tables-container {
     flex-direction: row;
     flex-wrap: wrap;
     max-width: 814px;
   }
-  .review-card {
+  .table-card {
     width: 290px;
   }
 }
 
 @media (min-width: 1024px) {
-  .review-card {
+  .table-card {
     width: 350px;
   }
   .header {

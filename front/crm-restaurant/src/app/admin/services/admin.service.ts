@@ -31,4 +31,13 @@ export class AdminService {
   getAllTables() {
     return this.http.get('http://localhost:5500/api/mesa/todas')
   }
+  createTables() {
+    return this.http.get('http://localhost:5500/api/mesa/createMesa')
+  }
+  updateTables() {
+    return this.http.get('http://localhost:5500/api/mesa/updateMesa')
+  }
+  deleteTables() {
+    return this.http.get('http://localhost:5500/api/mesa/deleteMesa')
+  }
 }

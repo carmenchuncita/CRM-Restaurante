@@ -14,7 +14,9 @@ export class CreateMenuComponent implements OnInit {
   @Output() closePanel: EventEmitter<boolean> = new EventEmitter<boolean>(); // Emite eventos para cerrar el panel
   form!: FormGroup;
 
-  constructor(private fb: FormBuilder, private adminService: AdminService) {}
+  constructor(
+    private fb: FormBuilder,
+    private adminService: AdminService) {}
 
   ngOnInit() {
     this.form = this.fb.group({

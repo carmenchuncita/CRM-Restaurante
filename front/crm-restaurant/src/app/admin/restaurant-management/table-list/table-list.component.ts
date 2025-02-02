@@ -4,26 +4,26 @@ import { AdminService } from '../../services/admin.service';
 import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'app-reviews-list',
+  selector: 'app-table-list',
   imports: [CommonModule],
-  templateUrl: './reviews-list.component.html',
-  styleUrl: './reviews-list.component.css'
+  templateUrl: './table-list.component.html',
+  styleUrl: './table-list.component.css'
 })
-export class ReviewsListComponent {
-  public reviewList: any[] = [];
+export class TableListComponent {
+  public tableList: any[] = [];
   private adminService: AdminService = inject(AdminService);
   private message: string = '';
 
   ngOnInit() {
-    this.adminService.getAllReviews().subscribe({
+
+    this.adminService.getAllTables().subscribe({
       next: (data: any) => {
-        this.reviewList = data;
-        console.log("data", data);
+        console.log(data)
+        this.tableList = data;
       },
       error: (error: any) => {
         console.log(error);
       },
     });
-
-  }
+}
 }
