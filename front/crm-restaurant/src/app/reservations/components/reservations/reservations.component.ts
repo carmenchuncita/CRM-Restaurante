@@ -79,9 +79,9 @@ export class ReservationsComponent {
 
   public form: FormGroup = new FormGroup({
     table: new FormControl('', Validators.required),
-    telefono: new FormControl('', Validators.required),
     date: new FormControl('', Validators.required),
     time: new FormControl('', Validators.required),
+    telefono: new FormControl('', Validators.required),
   });
 
   handleReservationForm() {
@@ -116,8 +116,22 @@ export class ReservationsComponent {
           error: (error: any) => {
             console.error('Error en la ejecución del registro', error);
 
+
+            if (error.error.message === 'Ya hay una reserva en ese momento') {
+              Swal.fire({
+                title: this.message,
+                text: 'Los sentimos, no hay disponibilidad, por favor, elija un turno, fecha, o mesa diferentes',
+                background: '#f7f7f7',
+                color: '#282826',
+                confirmButtonColor: '#d4e157',
+                confirmButtonText: 'Close',
+                customClass: {
+                  popup: 'custom-swal-popup',
+                },
+              });
+            }
             // Validaciones específicas del backend
-            if (error.error.message === 'Error al crear la reserva') {
+            if (error.error.message=== 'Error al crear la reserva') {
               Swal.fire({
                 title: this.message,
                 text: 'Los sentimos, no hemos podido recibir su reserva, por favor contacte con nosotros en el e-mail: code@coderestaurante.com o teléfono: +34 609 77 44 55, su opinión es importante para nosotros',

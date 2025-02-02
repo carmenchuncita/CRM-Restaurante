@@ -208,7 +208,7 @@ label {
 }
 
 .form-field--text-danger {
-	color: #ef8686;
+	color:#ed5555;
 	font-size: 0.7rem;
 	font-weight: 450;
 	letter-spacing: 1px;
@@ -384,7 +384,7 @@ label {
 }
 
 .form-field--text-danger {
-	color: #ef8686;
+	color: #ed5555;
 	font-size: 0.7rem;
 	font-weight: 450;
 	letter-spacing: 1px;

@@ -29,6 +29,21 @@
                         </select>
                     </div>
 
+                    
+
+                    <div class="form-group">
+                        <label>Fecha</label>
+                        <input class = "form-input" type="date" [min]="dateMin" formControlName="date">
+                    </div>
+                              
+                    <div class="form-group">
+                        <label>Hora</label>
+                        <select formControlName="time">
+                          <option value="comida">Comida</option>
+                          <option value="cena">Cena</option>
+                        </select>
+                    </div>
+
 
 
 
@@ -47,32 +62,6 @@
                         @if (form.get('email')?.hasError('notExists') && isSubmitted) {
                             <p class="form-field--text-danger">No éxite una cuenta con esta dirección de e-mail</p>
                     }-->
-                    </div>
-
-
-
-
-
-
-
-
-
-
-
-
-                    
-
-                    <div class="form-group">
-                        <label>Fecha</label>
-                        <input class = "form-input" type="date" [min]="dateMin" formControlName="date">
-                    </div>
-                              
-                    <div class="form-group">
-                        <label>Hora</label>
-                        <select formControlName="time">
-                          <option value="comida">Comida</option>
-                          <option value="cena">Cena</option>
-                        </select>
                     </div>
         
                     <div class="form-group">
