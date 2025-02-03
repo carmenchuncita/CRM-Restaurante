@@ -1,21 +1,19 @@
 .sectionMenuList {
   display: flex;
   flex-direction: column;
-  flex-basis: 33%;
-  align-items: center;
-
 }
+
 .header {
   display: flex;
   flex-direction: row;
   gap: 40px;
   align-items: center;
   justify-content: space-between;
-  width: 95%;
-  height: 40px;
-  background: rgb(192, 185, 185);
+  height: 61px;
   padding: 12px 24px;
+  border-bottom: 1px solid black;
 }
+
 .menu-slider {
   display: flex;
   align-items: center;
@@ -23,14 +21,15 @@
   position: relative;
   overflow: hidden;
   width: 100%;
-
 }
+
 .container {
   width: 100%;
-  padding: 50px;
+  padding: 40px 45px;
   display: flex;
   gap: 24px;
 }
+
 .menu-card {
   flex: 1;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -44,16 +43,19 @@
   width: 50%;
   height: 715px;
 }
+
 .menu-content {
   display: flex;
   flex-direction: column;
   gap: 8px;
   width: 100%;
 }
+
 .menu-title {
   font-weight: 500;
   text-align: center;
 }
+
 .menu-description {
   font-style: italic;
   font-size: 0.9rem;
@@ -62,15 +64,18 @@
   text-align: center;
   margin-bottom: 20px;
 }
+
 .menu-price {
   font-weight: 500;
   margin-top: 8px;
   margin: 12px 0px 24px 0px;
 }
+
 .menu-subtitle {
   font-weight: 500;
   margin: 8px 0px;
 }
+
 .menu-plate {
   font-size: 0.9rem;
   font-family: "Raleway";
@@ -133,5 +138,3 @@
 
 @media (min-width: 1024px) {
 }
-
-
