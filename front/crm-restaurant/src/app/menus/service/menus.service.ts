@@ -5,7 +5,9 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class MenusService {
-  constructor(private http: HttpClient) {}
+  private apiUrl = 'http://localhost:5500/api/menu';
+
+  constructor(public http: HttpClient) {}
 
   getAvailableMenuForToday() {
     const today = new Intl.DateTimeFormat('en-US', {
@@ -13,7 +15,6 @@ export class MenusService {
       timeZone: 'Europe/Paris'
     }).format(new Date()).toLowerCase();
 
-    return this.http.get(`http://localhost:5500/api/menu/day?day=${today}&isAvailable=true`);
+    return this.http.get(`${this.apiUrl}/day?day=${today}&isAvailable=true`);
   }
-
 }

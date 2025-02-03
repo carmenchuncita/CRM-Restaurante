@@ -26,10 +26,12 @@ export class MenuListComponent implements OnInit {
   public panelData: any = null;
   public menusToShow: number = window.innerWidth < 768 ? 1 : 2;
 
- public getVisibleMenus(): any[] {
-  return this.menuList.slice(this.currentIndex, this.currentIndex + this.menusToShow);
-}
-
+  public getVisibleMenus(): any[] {
+    return this.menuList.slice(
+      this.currentIndex,
+      this.currentIndex + this.menusToShow
+    );
+  }
 
   ngOnInit() {
     window.addEventListener('resize', () => {

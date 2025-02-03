@@ -1,8 +1,47 @@
 .reviewsSection {
   display: flex;
   flex-direction: column;
-  flex-basis: 33%;
+}
+.header {
+  display: flex;
+  flex-direction: row;
+  gap: 40px;
   align-items: center;
+  justify-content: space-between;
+  height: 61px;
+  padding: 12px 24px;
+  border-bottom: 1px solid black;
+
+  h2 {
+    font-size: 16px;
+  }
+  .filters {
+    display: flex;
+    gap: 10px;
+  }
+  .filters .btn.btn-primary {
+    align-items: center;
+    padding: 0.7rem;
+    background-color: #e3f982;
+    border: 1px solid transparent;
+    color: #282826;
+    font-family: "Raleway";
+    font-size: 0.9rem;
+    letter-spacing: 0.9px;
+    cursor: pointer;
+    display: flex;
+    flex-wrap: nowrap;
+    border-radius: 4px;
+
+    p {
+      display: none;
+    }
+  }
+  .filters .btn-primary:hover {
+    background-color: #e3f982;
+    border: 1px solid #282826;
+    border-radius: 4px;
+  }
 }
 .reviews-container {
   display: flex;
@@ -18,13 +57,13 @@
   flex-direction: row;
   flex-wrap: wrap;
   align-items: center;
-  gap: 38px;
+  gap: 24px;
   padding: 20px;
 }
 
 .review-card {
   width: 245px;
-  background: #f9f9f9;
+  background: #c67e57;
   border-radius: 10px;
   padding: 15px;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
@@ -40,13 +79,13 @@
 
 .review-card p {
   font-size: 1rem;
-  color: #555;
   line-height: 1.4;
   margin-bottom: 5px;
 }
 
 .review-card p strong {
   color: #222;
+  font-weight: 500;
 }
 
 .no-reviews {
@@ -61,28 +100,37 @@
     flex-wrap: wrap;
     max-width: 814px;
   }
+
   .review-card {
-    width: 290px;
+    width: 277px;
+  }
+
+  .header {
+    .filters .btn.btn-primary {
+      gap: 8px;
+      p {
+        display: flex;
+      }
+    }
   }
 }
 
 @media (min-width: 1024px) {
+  .reviews-container {
+    max-width: -webkit-fill-available;
+  }
   .review-card {
-    width: 350px;
+    width: 275px;
+  }
+  .review-container {
+    padding: 0px;
   }
   .header {
-    display: flex;
-    flex-direction: row;
-    gap: 40px;
-    align-items: center;
-    justify-content: space-between;
-    width: 95%;
-    height: 40px;
-    background: rgb(192, 185, 185);
-    padding: 12px 24px;
-  }
-  .filters {
-    display: flex;
-    gap: 8px;
+    .filters .btn.btn-primary {
+      gap: 8px;
+      p {
+        display: flex;
+      }
+    }
   }
 }

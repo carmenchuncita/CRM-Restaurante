@@ -14,7 +14,7 @@ const {
 
 // Rutas públicas
 router.get('/', authenticateToken, getMenus); // Solo usuarios autenticados pueden ver menús
-router.get('/day', authenticateToken, getMenusByDay);
+router.get('/day', getMenusByDay);
 router.get('/available', authenticateToken, getAvailableMenus);
 router.get('/:menuId',getMenuById);
 

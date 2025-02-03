@@ -269,7 +269,7 @@ const getReviews = async (req, res) => {
 
           const datos = {
             "id" : element._id,
-            "Escritor" : reviwer.name,
+            "reviwer" : reviwer.name,
             "rating" : element.rating,
             "description" : element.description
           };

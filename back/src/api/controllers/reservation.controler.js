@@ -171,7 +171,8 @@ const getReservations = async (req, res) => {
                     "table": tableName ? tableName.nombre : element.table, 
                     "telefono" : element.telefono,
                     "date" : element.date,
-                    "time" : element.time
+                    "time" : element.time,
+                    "canceled":element.canceled
                 };
 
                 listaFinal.push(datos);                

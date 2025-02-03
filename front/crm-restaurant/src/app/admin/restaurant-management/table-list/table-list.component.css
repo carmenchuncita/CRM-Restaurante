@@ -1,8 +1,20 @@
 .TableListSection {
   display: flex;
   flex-direction: column;
-  flex-basis: 33%;
+}
+.header {
+  display: flex;
+  flex-direction: row;
+  gap: 40px;
   align-items: center;
+  justify-content: space-between;
+  height: 61px;
+  padding: 12px 24px;
+  border-bottom: 1px solid black;
+
+  h2 {
+    font-size: 16px
+  }
 }
 .tables-container {
   display: flex;
@@ -18,7 +30,7 @@
   flex-direction: row;
   flex-wrap: wrap;
   align-items: center;
-  gap: 38px;
+  gap: 24px;
   padding: 20px;
 }
 
@@ -40,13 +52,13 @@
 
 .table-card p {
   font-size: 1rem;
-  color: #555;
   line-height: 1.4;
   margin-bottom: 5px;
 }
 
 .table-card p strong {
   color: #222;
+  font-weight: 500;
 }
 
 .no-tables {
@@ -55,6 +67,35 @@
   color: #777;
   margin-top: 20px;
 }
+.button-card {
+  display: flex;
+  gap: 2px;
+  width: 100%;
+  justify-content: flex-end;
+
+  button {
+    align-items: center;
+    width: auto;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4px 8px;
+    background-color: transparent;
+    color: var(--dark-black);
+    border: none;
+    font-family: "Raleway";
+    font-size: 14px;
+    letter-spacing: 0.9px;
+    cursor: pointer;
+
+    &:hover {
+      color: var(--green-primary);
+      background-color: var(--dark-black);
+    }
+  }
+}
+
 @media (min-width: 768px) {
   .tables-container {
     flex-direction: row;
@@ -62,27 +103,20 @@
     max-width: 814px;
   }
   .table-card {
-    width: 290px;
+    width: 277px;
   }
 }
 
 @media (min-width: 1024px) {
   .table-card {
-    width: 350px;
+    width: 345px;
   }
   .header {
-    display: flex;
-    flex-direction: row;
-    gap: 40px;
-    align-items: center;
-    justify-content: space-between;
-    width: 95%;
-    height: 40px;
-    background: rgb(192, 185, 185);
-    padding: 12px 24px;
-  }
-  .filters {
-    display: flex;
-    gap: 8px;
+    .filters .btn.btn-primary {
+      gap: 8px;
+      p {
+        display: flex;
+      }
+    }
   }
 }

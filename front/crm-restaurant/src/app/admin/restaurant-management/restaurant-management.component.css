@@ -3,45 +3,56 @@
   height: 100%;
 }
 .managementSection {
-padding: 48px;
+  padding: 24px;
 }
-.modules{
+.modules {
   display: grid;
   grid-template-columns: 1fr;
   width: 100%;
+  max-width: 340px;
+  row-gap: 24px;
 }
-.module-menus {
-  background:#dacece;
-}
-.module-reservations {
-  background:#dacece;
-
-}
-.module-reviews {
-  background:#dacece;
-
-}
+.module-menus,
+.module-reservations,
+.module-reviews,
 .module-tables {
-  background:#dacece;
+  background: var(--white);
+  max-width: 329px;
+  border-radius: 8px;
 }
+
 
 @media (min-width: 768px) {
-  .managementSection{
-    padding: 24px;
-  }
+
   .modules {
     grid-template-columns: repeat(1, 1fr);
+    max-width: -webkit-fill-available;
   }
 
+  .module-menus {
+    max-width: -webkit-fill-available;
+  }
+  .module-reservations {
+    max-width: -webkit-fill-available;
+
+  }
+  .module-reviews {
+    max-width: -webkit-fill-available;
+  }
+  .module-tables {
+    max-width: -webkit-fill-available;
+  }
+  .managementSection {
+    padding: 24px 24px 48px 24px;
+  }
 }
 
 @media (min-width: 1024px) {
-  .managementSection {
-    padding: 24px;
-  }
-  .modules  {
+.managementSection {
+  padding: 48px;
+}
+  .modules {
     grid-template-columns: repeat(2, 1fr);
     gap: 48px;
-
   }
 }

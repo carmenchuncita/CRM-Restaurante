@@ -14,6 +14,8 @@ html {
 }
 body {
   height: 100vh;
+  min-height: 667px;
+  min-width: 375px;
 }
 main {
 
@@ -95,10 +97,8 @@ aside,
 canvas,
 details,
 embed,
-figure,
 figcaption,
 footer,
-header,
 hgroup,
 menu,
 nav,
