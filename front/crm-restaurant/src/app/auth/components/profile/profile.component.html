@@ -6,12 +6,12 @@
         <div class=logOutBox>
 
             <div class="logOutButton">
-                    <button class="logOutButton" (click)="handleLogOut()">
-                        <figure class="logOutFigure">
-                            <img class="logOutIcon" src="imagenes/icono14.png" alt="icono logOut">
-                        </figure>
-                        Cerrar Sesión
-                    </button>
+                <button class="logOutButton" (click)="handleLogOut()">
+                    <figure class="logOutFigure">
+                        <img class="logOutIcon" src="imagenes/icono14.png" alt="icono logOut">
+                    </figure>
+                    Cerrar Sesión
+                </button>
             </div>
 
 
@@ -22,7 +22,7 @@
 
     <section class="profileOptionsSection">
 
-    <!--SECCIÓN PROFILE DATA-->
+        <!--SECCIÓN PROFILE DATA-->
 
         <section class="profileDataSection">
             <figure class="profileFigure">
@@ -33,8 +33,8 @@
                 <i class="fa-regular fa-pen-to-square"></i>
             </button>
 
-            <p class = "dataProfileName">{{userData?.user?.name}}</p>
-            <p class = "dataProfileEmail">{{userData.user.email}}</p>
+            <p class="dataProfileName">{{userData?.user?.name}}</p>
+            <p class="dataProfileEmail">{{userData.user.email}}</p>
 
             <div [class.contenedor]="updateProfileIsActive" class="contenedor-disabled">
 
@@ -73,53 +73,70 @@
                 </form>
             </div>
         </section>
-  
-    <!--SECCIÓN PROFILE RESERVAS-->
 
-    <section class = reservasIconSection>
-    <figure class="reservationsFigure">
-        <img class="reservationsIcon" src="imagenes/icono8.png" alt="icono reservas">
-    </figure>
-    <button (click)="clickShowReservation()" class="updateProfileButton">
-        <i class="fa-regular fa-pen-to-square"></i>
-    </button>
-    <h2 class ="reservationTitle">Gestiona tus reservas</h2>
-</section>
+        <!--SECCIÓN PROFILE RESERVAS-->
 
-<!--SECCIÓN RESERVAS-->
+        <section class=reservasIconSection>
+            <figure class="reservationsFigure">
+                <img class="reservationsIcon" src="imagenes/icono8.png" alt="icono reservas">
+            </figure>
+            <button (click)="clickShowReservation()" class="updateProfileButton">
+                <i class="fa-regular fa-pen-to-square"></i>
+            </button>
+            <h2 class="reservationTitle">Gestiona tus reservas</h2>
+        </section>
+
+        <!--SECCIÓN RESERVAS-->
 
 
-  <!--SECCIÓN PROFILE RESEÑAS-->
+        <!--SECCIÓN PROFILE RESEÑAS-->
 
-<section  class = reviewsIconSection>
-    <figure class="reviewsFigure">
-        <img class="reviewsIcon" src="imagenes/icono10.png" alt="icono reseñas">
-    </figure>
-    <button (click)="clickShowReservation()" class="updateProfileButton">
-        <i class="fa-regular fa-pen-to-square"></i>
-    </button>
-    <h2 class ="reviewTitle">Envía una reseña</h2>
-</section>
+        <section class=reviewsIconSection>
+            <figure class="reviewsFigure">
+                <img class="reviewsIcon" src="imagenes/icono10.png" alt="icono reseñas">
+            </figure>
+            <button (click)="clickShowReservation()" class="updateProfileButton">
+                <i class="fa-regular fa-pen-to-square"></i>
+            </button>
+            <h2 class="reviewTitle">Envía una reseña</h2>
+        </section>
 
-</section>
+    </section>
 
-<div [class.box-table-reservations]="isSubmittedReservationList" class="box-table-resevation-disable">
-    @for (reserva of reservationsList; track reserva; let idx = $index){
-        <p>{{reserva.table}}</p>
-        <p>{{reserva.date | date: 'd/M/y' }}</p>
-        <p>{{reserva.time}}</p>
-        <i (click)="handleCancelReservation(reserva.id, idx)" class="fa-solid fa-xmark cancel-icon"></i>
-        <i 
-  (click)="clickShowReviews(reserva.id)" 
-  [class.review-icon-active]="isReviewAllowed(reserva.date)" 
-  [class.review-icon-disable]="!isReviewAllowed(reserva.date)"
-  class="fa-solid fa-comment">
-</i>
+    <section class = "reservation-list-section">
+    <div [class.box-table-reservations]="isSubmittedReservationList" class="box-table-resevation-disable">
+        <table class = "table-reservations">
+        <tr>
+            <th class="reservation-header-table">Mis Reservas</th>
+        </tr>
+        @for (reserva of reservationsList; track reserva; let idx = $index){
 
-    }
+        <tr class="reservation-body">
+            <td class="reservations-text">{{reserva.table}}</td>
+            <td class="reservation-text">{{reserva.date | date: 'd/M/y' }}</td>
+            <td class="reservation-text">{{reserva.time }}</td>
+            <td class="reservation-cancel-icon">
+                <i (click)="handleCancelReservation(reserva.id, idx)" class="fa-solid fa-xmark cancel-icon"></i>
+            </td>
+            <td class="reservation-review-icon">
+                <i (click)="clickShowReviews(reserva.id)" [class.review-icon-active]="isReviewAllowed(reserva.date)"
+                    [class.review-icon-disable]="!isReviewAllowed(reserva.date)" class="fa-solid fa-comment">
+                </i>
+            </td>
+        </tr>
+    
+        } @empty {
+        <h2>No hay reservas</h2>
+        }
+    </table>
+        <div class="button-new-reservaton-box">
+            <button class="button-new-reservation" [routerLink]="('/reservas')">Nueva Reserva</button>
+        </div>
     </div>
+</section>
+    
 
-    <section [class.reviewFormSection]="isSubmittedReviews"class="reviewFormSection-disabled">
+    <section [class.reviewFormSection]="isSubmittedReviews" class="reviewFormSection-disabled">
         <div class="reviewContenedor">
             <span class="line top-left"></span>
             <span class="line top-right"></span>
@@ -172,6 +189,6 @@
             </form>
         </div>
     </section>
-  
+
 
 </section>

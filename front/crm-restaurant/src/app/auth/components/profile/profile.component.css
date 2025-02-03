@@ -245,12 +245,10 @@ label {
 }
 
 .reservationsFigure {
-
 	width: 200px;
 }
 
 .reservationsIcon {
-
 	width: 100%;
 }
 
@@ -447,6 +445,9 @@ input:-webkit-autofill:active {
 
 .box-table-reservations{
 	display: block;
+	width: 70%;
+	height: auto;
+	padding: 4%;
 }
 
 .cancel-icon{
@@ -456,14 +457,75 @@ input:-webkit-autofill:active {
 }
 
 .review-icon-disable{
-	color:  #eaeaea;
+	color:  #D6D6D6;
 	pointer-events: none;
+	font-weight: bold;
+	font-size: 1.4rem;
 }
 
 .review-icon-active{
 	color: #b8c94f;
 	font-weight: bold;
 	font-size: 1.4rem;
+}
+
+/*TABLA DE RESERVAS*/
+
+.reservation-list-section{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	height: auto;
+}
+
+.table-reservations {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.table-reservations th,
+.table-reservations td {
+    padding: 15px 0;
+    text-align: left;
+    font-family: "Raleway", sans-serif;
+    font-size: 0.9rem;
+    color: #282826;
+}
+
+.table-reservations th {
+    font-weight: bold;
+	font-size: 1.2rem;
+	letter-spacing: 0.11rem;
+}
+
+.table-reservations td {
+    background-color: #f7f7f7;
+	font-size: 1rem;
+}
+
+.table-reservations tr {
+    border-bottom: 1px solid #282826;
+}
+
+.table-reservations tr:last-child {
+    border-bottom: none;
+}
+
+
+.button-new-reservaton-box{
+	margin: 15px 0 100px 0;
+
+}
+.button-new-reservation{
+	background-color: var(--green-primary);
+	color: var(--black-secondary);
+	border: none;
+	width: 200px;
+	padding: 10px 20px;
+	font-size: 1rem;
+	margin-top: 30px;
+	font-weight: 200;
 }
 
 

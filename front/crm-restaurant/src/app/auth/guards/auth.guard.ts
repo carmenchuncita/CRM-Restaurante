@@ -25,8 +25,8 @@ export const authGuard: CanActivateFn = (route, state) => {
 
       if (err.error.message === 'No hay token') {
         Swal.fire({
-          title: 'Ruta protegida',
-          text: 'Por favor, inicie sesión',
+          title: 'Iniciar Sesión',
+          text: 'Para acceder a la ruta debe inicar sesión',
           background: '#f7f7f7',
           color: '#282826',
           confirmButtonColor: '#d4e157',

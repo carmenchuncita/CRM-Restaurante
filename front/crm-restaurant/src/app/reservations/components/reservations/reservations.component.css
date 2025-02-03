@@ -2,7 +2,7 @@
 	width: 100%;
 	height: 100%;
 	background-color: #f7f7f7;
-    min-height: 100vh; 
+
 
 }
 
@@ -12,7 +12,7 @@
 	align-items: center;
 	flex-direction: column;
 	background-color: #f7f7f7;
-    min-height: 100vh; 
+    flex-grow: 1;
     height: auto;
     overflow: auto; /* Asegura que el contenido adicional haga crecer la sección */
 }
@@ -42,7 +42,6 @@
 	background-color: #f7f7f7;
 	border-right: 1px solid #282826;
 	border-left: 1px solid #282826;
-	margin-bottom: 55%;
 }
 
 .line {
@@ -169,7 +168,6 @@ label {
     align-items:center;
     justify-content:start;
     flex-direction: column;
-    margin-bottom: 100px;
     width: 100%;
     min-height: 100vh; 
 }
@@ -265,7 +263,7 @@ input:-webkit-autofill {
 	.contenedor {
 		width: 70%;
 		height: 600px;
-		margin-bottom: 20% ;
+		margin-bottom: 5% ;
 	}
 
 	.form {
@@ -327,7 +325,7 @@ input:-webkit-autofill {
 	.contenedor {
 		width: 55%;
 		height: 695px;
-		margin-bottom: 15% ;
+		margin-bottom: 5% ;
 	}
 
 	.form {
