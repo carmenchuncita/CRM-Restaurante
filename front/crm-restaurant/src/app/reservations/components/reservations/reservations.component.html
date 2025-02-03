@@ -1,11 +1,15 @@
-
 <section class="reservation-form-section">
 
-    <figure class = "reservation-figure">
-        <img class = "reservation-icon" src="imagenes/icono11.png" alt="icono reservas">
-    </figure>
+    
 
     @if(token){
+
+        <figure class="reservation-figure">
+            <img class="reservation-icon" src="imagenes/icono11.png" alt="icono reservas">
+        </figure>
+    
+        <h1 class="reservations-title">Reservas</h1>
+
     <div class="contenedor">
 
         <span class="line top-left"></span>
@@ -14,85 +18,96 @@
         <span class="line bottom-right"></span>
 
         <form [formGroup]="form" (ngSubmit)=" handleReservationForm()" class="form">
-            
 
 
-                <div class="form-group">
-                    <label>Mesa</label>
-                    <select class="form-input" formControlName="table">
-                        @for(table of tableList; track table){
-                        <option [value]="table.nombre">
-                            {{table.nombre}}
-                        </option>
-                        }
-                    </select>
-                    @if (form.get('table')?.hasError('required') && isSubmitted) {
-                    <p class="form-field--text-danger">Debe rellenar este campo</p>
+
+            <div class="form-group">
+                <label>Mesa</label>
+                <select class="form-input" formControlName="table">
+                    @for(table of tableList; track table){
+                    <option [value]="table.nombre">
+                        {{table.nombre}}
+                    </option>
                     }
-                </div>
+                </select>
+                @if (form.get('table')?.hasError('required') && isSubmitted) {
+                <p class="form-field--text-danger">Debe rellenar este campo</p>
+                }
+            </div>
 
 
 
-                <div class="form-group">
-                    <label>Fecha</label>
-                    <input class="form-input" type="date" [min]="dateMin" formControlName="date">
-                    @if (form.get('date')?.hasError('required') && isSubmitted) {
-                    <p class="form-field--text-danger">Debe rellenar este campo</p>
-                    }
-                </div>
+            <div class="form-group">
+                <label>Fecha</label>
+                <input class="form-input" type="date" [min]="dateMin" formControlName="date">
+                @if (form.get('date')?.hasError('required') && isSubmitted) {
+                <p class="form-field--text-danger">Debe rellenar este campo</p>
+                }
+            </div>
 
-                <div class="form-group">
-                    <label>Hora</label>
-                    <select class="form-input" formControlName="time">
-                        <option value="comida">Comida</option>
-                        <option value="cena">Cena</option>
-                    </select>
-                    @if (form.get('time')?.hasError('required') && isSubmitted) {
-                    <p class="form-field--text-danger">Debe rellenar este campo</p>
-                    }
-                </div>
+            <div class="form-group">
+                <label>Hora</label>
+                <select class="form-input" formControlName="time">
+                    <option value="comida">Comida</option>
+                    <option value="cena">Cena</option>
+                </select>
+                @if (form.get('time')?.hasError('required') && isSubmitted) {
+                <p class="form-field--text-danger">Debe rellenar este campo</p>
+                }
+            </div>
 
 
-                <div class="form-group">
-                    <label>Teléfono</label>
-                    <input class="form-input" type="string" formControlName="telefono">
+            <div class="form-group">
+                <label>Teléfono</label>
+                <input class="form-input" type="string" formControlName="telefono">
 
-                    @if (form.get('telefono')?.hasError('required') && isSubmitted) {
-                    <p class="form-field--text-danger">Debe rellenar este campo</p>
-                    }
-                    @if (form.get('telefono')?.hasError('pattern') && isSubmitted) {
-                    <p class="form-field--text-danger">Debe contener 9 dígitos</p>
-                    }
-                </div>
+                @if (form.get('telefono')?.hasError('required') && isSubmitted) {
+                <p class="form-field--text-danger">Debe rellenar este campo</p>
+                }
+                @if (form.get('telefono')?.hasError('pattern') && isSubmitted) {
+                <p class="form-field--text-danger">Debe contener 9 dígitos</p>
+                }
+            </div>
 
-                    <button class="form-button">Confirmar reserva</button>
-                    <p class = "group-reservations-text">Para reserva de grupos de más de 15 personas por favor contacte con nosotros</p>
-           
+            <button class="form-button">Confirmar reserva</button>
+            <p class="group-reservations-text">Para reserva de grupos de más de 15 personas por favor contacte con
+                nosotros</p>
 
-               
-               
-     
+
+
+
+
         </form>
-      
+
 
     </div>
-   
-    }
-
-    <section class= "buttons-box">
-
-    @if(!token){
-    <button class = "login-button"(click)="handleSummitedLogin()">Ya soy cliente</button>
-    <button class = "register-button"(click)="handleSummitedRegister()">Registrate</button>
-
-    @if(isSubmittedLogin){
-    <app-login></app-login>
-    }
-
-    @if(isSubmittedRegister){
-    <app-register></app-register>
-    }
 
     }
+
+    <section class="buttons-box">
+
+        @if(!token){
+            <figure class="reservation-figure">
+                <img class="reservation-icon" src="imagenes/icono9.png" alt="icono reservas">
+            </figure>
+        
+        <div class = "login-button-box">
+            <button class="login-button" (click)="handleSummitedLogin()">Ya soy cliente</button>
+            @if(isSubmittedLogin){
+                <app-login></app-login>
+                }
+        </div>
+
+        <div class= "register-button-box">
+            <button class="register-button" (click)="handleSummitedRegister()">Registrate</button>
+            @if(isSubmittedRegister){
+                <app-register></app-register>
+                }
+        </div>
+       
+
+       
+
+        }
     </section>
 </section>
